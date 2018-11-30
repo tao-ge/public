@@ -1,0 +1,185 @@
+/*add_css*/
+.tab_table1{
+	width: 10%;
+	text-align:right !important;
+}
+.tab_table2{
+	width: 90%;
+	text-align:left !important;
+}
+.button_tab_1{
+	width:10%;
+	text-align:right !important;
+	}
+.button_tab_2{
+	width:40%;
+	text-align:left !important;
+	}
+.button_add{
+	background-color: #A9CCFF; 
+   font-size: large;
+   color: white; 
+   margin-bottom: 2px; 
+   width: 92px; 
+   height: 32px; 
+   float: left;
+   text-align: center;
+   border: 1px solid grey;}
+   .tab_3_1{
+   	width:10%;
+   }
+    .tab_3_2{
+   	width:40%;
+   }
+    .tab_3_3{
+   	width:10%;
+   }
+    .tab_3_4{
+   	width:20%;
+   }
+    .tab_3_5{
+   	width:20%;
+   }
+   
+   
+   
+   .flp_add1{
+   width:5%;
+   height:22px;
+   }
+   .flp_add2{
+   width:10%;
+   height:22px;
+   }
+   .flp_add3{
+   width:10%;
+   height:22px;
+   }
+   .flp_add4{
+   width:10%;
+   height:22px;
+   }
+   .flp_add5{
+   width:65%;
+   height:22px;
+   }
+   .button_flp{
+	margin-left: 10px;
+    float: left;
+	width: 172px;
+    height: 32px;
+    background-color: #ADFAFD;
+    margin-top: 5px;
+	color:#A29999;
+	}
+	.layer_tr_1{
+	font-size: 9pt;
+    border: 0;
+    margin: 0;
+    padding: 0;
+ 
+	
+	}
+	.layer_td_1{
+    line-height: 35px;
+    text-indent: 11px;
+    border: solid 1px #CCCDCE;
+    text-align: right;
+	width:20%;
+	}
+	.layer_td_2{
+	width:80%;
+    line-height: 35px;
+    text-indent: 11px;
+    border: solid 1px #CCCDCE;
+    text-align: left;
+	}
+	.layer_td_3{
+     
+    text-indent: 11px;
+    border: solid 1px #CCCDCE;
+    text-align: center;
+	width:20%;
+	}
+	.layer_td_4{
+    
+    text-indent: 11px;
+    border: solid 1px #CCCDCE;
+    text-align: left;
+	width:40%;
+	}
+	.layer_td_5{
+	width:60%;
+    line-height: 35px;
+    text-indent: 11px;
+    border: solid 1px #CCCDCE;
+    text-align: left;
+	}
+	.layer_input1{
+	height: 70%;
+    width: 70%;
+	border-bottom:solid 1px #CCCDCE;
+	border-top:solid 2px #CCCDCE;
+	border-left:solid 1px #CCCDCE;
+	border-right:solid 1px #CCCDCE;}
+	.layer_input2{
+	height: 70%;
+    width: 30%;
+	border-bottom:solid 1px #CCCDCE;
+	border-top:solid 2px #CCCDCE;
+	border-left:solid 1px #CCCDCE;
+	border-right:solid 1px #CCCDCE;}
+	.span_flp{
+		margin-top:12px;
+	}
+	.caption_tittle{
+	font-weight: 800;
+    font-size: 14px;
+    text-align: center;
+    width: 150px;
+    height: 40px;
+    background-color: #00FF08;
+	}
+	.closeIframe_button{
+	width: 140px;
+    height: 30px;
+    border: 1px solid grey;
+    padding: 10px;
+    -webkit-border-radius: 8px;
+    background-color: #F1EDED;
+    margin-top: 5px;
+	}
+	.closeIframe_button1{
+	 height: 30px;
+    border: 1px solid grey;
+    padding: 10px;
+    -webkit-border-radius: 8px;
+    background-color: #F1EDED;
+	}
+	.data_td{
+	line-height:35px;
+	text-align: center;
+	text-indent:11px;
+	border: solid 1px rgba(210, 210, 210, 0)!important; }
+	.td_blue{
+	    color: blue;
+    text-decoration: underline;
+	}
+	.img_box{
+    border: 1px solid #BFC4CA;
+    height: 300px;
+    width:24%;
+    float: left;
+	text-align:center;
+	}
+	.img_style{
+	 
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 60%;}
+	.select_1{
+	height: 32px;
+    width: 222px;
+    border: 1px solid black;
+	opacity: 1 !important;
+	}

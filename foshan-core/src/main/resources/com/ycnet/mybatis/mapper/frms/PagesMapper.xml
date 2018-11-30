@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.PagesMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.Pages" >
+    <id column="page_id" property="pageId" jdbcType="BIGINT" />
+    <result column="page_name" property="pageName" jdbcType="VARCHAR" />
+    <result column="page_url" property="pageUrl" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="page_rank" property="pageRank" jdbcType="BIGINT" />
+    <result column="page_orders" property="pageOrders" jdbcType="BIGINT" />
+    <result column="page_desc" property="pageDesc" jdbcType="VARCHAR" />
+    <result column="parent_page_id" property="parentPageId" jdbcType="BIGINT" />
+    <result column="flag" property="flag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    page_id, page_name, page_url, icon, page_rank, page_orders, page_desc, parent_page_id, 
+    flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_pages
+    where page_id = #{pageId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_pages
+    where page_id = #{pageId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.Pages" >
+    insert into tn_pages (page_id, page_name, page_url, 
+      icon, page_rank, page_orders, 
+      page_desc, parent_page_id, flag
+      )
+    values (#{pageId,jdbcType=BIGINT}, #{pageName,jdbcType=VARCHAR}, #{pageUrl,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{pageRank,jdbcType=BIGINT}, #{pageOrders,jdbcType=BIGINT}, 
+      #{pageDesc,jdbcType=VARCHAR}, #{parentPageId,jdbcType=BIGINT}, #{flag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.Pages" >
+    insert into tn_pages
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pageId != null" >
+        page_id,
+      </if>
+      <if test="pageName != null" >
+        page_name,
+      </if>
+      <if test="pageUrl != null" >
+        page_url,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="pageRank != null" >
+        page_rank,
+      </if>
+      <if test="pageOrders != null" >
+        page_orders,
+      </if>
+      <if test="pageDesc != null" >
+        page_desc,
+      </if>
+      <if test="parentPageId != null" >
+        parent_page_id,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pageId != null" >
+        #{pageId,jdbcType=BIGINT},
+      </if>
+      <if test="pageName != null" >
+        #{pageName,jdbcType=VARCHAR},
+      </if>
+      <if test="pageUrl != null" >
+        #{pageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="pageRank != null" >
+        #{pageRank,jdbcType=BIGINT},
+      </if>
+      <if test="pageOrders != null" >
+        #{pageOrders,jdbcType=BIGINT},
+      </if>
+      <if test="pageDesc != null" >
+        #{pageDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="parentPageId != null" >
+        #{parentPageId,jdbcType=BIGINT},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.Pages" >
+    update tn_pages
+    <set >
+      <if test="pageName != null" >
+        page_name = #{pageName,jdbcType=VARCHAR},
+      </if>
+      <if test="pageUrl != null" >
+        page_url = #{pageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="pageRank != null" >
+        page_rank = #{pageRank,jdbcType=BIGINT},
+      </if>
+      <if test="pageOrders != null" >
+        page_orders = #{pageOrders,jdbcType=BIGINT},
+      </if>
+      <if test="pageDesc != null" >
+        page_desc = #{pageDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="parentPageId != null" >
+        parent_page_id = #{parentPageId,jdbcType=BIGINT},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=CHAR},
+      </if>
+    </set>
+    where page_id = #{pageId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.Pages" >
+    update tn_pages
+    set page_name = #{pageName,jdbcType=VARCHAR},
+      page_url = #{pageUrl,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      page_rank = #{pageRank,jdbcType=BIGINT},
+      page_orders = #{pageOrders,jdbcType=BIGINT},
+      page_desc = #{pageDesc,jdbcType=VARCHAR},
+      parent_page_id = #{parentPageId,jdbcType=BIGINT},
+      flag = #{flag,jdbcType=CHAR}
+    where page_id = #{pageId,jdbcType=BIGINT}
+  </update>
+  <select id="getPageList" parameterType="com.ycnet.frms.bean.Pages" resultMap="BaseResultMap" >
+     select 
+    <include refid="Base_Column_List" />
+    from tn_pages
+    where 1 = 1<!-- flag = '1' -->
+    <if test="pageRank != null">
+    and page_rank = #{pageRank,jdbcType=BIGINT}
+    </if>
+    <if test="parentPageId != null">
+    and parent_page_id = #{parentPageId,jdbcType=BIGINT}
+    </if>
+    <if test='pageName != null and pageName!=""'>
+    and page_name LIKE concat('%',#{pageName,jdbcType=VARCHAR},'%')
+    </if>
+    <if test='parentPageName != null and parentPageName!=""'>
+    and page_name = #{parentPageName,jdbcType=VARCHAR}
+    </if>
+    <if test='flag != null and flag!=""'>
+    and flag = #{flag,jdbcType=VARCHAR}
+    </if>
+  <!--    and flag='1'-->
+    order by  flag desc,parent_page_id, page_rank,page_orders
+  </select>
+  
+  <select id="selectParentPagesByRoleId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+     SELECT
+     <include refid="Base_Column_List" />
+     FROM tn_pages 
+	 WHERE page_id IN (
+	 SELECT 
+	    p.parent_page_id
+	    FROM tn_page_role r
+	    LEFT JOIN tn_pages p
+	    ON r.page_id = p.page_id
+	    WHERE r.role_id = #{roleId,jdbcType=BIGINT}
+	    ORDER BY p.parent_page_id 
+	 )
+	 ORDER BY page_orders
+  </select>
+  <select id="queryByPageName" resultMap="BaseResultMap" >
+  	select * from tn_pages where page_name=#{pageName,jdbcType=VARCHAR}
+  </select>
+  <select id="queryByxjname" resultMap="BaseResultMap" >
+  	select * from tn_pages where parent_page_id=#{pageId,jdbcType=VARCHAR}
+  </select>
+
+   <delete id="deleteByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.Pages" >
+  DELETE FROM tn_pages  where page_id = #{pageId,jdbcType=BIGINT}
+  </delete>
+   <select id="selectByPagesorder" parameterType="com.ycnet.frms.bean.Pages" resultMap="BaseResultMap" >
+    select 
+    page_orders
+    from tn_pages
+    where 1 = 1<!-- flag = '1' -->
+    <if test="pageRank != null">
+    and page_rank = #{pageRank,jdbcType=BIGINT}
+    </if>
+    order by page_orders desc limit 1
+  </select>
+
+ <!-- 按条件查询记录总数-->
+  <select id="queryCountByConditionMap"  parameterType="map" resultType="java.lang.Integer">
+       select 
+    	  count(1)
+   	   from tn_pages
+	   <where>
+        <trim prefixOverrides="and">
+           <if test="pages.pageRank != null">
+		    and page_rank = #{pages.pageRank,jdbcType=BIGINT}
+		    </if>
+		    <if test="pages.parentPageId != null">
+		    and parent_page_id = #{pages.parentPageId,jdbcType=BIGINT}
+		    </if>
+		    <if test='pages.pageName != null and pages.pageName!=""'>
+		    and page_name LIKE concat('%',#{pages.pageName,jdbcType=VARCHAR},'%')
+		    </if>
+		    <if test='pages.parentPageName != null and pages.parentPageName!=""'>
+		    and page_name = #{pages.parentPageName,jdbcType=VARCHAR}
+		    </if>
+		    <if test='pages.flag != null and pages.flag!=""'>
+		    and flag = #{pages.flag,jdbcType=VARCHAR}
+		    </if>
+        </trim>
+    </where>
+		     <!--    and flag='1'-->
+		    order by  flag desc,parent_page_id, page_rank,page_orders	   
+  </select>
+   <!-- 按条件查询功能管理列表-->
+  <select id="queryByConditionMap"  parameterType="map" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    	from tn_pages
+     <where>
+        <trim prefixOverrides="and">
+            <if test="pages.pageRank != null">
+		   	 and page_rank = #{pages.pageRank,jdbcType=BIGINT}
+		    </if>
+		    <if test="pages.parentPageId != null">
+		    and parent_page_id = #{pages.parentPageId,jdbcType=BIGINT}
+		    </if>
+		    <if test='pages.pageName != null and pages.pageName!=""'>
+		    and page_name LIKE concat('%',#{pages.pageName,jdbcType=VARCHAR},'%')
+		    </if>
+		    <if test='pages.parentPageName != null and pages.parentPageName!=""'>
+		    and page_name = #{pages.parentPageName,jdbcType=VARCHAR}
+		    </if>
+		    <if test='pages.flag != null and pages.flag!=""'>
+		    and flag = #{pages.flag,jdbcType=VARCHAR}
+		    </if>
+        </trim>
+    </where>
+   <!--    and flag='1'-->
+  			 order by  flag desc,parent_page_id, page_rank,page_orders limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+   	 		
+  </select>
+<!--   根据roleId查询角色的权限列表  -->
+   <select id="selectByroles"  parameterType="map" resultMap="BaseResultMap">
+	  	select 
+		    p.page_id,  p.page_name, p.page_url, p.icon, p.page_rank, p.page_orders,p.page_desc, p.parent_page_id, 
+		    p.flag
+	    from tn_pages p
+		LEFT JOIN `tn_page_role` r ON r.`page_id`=p.`page_id`
+		WHERE r.`role_id`=#{roleId,jdbcType=BIGINT} and p.page_rank=#{pageRank,jdbcType=BIGINT}
+	</select>
+	
+	<!--   根据roleId查询角色的权限列表  -->
+   <select id="getPageListByRole"  parameterType="map" resultMap="BaseResultMap">
+	  	select 
+		    p.page_id,  p.page_name, p.page_url, p.icon, p.page_rank, p.page_orders,p.page_desc, p.parent_page_id, 
+		    p.flag
+	    from tn_pages p
+		LEFT JOIN `tn_page_role` r ON r.`page_id`=p.`page_id`
+		WHERE r.`role_id`=#{roleId,jdbcType=BIGINT} and p.page_rank=#{pages.pageRank,jdbcType=BIGINT} and p.parent_page_id=#{pages.parentPageId,jdbcType=BIGINT}
+	</select>
+	<!--   根据orgid查询角色的权限列表  -->
+   <select id="getPageListByOrgId"  parameterType="map" resultMap="BaseResultMap">
+	  	select 
+		    p.page_id,  p.page_name, p.page_url, p.icon, p.page_rank, p.page_orders,p.page_desc, p.parent_page_id, 
+		    p.flag
+	    from tn_pages p
+		LEFT JOIN `tn_organizition` o ON FIND_IN_SET(p.`page_id`,o.`pages`) 
+		WHERE o.`org_id`=#{orgId,jdbcType=BIGINT} and p.page_rank=#{pages.pageRank,jdbcType=BIGINT} and p.parent_page_id=#{pages.parentPageId,jdbcType=BIGINT}
+	</select>
+	
+</mapper>

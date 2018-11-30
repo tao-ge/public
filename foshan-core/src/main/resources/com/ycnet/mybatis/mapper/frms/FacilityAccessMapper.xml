@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.FacilityAccessMapper">
+	<resultMap id="BaseResultMap" type="com.ycnet.frms.bean.FacilityAccess">
+		<id column="access_id" property="accessId" jdbcType="BIGINT" />
+		<result column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="access_user_id" property="accessUserId" jdbcType="BIGINT" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="dev_ids" property="devIds" jdbcType="VARCHAR" />
+		<result column="validate_time" property="validateTime" jdbcType="TIMESTAMP" />
+		<result column="validate_status" property="validateStatus" jdbcType="CHAR" />
+		<result column="access_time" property="accessTime" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- bean -->
+	<resultMap id="BeanResultMap" type="com.ycnet.frms.vo.FacilityAccessBean">
+		<id column="access_id" property="accessId" jdbcType="BIGINT" />
+		<result column="user_id" property="userId" jdbcType="BIGINT" />
+		<result column="access_user_id" property="accessUserId" jdbcType="BIGINT" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="dev_ids" property="devIds" jdbcType="VARCHAR" />
+		<result column="validate_time" property="validateTime" jdbcType="TIMESTAMP" />
+		<result column="validate_status" property="validateStatus" jdbcType="CHAR" />
+		<result column="access_time" property="accessTime" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<sql id="Base_Column_List">
+		access_id,access_user_id, user_id, user_name, dev_ids, validate_time, validate_status, access_time,
+		remark
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from tn_facility_access
+		where access_id = #{accessId,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from tn_facility_access
+		where access_id = #{accessId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.ycnet.frms.bean.FacilityAccess">
+		insert into tn_facility_access (access_id,access_user_id, user_id, user_name,
+		dev_ids, validate_time, validate_status,
+		access_time, remark)
+		values (#{accessId,jdbcType=BIGINT},#{accessUserId,jdbcType=BIGINT},
+		#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR},
+		#{devIds,jdbcType=VARCHAR}, #{validateTime,jdbcType=TIMESTAMP}, #{validateStatus,jdbcType=CHAR},
+		#{accessTime,jdbcType=TIMESTAMP},
+		#{remark,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.ycnet.frms.bean.FacilityAccess">
+		insert into tn_facility_access
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="accessId != null">
+				access_id,
+			</if>
+			<if test="accessUserId != null">
+				access_user_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="devIds != null">
+				dev_ids,
+			</if>
+			<if test="validateTime != null">
+				validate_time,
+			</if>
+			<if test="validateStatus != null">
+				validate_status,
+			</if>
+			<if test="accessTime != null">
+				access_time,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="accessId != null">
+				#{accessId,jdbcType=BIGINT},
+			</if>
+			<if test="accessUserId != null">
+				#{accessUserId,jdbcType=BIGINT},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=BIGINT},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="devIds != null">
+				#{devIds,jdbcType=VARCHAR},
+			</if>
+			<if test="validateTime != null">
+				#{validateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="validateStatus != null">
+				#{validateStatus,jdbcType=CHAR},
+			</if>
+			<if test="accessTime != null">
+				#{accessTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.FacilityAccess">
+		update tn_facility_access
+		<set>
+			<if test="accessUserId != null">
+				access_user_id = #{accessUserId,jdbcType=BIGINT},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=BIGINT},
+			</if>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="devIds != null">
+				dev_ids = #{devIds,jdbcType=VARCHAR},
+			</if>
+			<if test="validateTime != null">
+				validate_time = #{validateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="validateStatus != null">
+				validate_status = #{validateStatus,jdbcType=CHAR},
+			</if>
+			<if test="accessTime != null">
+				access_time = #{accessTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where access_id = #{accessId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.FacilityAccess">
+		update tn_facility_access
+		set access_user_id = #{accessUserId,jdbcType=BIGINT},
+		user_id = #{userId,jdbcType=BIGINT},
+		user_name = #{userName,jdbcType=VARCHAR},
+		dev_ids = #{devIds,jdbcType=VARCHAR},
+		validate_time = #{validateTime,jdbcType=TIMESTAMP},
+		validate_status = #{validateStatus,jdbcType=CHAR},
+		access_time = #{accessTime,jdbcType=TIMESTAMP},
+		remark = #{remark,jdbcType=VARCHAR}
+		where access_id
+		= #{accessId,jdbcType=BIGINT}
+	</update>
+
+	<select id="queryListByMap" parameterType="map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tn_facility_access
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="fa!=null and fa.userName!=null and fa.userName!=''">
+				and user_name like concat('%',#{fa.userName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="fa!=null and fa.validateStatus!=null and fa.validateStatus!=''">
+				and validate_status =#{fa.validateStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="fa!=null and fa.remark!=null and fa.remark!=''">
+				and remark like concat('%',#{fa.remark,jdbcType=VARCHAR},'%')
+			</if>
+			 <if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and ((SELECT `org_id` FROM `tn_users` WHERE `user_id`=tn_facility_access.`user_id`)=#{user.orgId,jdbcType=BIGINT})
+			            </if>
+		       </if>
+		</trim>
+		<if test="pb!=null">
+			order by access_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+	<select id="queryCountByMap" parameterType="map" resultType="java.lang.Integer">
+		select
+		count(1)
+		from tn_facility_access
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="fa!=null and fa.userName!=null and fa.userName!=''">
+				and user_name like concat('%',#{fa.userName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="fa!=null and fa.validateStatus!=null and fa.validateStatus!=''">
+				and validate_status =#{fa.validateStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="fa!=null and fa.remark!=null and fa.remark!=''">
+				and remark like concat('%',#{fa.remark,jdbcType=VARCHAR},'%')
+			</if>
+				 <if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and ((SELECT `org_id` FROM `tn_users` WHERE `user_id`=tn_facility_access.`user_id`)=#{user.orgId,jdbcType=BIGINT})
+			            </if>
+		       </if>
+		</trim>
+	</select>
+
+	<select id="queryListByCondition" parameterType="map" resultMap="BeanResultMap">
+		select
+		access_id,access_user_id,tn_facility_access.user_id,tn_users.mobile_phone,tn_facility_access.user_name,dev_ids,validate_time,validate_status,access_time,tn_facility_access.remark
+		from tn_facility_access
+		<if test="cb!=null">
+			<if test="cb.mobile!=null or cb.mobile!=''">
+				LEFT JOIN tn_users ON tn_facility_access.user_id=tn_users.user_id
+			</if>
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				<if test="(cb.devImei!=null and cb.devImei!='')or(cb.devName!=null and cb.devName!='')">
+					EXISTS (SELECT 1 FROM tn_device_reg t WHERE FIND_IN_SET(t.dev_id,tn_facility_access.dev_ids)
+<!-- 					find_in_set((SELECT dev_id from tn_facility -->
+<!-- 					<trim prefix="WHERE" prefixOverrides="AND |OR ">  -->
+						<if test="cb.devImei!=null and cb.devImei!='' ">
+							and t.dev_imei like concat('%',#{cb.devImei,jdbcType=VARCHAR},'%')
+						</if>
+						<if test="cb.devName !=null and cb.devName !='' ">
+							and t.dev_name like concat('%',#{cb.devName,jdbcType=VARCHAR},'%') 
+						</if>
+<!-- 					</trim> -->
+<!-- 					),dev_ids) -->
+				)
+				</if>
+				<if test="cb.userName!=null and cb.userName!=''">
+					and tn_facility_access.user_name like concat('%',#{cb.userName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="cb.mobile!=null and cb.mobile!=''">
+					and mobile_phone like concat('%',#{cb.mobile,jdbcType=VARCHAR},'%')
+				</if>
+				<!-- 智能锁授权管理>高级查询:添加对授权时间的范围查询 -->
+				<if test="cb.bdate!=null and cb.bdate!=''">
+					and validate_time &gt; #{cb.bdate,jdbcType=VARCHAR}
+				</if>
+				<if test="cb.edate!=null and cb.edate!=''">
+					and validate_time &lt; #{cb.edate,jdbcType=VARCHAR}
+				</if>
+				<if test="cb.bdateEnd!=null and cb.bdateEnd!=''">
+					and access_time &gt; #{cb.bdateEnd,jdbcType=VARCHAR}
+				</if>
+				<if test="cb.edateEnd!=null and cb.edateEnd!=''">
+					and access_time &lt; #{cb.edateEnd,jdbcType=VARCHAR}
+				</if>
+<!-- 				<if test="cb.status!=null and cb.status!=''"> -->
+<!-- 					and validate_status =#{cb.status,jdbcType=VARCHAR} -->
+<!-- 				</if> -->
+				
+				
+				<if test="cb.userId!=null and cb.userId!=-1">
+					and user_id =#{cb.userId,jdbcType=BIGINT}
+				</if>
+				<if test="cb.devId!=null and cb.devId!=-1">
+					and dev_ids like concat('%',#{cb.devId,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="cb!=null and cb.validateStatus!=null and cb.validateStatus!=''">
+					and validate_status =#{cb.validateStatus,jdbcType=VARCHAR}
+				</if>
+				<if test="cb!=null and cb.remark!=null and cb.remark!=''">
+					and remark like concat('%',#{cb.remark,jdbcType=VARCHAR},'%')
+				</if>
+				
+					 <if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and ((SELECT `org_id` FROM `tn_users` WHERE `user_id`=tn_facility_access.`user_id`)=#{user.orgId,jdbcType=BIGINT})
+			            </if>
+		       </if>
+			
+			</trim>
+		</if>
+		order by access_id desc 
+		<if test="pb!=null">
+			limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+	
+	<select id="queryCountByCondition" parameterType="map" resultType="java.lang.Integer">
+		select
+		count(1)
+		from tn_facility_access
+		<if test="cb!=null">
+			<if test="cb.mobile!=null or cb.mobile!=''">
+				LEFT JOIN tn_users ON tn_facility_access.user_id=tn_users.user_id
+			</if>
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				<if test="(cb.devImei!=null and cb.devImei!='')or(cb.devName!=null and cb.devName!='')">
+					EXISTS (SELECT 1 FROM tn_device_reg t WHERE FIND_IN_SET(t.dev_id,dev_ids)
+<!-- 					find_in_set((SELECT dev_id from tn_facility -->
+<!-- 					<trim prefix="WHERE" prefixOverrides="AND |OR ">  -->
+						<if test="cb.devImei!=null and cb.devImei!='' ">
+							and t.dev_imei like concat('%',#{cb.devImei,jdbcType=VARCHAR},'%')
+						</if>
+						<if test="cb.devName !=null and cb.devName !='' ">
+							and t.dev_name like concat('%',#{cb.devName,jdbcType=VARCHAR},'%')
+						</if>
+<!-- 					</trim> -->
+<!-- 					),dev_ids) -->
+				)
+				</if>
+				<if test="cb.userName!=null and cb.userName!=''">
+					and tn_facility_access.user_name like concat('%',#{cb.userName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="cb.mobile!=null and cb.mobile!=''">
+					and mobile_phone like concat('%',#{cb.mobile,jdbcType=VARCHAR},'%')
+				</if>
+				<!-- 智能锁授权管理>高级查询:添加对授权时间的范围查询 -->
+				<if test="cb.bdate!=null and cb.bdate!=''">
+					and validate_time &gt; #{cb.bdate,jdbcType=VARCHAR}
+				</if>
+				<if test="cb.edate!=null and cb.edate!=''">
+					and validate_time &lt; #{cb.edate,jdbcType=VARCHAR}
+				</if>
+				<if test="cb.bdateEnd!=null and cb.bdateEnd!=''">
+					and access_time &gt; #{cb.bdateEnd,jdbcType=VARCHAR}
+				</if>
+				<if test="cb.edateEnd!=null and cb.edateEnd!=''">
+					and access_time &lt; #{cb.edateEnd,jdbcType=VARCHAR}
+				</if>
+<!-- 				<if test="cb.status!=null and cb.status!=''"> -->
+<!-- 					and validate_status =#{cb.status,jdbcType=VARCHAR} -->
+<!-- 				</if> -->
+				
+				<if test="cb.userId!=null and cb.userId!=-1">
+					and tn_facility_access.user_id =#{cb.userId,jdbcType=BIGINT}
+				</if>
+				<if test="cb.devId!=null and cb.devId!=-1">
+					and dev_ids like concat('%',#{cb.devId,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="cb!=null and cb.validateStatus!=null and cb.validateStatus!=''">
+					and validate_status =#{cb.validateStatus,jdbcType=VARCHAR}
+				</if>
+				<if test="cb!=null and cb.remark!=null and cb.remark!=''">
+					and remark like concat('%',#{cb.remark,jdbcType=VARCHAR},'%')
+				</if>
+						 <if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and ((SELECT `org_id` FROM `tn_users` WHERE `user_id`=tn_facility_access.`user_id`)=#{user.orgId,jdbcType=BIGINT})
+			            </if>
+		       </if>
+					
+			</trim>
+		</if>
+	</select>
+	
+	<!-- 根据条件查询是否设施是否授权 -->
+	<select id="queryAccessCountByMac" parameterType="map" resultType="java.lang.Integer">
+		select 
+		count(1)
+		from tn_facility_access a
+		LEFT JOIN tn_users u ON a.user_id=u.user_id 
+		<where>
+			<trim prefixOverrides="and | or">
+				<if test="ac.bdate != null and ac.bdate != ''">
+					a.validate_time <![CDATA[>]]> #{ac.bdate,jdbcType=VARCHAR}
+				</if>
+				<if test="ac.userId!=null">
+					and a.user_id =#{ac.userId,jdbcType=BIGINT}
+				</if>
+				<if test="ac.devId!=null">
+					and a.dev_ids like concat('%',#{ac.devId,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="ac.validateStatus != null and ac.validateStatus != ''">
+					and a.validate_status = #{ac.validateStatus,jdbcType=VARCHAR}
+				</if>
+				<if test="user!=null">
+		           	<if test="user.orgId!=null">
+		                and u.org_id=#{user.orgId,jdbcType=BIGINT}
+		            </if>
+		       	</if>
+			</trim>
+		</where>
+	</select>
+	
+	<!-- 查询设施是否授权 -->
+	<select id="queryWhetherAccess" parameterType="java.lang.String" resultMap="BaseResultMap">
+			select
+			<include refid="Base_Column_List" />
+			from tn_facility_access
+			where FIND_IN_SET(#{devId,jdbcType=VARCHAR},dev_ids)
+			ORDER BY validate_time DESC
+			limit 1
+	</select>
+	
+	<select id="queryFacilityAccessByImei" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT a.access_time,a.validate_time,a.access_id
+			FROM `tn_facility_access` a
+			WHERE FIND_IN_SET((SELECT dev_id FROM tn_device_reg WHERE dev_imei=#{imei,jdbcType=VARCHAR} LIMIT 0,1), a.dev_ids)
+			AND access_time &lt; NOW() AND validate_time &gt; NOW()
+			ORDER BY access_id DESC
+			LIMIT 0,1
+	</select>
+</mapper>

@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.OrganizitionMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.Organizition" >
+    <id column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="org_address" property="orgAddress" jdbcType="VARCHAR" />
+    <result column="orders" property="orders" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="code1" property="code1" jdbcType="VARCHAR" />
+    <result column="code2" property="code2" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="port" property="port" jdbcType="BIGINT" />
+    <result column="low_temp_thd" property="lowTempThd" jdbcType="VARCHAR" />
+    <result column="high_temp_shd" property="highTempShd" jdbcType="VARCHAR" />
+    <result column="humidity_shd" property="humidityShd" jdbcType="VARCHAR" />
+    <result column="tilt" property="tilt" jdbcType="VARCHAR" />
+    <result column="battery_thd" property="batteryThd" jdbcType="VARCHAR" />
+    <result column="col_freq" property="colFreq" jdbcType="BIGINT" />
+    <result column="heart_rate" property="heartRate" jdbcType="BIGINT" />
+    <result column="mobile_ver" property="mobileVer" jdbcType="VARCHAR" />
+    <result column="mobile_ver_url" property="mobileVerUrl" jdbcType="VARCHAR" />
+    <result column="dev_ver" property="devVer" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="BIGINT" />
+    <result column="dev_ver_url" property="devVerUrl" jdbcType="VARCHAR" />
+    <result column="mid" property="mid" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="infor_enter_ver" property="inforEnterver" jdbcType="VARCHAR" />
+    <result column="dev_platform" property="devPlatform" jdbcType="VARCHAR" />
+    <result column="roles" property="roles" jdbcType="VARCHAR" />
+    <result column="pages" property="pages" jdbcType="VARCHAR" />
+    <result column="is_synch_opss" property="isSynchOpss" jdbcType="CHAR" /><!-- 2018年4月28日11:04:35 dzy添加 -->
+	<result column="door_not_locked" property="doorNotLocked" jdbcType="BIGINT" />
+	<result column="lock_not_locked" property="lockNotLocked" jdbcType="BIGINT" />
+	<result column="tem_alarm_intime" property="temAlarmIntime" jdbcType="BIGINT" />
+	<result column="unopendoor_alarm_intime" property="unopendoorAlarmIntime" jdbcType="BIGINT" />
+	<result column="unopenlock_alarm_intime" property="unopenlockAlarmIntime" jdbcType="BIGINT" />
+	<result column="tilt_alarm_intime" property="tiltAlarmIntime" jdbcType="BIGINT" />
+	<result column="power_alarm_intime" property="powerAlarmIntime" jdbcType="BIGINT" />
+	<result column="unlock_alarm_intime" property="unlockAlarmIntime" jdbcType="BIGINT" />
+	<result column="undoor_alarm_intime" property="undoorAlarmIntime" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    org_id, org_name, org_address, orders, remark, code1, code2, contact_phone, ip, port, 
+    low_temp_thd, high_temp_shd, humidity_shd, tilt, battery_thd, col_freq, heart_rate, 
+    mobile_ver, mobile_ver_url, dev_ver, dev_ver_url,mid,pid,infor_enter_ver,dev_platform,roles,
+    pages, is_synch_opss,door_not_locked,lock_not_locked,tem_alarm_intime,unopendoor_alarm_intime,unopenlock_alarm_intime,
+    tilt_alarm_intime,power_alarm_intime,unlock_alarm_intime,undoor_alarm_intime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_organizition
+    where org_id = #{orgId,jdbcType=BIGINT}
+  </select>
+  <select id="selectroleid" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+   role_id
+    from tn_user_role
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_organizition
+    where org_id = #{orgId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.Organizition" >
+    insert into tn_organizition (org_id, org_name, org_address, 
+      orders, remark, code1, 
+      code2, contact_phone, ip, 
+      port, low_temp_thd, high_temp_shd, 
+      humidity_shd, tilt, battery_thd, 
+      col_freq, heart_rate, mobile_ver, 
+      mobile_ver_url, dev_ver, dev_ver_url,mid,pid,infor_enter_ver,
+      dev_platform,roles,pages,is_synch_opss,door_not_locked,lock_not_locked,tem_alarm_intime,
+      unopendoor_alarm_intime,unopenlock_alarm_intime, tilt_alarm_intime,power_alarm_intime,
+      unlock_alarm_intime,undoor_alarm_intime
+      )
+    values (#{orgId,jdbcType=BIGINT}, #{orgName,jdbcType=VARCHAR}, #{orgAddress,jdbcType=VARCHAR}, 
+      #{orders,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, #{code1,jdbcType=VARCHAR}, 
+      #{code2,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{port,jdbcType=BIGINT}, #{lowTempThd,jdbcType=VARCHAR}, #{highTempShd,jdbcType=VARCHAR}, 
+      #{humidityShd,jdbcType=VARCHAR}, #{tilt,jdbcType=VARCHAR}, #{batteryThd,jdbcType=VARCHAR}, 
+      #{colFreq,jdbcType=BIGINT}, #{heartRate,jdbcType=BIGINT}, #{mobileVer,jdbcType=VARCHAR}, 
+      #{mobileVerUrl,jdbcType=VARCHAR}, #{devVer,jdbcType=VARCHAR}, #{devVerUrl,jdbcType=VARCHAR},
+      #{mid,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR},#{inforEnterver,jdbcType=VARCHAR},
+      #{devPlatform,jdbcType=VARCHAR}, #{roles,jdbcType=VARCHAR},#{pages,jdbcType=VARCHAR}, #{isSynchOpss,jdbcType=CHAR},
+      #{doorNotLocked,jdbcType=BIGINT},#{lockNotLocked,jdbcType=BIGINT},#{temAlarmIntime,jdbcType=BIGINT},#{unopendoorAlarmIntime,jdbcType=BIGINT},
+      #{unopenlockAlarmIntime,jdbcType=BIGINT},#{tiltAlarmIntime,jdbcType=BIGINT},#{powerAlarmIntime,jdbcType=BIGINT},#{unlockAlarmIntime,jdbcType=BIGINT},
+      #{undoorAlarmIntime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.Organizition" keyProperty="orgId">
+    insert into tn_organizition
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="orgName != null" >
+        org_name,
+      </if>
+      <if test="orgAddress != null" >
+        org_address,
+      </if>
+      <if test="orders != null" >
+        orders,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="code1 != null" >
+        code1,
+      </if>
+      <if test="code2 != null" >
+        code2,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="port != null" >
+        port,
+      </if>
+      <if test="lowTempThd != null" >
+        low_temp_thd,
+      </if>
+      <if test="highTempShd != null" >
+        high_temp_shd,
+      </if>
+      <if test="humidityShd != null" >
+        humidity_shd,
+      </if>
+      <if test="tilt != null" >
+        tilt,
+      </if>
+      <if test="batteryThd != null" >
+        battery_thd,
+      </if>
+      <if test="colFreq != null" >
+        col_freq,
+      </if>
+      <if test="heartRate != null" >
+        heart_rate,
+      </if>
+      <if test="mobileVer != null" >
+        mobile_ver,
+      </if>
+      <if test="mobileVerUrl != null" >
+        mobile_ver_url,
+      </if>
+      <if test="devVer != null" >
+        dev_ver,
+      </if>
+      <if test="devVerUrl != null" >
+        dev_ver_url,
+      </if>
+      <if test="devPlatform != null" >
+        dev_platform,
+      </if>
+       <if test="roles != null" >
+        roles,
+      </if>
+       <if test="pages != null" >
+        pages,
+      </if>
+       <if test="isSynchOpss != null" >
+        is_synch_opss,
+      </if>
+       <if test="doorNotLocked != null" >
+        door_not_locked,
+      </if>
+       <if test="lockNotLocked != null" >
+        lock_not_locked,
+      </if>
+       <if test="temAlarmIntime != null" >
+        tem_alarm_intime,
+      </if>
+       <if test="unopendoorAlarmIntime != null" >
+        unopendoor_alarm_intime,
+      </if>
+       <if test="unopenlockAlarmIntime != null" >
+        unopenlock_alarm_intime,
+      </if>
+       <if test="tiltAlarmIntime != null" >
+        tilt_alarm_intime,
+      </if>
+       <if test="powerAlarmIntime != null" >
+        power_alarm_intime,
+      </if>
+       <if test="unlockAlarmIntime != null" >
+        unlock_alarm_intime,
+      </if>
+       <if test="undoorAlarmIntime != null" >
+        undoor_alarm_intime
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgAddress != null" >
+        #{orgAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="code1 != null" >
+        #{code1,jdbcType=VARCHAR},
+      </if>
+      <if test="code2 != null" >
+        #{code2,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null" >
+        #{port,jdbcType=BIGINT},
+      </if>
+      <if test="lowTempThd != null" >
+        #{lowTempThd,jdbcType=VARCHAR},
+      </if>
+      <if test="highTempShd != null" >
+        #{highTempShd,jdbcType=VARCHAR},
+      </if>
+      <if test="humidityShd != null" >
+        #{humidityShd,jdbcType=VARCHAR},
+      </if>
+      <if test="tilt != null" >
+        #{tilt,jdbcType=VARCHAR},
+      </if>
+      <if test="batteryThd != null" >
+        #{batteryThd,jdbcType=VARCHAR},
+      </if>
+      <if test="colFreq != null" >
+        #{colFreq,jdbcType=BIGINT},
+      </if>
+      <if test="heartRate != null" >
+        #{heartRate,jdbcType=BIGINT},
+      </if>
+      <if test="mobileVer != null" >
+        #{mobileVer,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileVerUrl != null" >
+        #{mobileVerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="devVer != null" >
+        #{devVer,jdbcType=VARCHAR},
+      </if>
+      <if test="devVerUrl != null" >
+        #{devVerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="devPlatform != null" >
+        #{devPlatform,jdbcType=VARCHAR},
+      </if>
+       <if test="roles != null" >
+        #{roles,jdbcType=VARCHAR},
+      </if>
+       <if test="pages != null" >
+        #{pages,jdbcType=VARCHAR},
+      </if>
+       <if test="isSynchOpss != null" >
+        #{isSynchOpss,jdbcType=CHAR},
+      </if>
+       <if test="doorNotLocked != null" >
+        #{doorNotLocked,jdbcType=BIGINT},
+      </if>
+       <if test="lockNotLocked != null" >
+        #{lockNotLocked,jdbcType=BIGINT},
+      </if>
+       <if test="temAlarmIntime != null" >
+        #{temAlarmIntime,jdbcType=BIGINT},
+      </if>
+       <if test="unopendoorAlarmIntime != null" >
+        #{unopendoorAlarmIntime,jdbcType=BIGINT},
+      </if>
+       <if test="unopenlockAlarmIntime != null" >
+        #{unopenlockAlarmIntime,jdbcType=BIGINT},
+      </if>
+       <if test="tiltAlarmIntime != null" >
+        #{tiltAlarmIntime,jdbcType=BIGINT},
+      </if>
+       <if test="powerAlarmIntime != null" >
+        #{powerAlarmIntime,jdbcType=BIGINT},
+      </if>
+       <if test="unlockAlarmIntime != null" >
+        #{unlockAlarmIntime,jdbcType=BIGINT},
+      </if>
+       <if test="undoorAlarmIntime != null" >
+        #{undoorAlarmIntime,jdbcType=BIGINT}
+      </if>
+       
+    </trim>
+    	<selectKey order="AFTER" keyProperty="orgId" resultType="java.lang.Long">
+			select LAST_INSERT_ID()
+		</selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.Organizition" >
+    update tn_organizition
+    <set >
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgAddress != null" >
+        org_address = #{orgAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="orders != null" >
+        orders = #{orders,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="code1 != null" >
+        code1 = #{code1,jdbcType=VARCHAR},
+      </if>
+      <if test="code2 != null" >
+        code2 = #{code2,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null" >
+        port = #{port,jdbcType=BIGINT},
+      </if>
+      <if test="lowTempThd != null" >
+        low_temp_thd = #{lowTempThd,jdbcType=VARCHAR},
+      </if>
+      <if test="highTempShd != null" >
+        high_temp_shd = #{highTempShd,jdbcType=VARCHAR},
+      </if>
+      <if test="humidityShd != null" >
+        humidity_shd = #{humidityShd,jdbcType=VARCHAR},
+      </if>
+      <if test="tilt != null" >
+        tilt = #{tilt,jdbcType=VARCHAR},
+      </if>
+      <if test="batteryThd != null" >
+        battery_thd = #{batteryThd,jdbcType=VARCHAR},
+      </if>
+      <if test="colFreq != null" >
+        col_freq = #{colFreq,jdbcType=BIGINT},
+      </if>
+      <if test="heartRate != null" >
+        heart_rate = #{heartRate,jdbcType=BIGINT},
+      </if>
+      <if test="mobileVer != null" >
+        mobile_ver = #{mobileVer,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileVerUrl != null" >
+        mobile_ver_url = #{mobileVerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="devVer != null" >
+        dev_ver = #{devVer,jdbcType=VARCHAR},
+      </if>
+      <if test="devVerUrl != null" >
+        dev_ver_url = #{devVerUrl,jdbcType=VARCHAR},
+      </if>
+      <!-- <if test="createData != null" >
+        create_data = #{createData,jdbcType=VARCHAR},
+      </if> -->
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="inforEnterver != null" >
+        infor_enter_ver = #{inforEnterver,jdbcType=VARCHAR},
+      </if>
+      <if test="devPlatform != null" >
+        dev_platform = #{devPlatform,jdbcType=VARCHAR},
+      </if>
+       <if test="roles != null" >
+        roles = #{roles,jdbcType=VARCHAR},
+      </if>
+       <if test="pages != null" >
+        pages = #{pages,jdbcType=VARCHAR},
+      </if>
+       <if test="isSynchOpss != null" >
+        is_synch_opss = #{isSynchOpss,jdbcType=CHAR},
+      </if>
+      <if test="doorNotLocked != null" >
+        door_not_locked = #{doorNotLocked,jdbcType=BIGINT},
+      </if>
+       <if test="lockNotLocked != null" >
+        lock_not_locked = #{lockNotLocked,jdbcType=BIGINT},
+      </if>
+       <if test="temAlarmIntime != null" >
+        tem_alarm_intime = #{temAlarmIntime,jdbcType=BIGINT},
+      </if>
+       <if test="unopendoorAlarmIntime != null" >
+        unopendoor_alarm_intime = #{unopendoorAlarmIntime,jdbcType=BIGINT},
+      </if>
+       <if test="unopenlockAlarmIntime != null" >
+        unopenlock_alarm_intime= #{unopenlockAlarmIntime,jdbcType=BIGINT},
+      </if>
+       <if test="tiltAlarmIntime != null" >
+        tilt_alarm_intime= #{tiltAlarmIntime,jdbcType=BIGINT},
+      </if>
+       <if test="powerAlarmIntime != null" >
+        power_alarm_intime= #{powerAlarmIntime,jdbcType=BIGINT},
+      </if>
+       <if test="unlockAlarmIntime != null" >
+        unlock_alarm_intime = #{unlockAlarmIntime,jdbcType=BIGINT},
+      </if>
+       <if test="undoorAlarmIntime != null" >
+        undoor_alarm_intime = #{undoorAlarmIntime,jdbcType=BIGINT}
+      </if>
+    </set>
+    where org_id = #{orgId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.Organizition" >
+    update tn_organizition
+    set org_name = #{orgName,jdbcType=VARCHAR},
+      org_address = #{orgAddress,jdbcType=VARCHAR},
+      orders = #{orders,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      code1 = #{code1,jdbcType=VARCHAR},
+      code2 = #{code2,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      port = #{port,jdbcType=BIGINT},
+      low_temp_thd = #{lowTempThd,jdbcType=VARCHAR},
+      high_temp_shd = #{highTempShd,jdbcType=VARCHAR},
+      humidity_shd = #{humidityShd,jdbcType=VARCHAR},
+      tilt = #{tilt,jdbcType=VARCHAR},
+      battery_thd = #{batteryThd,jdbcType=VARCHAR},
+      col_freq = #{colFreq,jdbcType=BIGINT},
+      heart_rate = #{heartRate,jdbcType=BIGINT},
+      mobile_ver = #{mobileVer,jdbcType=VARCHAR},
+      mobile_ver_url = #{mobileVerUrl,jdbcType=VARCHAR},
+      dev_ver = #{devVer,jdbcType=VARCHAR},
+      dev_ver_url = #{devVerUrl,jdbcType=VARCHAR},
+      dev_platform=#{devPlatform,jdbcType=VARCHAR},
+      roles=#{roles,jdbcType=VARCHAR},
+      pages=#{pages,jdbcType=VARCHAR},
+      is_synch_opss = #{isSynchOpss,jdbcType=CHAR},
+      door_not_locked = #{doorNotLocked,jdbcType=BIGINT},
+      lock_not_locked = #{lockNotLocked,jdbcType=BIGINT},
+      tem_alarm_intime = #{temAlarmIntime,jdbcType=BIGINT},
+      unopendoor_alarm_intime = #{unopendoorAlarmIntime,jdbcType=BIGINT},
+      unopenlock_alarm_intime= #{unopenlockAlarmIntime,jdbcType=BIGINT},
+      tilt_alarm_intime= #{tiltAlarmIntime,jdbcType=BIGINT},
+      power_alarm_intime= #{powerAlarmIntime,jdbcType=BIGINT},
+      unlock_alarm_intime = #{unlockAlarmIntime,jdbcType=BIGINT},
+      undoor_alarm_intime = #{undoorAlarmIntime,jdbcType=BIGINT}
+    where org_id = #{orgId,jdbcType=BIGINT}
+  </update>
+  <select id="getOrganizitionList" parameterType="com.ycnet.frms.bean.Organizition" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_organizition
+     <where>
+        <trim prefixOverrides="and">
+            <if test="orgName!=null and orgName!=''">
+                and org_name like concat('%',#{orgName,jdbcType=VARCHAR},'%')
+            </if>
+        </trim>
+    </where>
+  </select>
+  
+  <select id="queryByConditionMap"  parameterType="map" resultMap="BaseResultMap">
+  select 
+    <include refid="Base_Column_List" />
+    from tn_organizition
+     <where>
+     	
+        <trim prefixOverrides="and">
+            <if test="organizition.orgName!=null and organizition.orgName!=''">
+                and org_name like concat('%',#{organizition.orgName,jdbcType=VARCHAR},'%')
+            </if>
+        </trim>
+    </where>
+    <if test="pb!=null">
+		  order by org_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	</if>
+  </select>
+  
+  <!-- 按条件查询记录总数-->
+  <select id="queryCountByConditionMap"  parameterType="map" resultType="java.lang.Integer">
+       select 
+    	  count(1)
+   	   from tn_organizition
+	   <where>
+        <trim prefixOverrides="and">
+            <if test="organizition.orgName!=null and organizition.orgName!=''">
+                and org_name like concat('%',#{organizition.orgName,jdbcType=VARCHAR},'%')
+            </if>
+        </trim>
+    </where>	   
+  </select>
+  
+  <select id="OrgIdList"  resultMap="BaseResultMap">
+  SELECT 
+	a.*
+    FROM tn_organizition a
+    INNER JOIN (SELECT org_id,COUNT(1) userCount FROM tn_users WHERE flag='1' GROUP BY org_id) b ON b.org_id=a.org_id
+    WHERE userCount>0
+	ORDER BY a.org_id 
+  </select>
+  
+   <select id="queryByConditionMapAndOrgId"  parameterType="map" resultMap="BaseResultMap">
+  select 
+    <include refid="Base_Column_List" />
+    from tn_organizition
+     <where>
+     	<choose>
+     		<when test="orgId!=0">
+     			org_id=#{orgId,jdbcType=BIGINT}
+     		</when>
+     	</choose>
+     	 <if test="organizition.orgName!=null and organizition.orgName!=''">
+               and org_name like concat('%',#{organizition.orgName,jdbcType=VARCHAR},'%')
+          </if>
+    </where>
+    <if test="pb!=null">
+		  order by org_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	</if>
+  </select>
+  
+  <!-- 按条件查询记录总数-->
+  <select id="queryCountByConditionMapAndOrgId"  parameterType="map" resultType="java.lang.Integer">
+       select 
+    	  count(1)
+   	   from tn_organizition
+	   <where>
+     	<choose>
+     		<when test="orgId!=0">
+     				org_id=#{orgId,jdbcType=BIGINT}
+     		</when>
+     	</choose>
+     	 <if test="organizition.orgName!=null and organizition.orgName!=''">
+              and org_name like concat('%',#{organizition.orgName,jdbcType=VARCHAR},'%')
+          </if>
+    </where>
+  </select>
+ 
+  
+</mapper>

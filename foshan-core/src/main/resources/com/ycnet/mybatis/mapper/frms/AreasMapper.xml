@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.AreasMapper" >
+	<cache readOnly="true" flushInterval="60000" size="512"></cache>
+    <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.Areas" >
+    <id column="area_code" property="areaCode" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="area_rank" property="areaRank" jdbcType="CHAR" />
+    <result column="parent_area_code" property="parentAreaCode" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="BaseResultVo" type="com.ycnet.frms.vo.AreasParent" >
+    <id column="parent_area_code" property="parentAreaCode" jdbcType="VARCHAR" />
+    <result column="parent_area_name" property="parentAreaName" jdbcType="VARCHAR" />
+    <result column="parent_area_rank" property="parentAreaRank" jdbcType="CHAR" />
+    <result column="parent_parent_area_code" property="parentParentAreaCode" jdbcType="VARCHAR" />
+    <collection property="areas" ofType="com.ycnet.frms.bean.Areas">
+    	<id column="area_code" property="areaCode" jdbcType="VARCHAR" />
+	    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+	    <result column="area_rank" property="areaRank" jdbcType="CHAR" />
+	    <result column="parent_area_code" property="parentAreaCode" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  
+  <resultMap type="com.ycnet.frms.vo.AreasBean" id="BaseResultBean">
+  	<id column="area_code" property="areaCode" jdbcType="VARCHAR" />
+  	<result column="area_name" property="areaName" jdbcType="VARCHAR" />
+	  	<collection property="area1List" ofType="com.ycnet.frms.vo.Areas1">
+	  		<id column="area_code1" property="areaCode1" jdbcType="VARCHAR" />
+	  		<result column="area_name1" property="areaName1" jdbcType="VARCHAR" />
+	  			<collection property="area2List" ofType="com.ycnet.frms.vo.Areas2">
+		  		<id column="area_code2" property="areaCode2" jdbcType="VARCHAR" />
+		  		<result column="area_name2" property="areaName2" jdbcType="VARCHAR" />
+		  	</collection>
+	  	</collection>
+  </resultMap>
+  
+  <resultMap type="com.ycnet.frms.vo.Position" id="BaseResultPosition">
+  	<id column="id" property="id" jdbcType="INTEGER" />
+  	<result column="province_id" property="provinceId" jdbcType="BIGINT" />
+  	<result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+  	<collection property="cityList" ofType="com.ycnet.frms.vo.City">
+  		<id column="city_id" property="cityId" jdbcType="BIGINT"/>
+  		<result column="city_name" property="cityName" jdbcType="VARCHAR" />
+		<collection property="countList" ofType="com.ycnet.frms.vo.County">
+			<id column="town_id" property="townId" jdbcType="BIGINT"/>
+  			<result column="town_name" property="townName" jdbcType="VARCHAR" />
+		</collection>  	
+  	</collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    area_code, area_name, area_rank, parent_area_code
+  </sql>
+  
+  <!-- Cache 配置 
+    <cache
+        eviction="FIFO"
+        flushInterval="60000"
+        size="512"
+        readOnly="true" />-->
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_areas
+    where area_code = #{areaCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tn_areas
+    where area_code = #{areaCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.Areas" >
+    insert into tn_areas (area_code, area_name, area_rank, 
+      parent_area_code)
+    values (#{areaCode,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{areaRank,jdbcType=CHAR}, 
+      #{parentAreaCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.Areas" >
+    insert into tn_areas
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaCode != null" >
+        area_code,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="areaRank != null" >
+        area_rank,
+      </if>
+      <if test="parentAreaCode != null" >
+        parent_area_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaRank != null" >
+        #{areaRank,jdbcType=CHAR},
+      </if>
+      <if test="parentAreaCode != null" >
+        #{parentAreaCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.Areas" >
+    update tn_areas
+    <set >
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaRank != null" >
+        area_rank = #{areaRank,jdbcType=CHAR},
+      </if>
+      <if test="parentAreaCode != null" >
+        parent_area_code = #{parentAreaCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where area_code = #{areaCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.Areas" >
+    update tn_areas
+    set area_name = #{areaName,jdbcType=VARCHAR},
+      area_rank = #{areaRank,jdbcType=CHAR},
+      parent_area_code = #{parentAreaCode,jdbcType=VARCHAR}
+    where area_code = #{areaCode,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByParent" parameterType="java.lang.String" resultMap="BaseResultMap">
+       select 
+    <include refid="Base_Column_List" />
+    from tn_areas
+    where parent_area_code like concat(#{pareantAreaCode,jdbcType=VARCHAR},"%")
+
+    order by area_code
+  </select>
+  <!-- 精准查询子类汇聚区 -->
+  <select id="selectByParentJQ" parameterType="java.lang.String" resultMap="BaseResultMap">
+       select 
+    <include refid="Base_Column_List" />
+    from tn_areas
+    where parent_area_code =#{code,jdbcType=VARCHAR}
+    order by area_code
+  </select>
+  
+  <!-- 精准查询汇聚区 -->
+  <select id="selectByChildrenJQ" parameterType="java.lang.String" resultMap="BaseResultMap">
+       select 
+    <include refid="Base_Column_List" />
+    from tn_areas
+    where area_code =#{code,jdbcType=VARCHAR}
+    order by area_code
+  </select>
+  
+  <select id="selectByAreaRank" parameterType="com.ycnet.frms.bean.Areas" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from tn_areas
+    where area_rank = #{areaRank,jdbcType=CHAR}
+    <if test="parentAreaCode!=null and parentAreaCode!=''">
+        and parent_area_code = #{parentAreaCode,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <!-- 导出数据库用 刘沧海  fl 更改*-->
+  <select id="queryList" resultMap="BaseResultMap">
+	select  
+	<include refid="Base_Column_List" />
+	from tn_areas
+  </select>
+<!--   根据区域查询zhouyu 1/16 -->
+  <select id="selectByAreaRanks" parameterType="com.ycnet.frms.bean.Areas" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from tn_areas
+    where 1=1
+    	AND area_rank = #{areaRank,jdbcType=CHAR}
+    <!-- <if test="parentAreaCode!=null and parentAreaCode!=''">fl 修改 -->
+    <if test="parentAreaCode!=null">
+        and parent_area_code = #{parentAreaCode,jdbcType=VARCHAR}
+    </if>
+     <!-- <if test="areaCode!=null and areaCode!=''"> fl 修改-->
+      <if test="areaCode!=null">
+        and area_code = #{areaCode,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <!-- 根据组织机构code1查询下面的区域 -->
+  <select id="selectByParentChild" resultMap="BaseResultVo" parameterType="java.lang.String">
+  	SELECT ap.`area_name` AS parent_area_name,ap.`area_code` AS parent_area_code,
+  	ac.`area_name`,ac.`area_code` 
+  	FROM `tn_areas` ap 
+  	LEFT JOIN tn_areas ac ON ac.`parent_area_code`=ap.`area_code`
+	WHERE ap.parent_area_code=#{code,jdbcType=VARCHAR}
+  </select>
+  <!--fl 根据Code查询本汇聚区编码  -->
+  <select id="selectByCode" resultMap="BaseResultVo" parameterType="java.lang.String">
+ 	 SELECT  area_name AS parent_area_name,area_code AS parent_area_code
+	FROM tn_areas WHERE area_code = #{areaCode1,jdbcType=VARCHAR}
+  </select>
+  
+  <!--查询省市区-->
+  <select id="queryThreeAreas" resultMap="BaseResultBean">
+  	SELECT a.`area_code`,a.`area_name`,a1.`area_code` area_code1,a1.`area_name` area_name1,a2.`area_code` area_code2,a2.`area_name` area_name2
+		FROM `tn_areas`  a LEFT JOIN tn_areas a1 ON a.area_code = a1.`parent_area_code`
+		LEFT JOIN tn_areas a2 ON a1.`area_code` = a2.`parent_area_code`
+		WHERE a.area_rank ='1'
+  </select>
+  
+  <select id="queryPosition" resultMap="BaseResultPosition">
+  	SELECT `id`,`province_id`,`province_name`,`city_id`,`city_name`,`county_id`,`county_name`,`town_id`,`town_name`
+		FROM `tn_position`
+  </select>
+</mapper>

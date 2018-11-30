@@ -1,0 +1,2578 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.FacilityMapper">
+	<resultMap id="BaseResultMap" type="com.ycnet.frms.bean.Facility">
+		<id column="dev_id" property="devId" jdbcType="BIGINT" />
+		<result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+		<result column="dev_name" property="devName" jdbcType="VARCHAR" />
+		<result column="dev_type" property="devType" jdbcType="VARCHAR" />
+		<result column="dev_model" property="devModel" jdbcType="VARCHAR" />
+		<result column="longitude" property="longitude" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
+		<result column="complete_date" property="completeDate" jdbcType="DATE" />
+		<result column="dev_addr" property="devAddr" jdbcType="VARCHAR" />
+		<result column="dev_desc" property="devDesc" jdbcType="VARCHAR" />
+		<result column="fiber_disc_num" property="fiberDiscNum" jdbcType="INTEGER" />
+		<result column="pdev_id" property="pdevId" jdbcType="BIGINT" />
+		<result column="dev_imei" property="devImei" jdbcType="VARCHAR" />
+		<result column="dev_mac" property="devMac" jdbcType="VARCHAR" />
+		<result column="area_code" property="areaCode1" jdbcType="VARCHAR" /><!--所属区-->
+		<result column="area_code1" property="areaCode" jdbcType="VARCHAR" /><!-- 汇聚区 -->
+		<result column="area_code2" property="areaCode2" jdbcType="VARCHAR" />
+		<result column="site" property="site" jdbcType="VARCHAR" />
+		<result column="room" property="room" jdbcType="VARCHAR" />
+		<result column="area_name" property="areaName" jdbcType="VARCHAR" />
+		<result column="pro_id" property="proId" jdbcType="BIGINT" />
+		<result column="org_id" property="orgId" jdbcType="BIGINT" />
+		<result column="flag" property="flag" jdbcType="CHAR" />
+		<result column="survey_result" property="surveyResult" jdbcType="CHAR" />
+		<result column="baidu_x" property="baiduX" jdbcType="DECIMAL" />
+    	<result column="baidu_y" property="baiduY" jdbcType="DECIMAL" />
+    	<result column="is_translated" property="isTranslated" jdbcType="CHAR" />
+    	<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+	    <result column="create_user" property="createUser" jdbcType="BIGINT"/>
+	    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP"/>
+	    <result column="last_modify_user" property="lastModifyUser" jdbcType="BIGINT"/>
+	    <result column="isbefwell" property="isbefwell" jdbcType="CHAR" />
+    	<result column="dev_kind" property="devKind" jdbcType="CHAR" />
+	    <result column="check_type" property="checkType" jdbcType="CHAR" />
+	    <result column="check_user_id" property="checkUserId" jdbcType="BIGINT"/>
+	    <result column="value_name" property="valueName" jdbcType="BIGINT"/>
+	    <result column="zg_dev_name" property="zgDevName" jdbcType="BIGINT"/>
+	    <result column="dev_marking" property="devMarking" jdbcType="VARCHAR" />
+	    <result column="dev_state" property="devState" jdbcType="CHAR" />
+	    <result column="deal_sign" property="dealSign" jdbcType="VARCHAR" />
+	    <result column="well_id" property="wellId" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="BeanResultMap" type="com.ycnet.frms.vo.FacilityBean">
+		<id column="dev_id" property="devId" jdbcType="BIGINT" />
+		<result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+		<result column="dev_name" property="devName" jdbcType="VARCHAR" />
+		<result column="dev_type" property="devType" jdbcType="VARCHAR" />
+		<result column="dev_model" property="devModel" jdbcType="VARCHAR" />
+		<result column="longitude" property="longitude" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
+		<result column="complete_date" property="completeDate" jdbcType="DATE" />
+		<result column="dev_addr" property="devAddr" jdbcType="VARCHAR" />
+		<result column="dev_desc" property="devDesc" jdbcType="VARCHAR" />
+		<result column="fiber_disc_num" property="fiberDiscNum" jdbcType="INTEGER" />
+		<result column="pdev_id" property="pdevId" jdbcType="BIGINT" />
+		<result column="pdev_name" property="pdevName" jdbcType="VARCHAR" />
+		<result column="dev_imei" property="devImei" jdbcType="VARCHAR" />
+		<result column="dev_mac" property="devMac" jdbcType="VARCHAR" />
+		<result column="area_code" property="areaCode1" jdbcType="VARCHAR" /><!--所属区-->
+		<result column="area_code1" property="areaCode" jdbcType="VARCHAR" /><!-- 汇聚区 -->
+		<result column="area_code2" property="areaCode2" jdbcType="VARCHAR" />
+		<result column="site" property="site" jdbcType="VARCHAR" />
+		<result column="room" property="room" jdbcType="VARCHAR" />
+		<result column="area_name" property="areaName" jdbcType="VARCHAR" />
+		<result column="pro_id" property="proId" jdbcType="BIGINT" />
+		<result column="org_id" property="orgId" jdbcType="BIGINT" />
+		<result column="flag" property="flag" jdbcType="CHAR" />
+		<result column="survey_result" property="surveyResult" jdbcType="CHAR" />
+		<result column="baidu_x" property="baiduX" jdbcType="DECIMAL" />
+    	<result column="baidu_y" property="baiduY" jdbcType="DECIMAL" />
+    	<result column="is_translated" property="isTranslated" jdbcType="CHAR" />
+    	<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+	    <result column="create_user" property="createUser" jdbcType="BIGINT"/>
+	    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP"/>
+	    <result column="last_modify_user" property="lastModifyUser" jdbcType="BIGINT"/>
+	    <result column="isbefwell" property="isbefwell" jdbcType="CHAR" />
+    	<result column="dev_kind" property="devKind" jdbcType="CHAR" />
+	    <result column="check_type" property="checkType" jdbcType="CHAR" />
+	    <result column="check_user_id" property="checkUserId" jdbcType="BIGINT"/>
+	    <result column="value_name" property="valueName" jdbcType="BIGINT"/>
+	    <result column="zg_dev_name" property="zgDevName" jdbcType="BIGINT"/>
+	    <result column="dev_marking" property="devMarking" jdbcType="VARCHAR" />
+	    <result column="dev_state" property="devState" jdbcType="CHAR" />
+	    <result column="valueName" property="valueName" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="facilityIdsMap" type="com.ycnet.frms.vo.FacilityAsasideCableBean">
+		<id column="dev_id" property="devId" jdbcType="BIGINT" />
+		<result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+		<result column="dev_name" property="devName" jdbcType="VARCHAR" />
+		<result column="dev_type" property="devType" jdbcType="VARCHAR" />
+		<result column="dev_model" property="devModel" jdbcType="VARCHAR" />
+		<result column="longitude" property="longitude" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
+		<result column="complete_date" property="completeDate" jdbcType="DATE" />
+		<result column="dev_addr" property="devAddr" jdbcType="VARCHAR" />
+		<result column="dev_desc" property="devDesc" jdbcType="VARCHAR" />
+		<result column="fiber_disc_num" property="fiberDiscNum" jdbcType="INTEGER" />
+		<result column="pdev_id" property="pdevId" jdbcType="BIGINT" />
+		<result column="dev_imei" property="devImei" jdbcType="VARCHAR" />
+		<result column="dev_mac" property="devMac" jdbcType="VARCHAR" />
+		<result column="area_code" property="areaCode1" jdbcType="VARCHAR" /><!--所属区-->
+		<result column="area_code1" property="areaCode" jdbcType="VARCHAR" /><!-- 汇聚区 -->
+		<result column="area_code2" property="areaCode2" jdbcType="VARCHAR" />
+		<result column="site" property="site" jdbcType="VARCHAR" />
+		<result column="room" property="room" jdbcType="VARCHAR" />
+		<result column="area_name" property="areaName" jdbcType="VARCHAR" />
+		<result column="pro_id" property="proId" jdbcType="BIGINT" />
+		<result column="org_id" property="orgId" jdbcType="BIGINT" />
+		<result column="flag" property="flag" jdbcType="CHAR" />
+		<result column="survey_result" property="surveyResult" jdbcType="CHAR" />
+		<result column="baidu_x" property="baiduX" jdbcType="DECIMAL" />
+    	<result column="baidu_y" property="baiduY" jdbcType="DECIMAL" />
+    	<result column="is_translated" property="isTranslated" jdbcType="CHAR" />
+    	<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+	    <result column="create_user" property="createUser" jdbcType="BIGINT"/>
+	    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP"/>
+	    <result column="last_modify_user" property="lastModifyUser" jdbcType="BIGINT"/>
+	    <result column="isbefwell" property="isbefwell" jdbcType="CHAR" />
+    	<result column="dev_kind" property="devKind" jdbcType="CHAR" />
+	    <result column="check_type" property="checkType" jdbcType="CHAR" />
+	    <result column="check_user_id" property="checkUserId" jdbcType="BIGINT"/>
+	    <result column="value_name" property="valueName" jdbcType="BIGINT"/>
+	    <result column="zg_dev_name" property="zgDevName" jdbcType="BIGINT"/>
+	    <result column="dev_marking" property="devMarking" jdbcType="VARCHAR" />
+	    <result column="dev_state" property="devState" jdbcType="CHAR" />
+	    <result column="ids" property="ids" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	
+	<resultMap type="com.ycnet.frms.bean.FaciFlity" id="BaseResultFMap">
+		<id column="dev_id" property="devId" jdbcType="BIGINT" />
+		<result column="dev_name" property="devName" jdbcType="VARCHAR" />
+		<result column="dev_state" property="devState" jdbcType="CHAR" />
+		<result column="longitude" property="longitude" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
+		<result column="survey_result" property="surveyResult" jdbcType="CHAR" />
+	</resultMap>
+
+	<resultMap type="com.ycnet.frms.vo.LockKey" id="LockKeyMap">
+		<result column="dev_name" property="devName" jdbcType="VARCHAR" />
+		<result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+		<result column="access_time" property="accessTime" jdbcType="VARCHAR" />
+		<result column="validate_time" property="validateTime" jdbcType="VARCHAR" />
+		<result column="area_code1" property="areaCode" jdbcType="VARCHAR" />
+		<result column="check_type" property="checkType" jdbcType="CHAR" />
+	</resultMap>
+	
+	<!--fl  -->
+	<resultMap type="com.ycnet.frms.vo.FacilityVoBean" id="BaseResultVoBeanMap">
+		<id column="dev_id" property="devId" jdbcType="BIGINT" />
+		<result column="dev_name" property="devName" jdbcType="VARCHAR" />
+		<result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+		<result column="dev_type" property="devType" jdbcType="VARCHAR" />
+		<result column="dev_state" property="devState" jdbcType="VARCHAR" />
+		<result column="isCoordinate" property="isCoordinate" jdbcType="VARCHAR" />
+		<result column="isDevImg" property="isDevImg" jdbcType="VARCHAR" />
+		<result column="longitude" property="longitude" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
+		<result column="area_code1" property="areaCode1" jdbcType="VARCHAR" />
+		<result column="dev_addr" property="devAddr" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+	    <result column="create_user" property="createUser" jdbcType="BIGINT"/>
+	    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP"/>
+	    <result column="last_modify_user" property="lastModifyUser" jdbcType="BIGINT"/>
+	    <result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+		<result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 机柜 -->
+	<resultMap type="com.ycnet.frms.vo.mobile.FacilityOdf" id="BaseResultOdf">
+		<id column="dev_id" property="devId" jdbcType="BIGINT" />
+		<result column="dev_name" property="devName" jdbcType="VARCHAR" />
+		<result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+		<result column="dev_type" property="devType" jdbcType="VARCHAR" />
+		<result column="dev_state" property="devState" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		dev_id, dev_code, dev_name, dev_type, dev_model, longitude, latitude, complete_date,zg_dev_name,dev_marking,
+		dev_addr, dev_desc, fiber_disc_num,pdev_id, dev_imei, dev_mac, area_code1, area_code2, site,check_type,check_user_id,dev_state,
+		room, pro_id, org_id, flag, survey_result,baidu_x, baidu_y, is_translated,create_time,create_user,last_modify_time,last_modify_user, 
+		isbefwell, dev_kind,well_id
+	</sql>
+	<!-- 用于删除熔纤盘分组接口 -->
+	<select id="queryByDevId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select dev_code from tn_facility
+		where dev_id=#{devId,jdbcType=BIGINT}
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from tn_facility
+		where dev_id = #{devId,jdbcType=BIGINT}
+	</select>
+	<select id="selectByPrimaryKeyZG" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from tn_facility_zg
+		where dev_id = #{devId,jdbcType=BIGINT}
+	</select>
+	<!-- 用于光缆段地理位置 -->
+	<select id="selectByCodeMap" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from tn_facility
+		where dev_code = #{devCode,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from tn_facility
+		where dev_id = #{devId,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.ycnet.frms.bean.Facility">
+		insert into tn_facility (dev_id, dev_code, dev_name,
+		dev_type, dev_model, longitude,
+		latitude, complete_date, dev_addr,
+		dev_desc, fiber_disc_num, pdev_id,dev_imei,
+		dev_mac, area_code1, area_code2,
+		site, room, pro_id, org_id,
+		flag, survey_result,zg_dev_name,dev_marking,
+		create_time,create_user,last_modify_time,last_modify_user, isbefwell, dev_kind,dev_state,well_id)
+		values (#{devId,jdbcType=BIGINT}, #{devCode,jdbcType=VARCHAR}, #{devName,jdbcType=VARCHAR},
+		#{devType,jdbcType=VARCHAR}, #{devModel,jdbcType=VARCHAR}, #{longitude,jdbcType=VARCHAR},
+		#{latitude,jdbcType=VARCHAR}, #{completeDate,jdbcType=DATE}, #{devAddr,jdbcType=VARCHAR},
+		#{devDesc,jdbcType=VARCHAR}, #{fiberDiscNum,jdbcType=INTEGER},#{pdevId,jdbcType=BIGINT}, #{devImei,jdbcType=VARCHAR},
+		#{devMac,jdbcType=VARCHAR}, #{areaCode1,jdbcType=VARCHAR}, #{areaCode2,jdbcType=VARCHAR},
+		#{site,jdbcType=VARCHAR}, #{room,jdbcType=VARCHAR}, #{proId,jdbcType=BIGINT}, #{orgId,jdbcType=BIGINT},
+		#{flag,jdbcType=CHAR}, #{surveyResult,jdbcType=CHAR},#{zgDevName,jdbcType=VARCHAR},#{devMarking,jdbcType=VARCHAR},
+       #{createTime,jdbcType=TIMESTAMP},#{createUser,jdbcType=BIGINT},#{lastModifyTime,jdbcType=TIMESTAMP},#{lastModifyUser,jdbcType=BIGINT}, #{isbefwell,jdbcType=CHAR}, #{devKind,jdbcType=CHAR})
+	   #{lastModifyUser,jdbcType=BIGINT}, #{isbefwell,jdbcType=CHAR}, #{devKind,jdbcType=CHAR}, #{checkType,jdbcType=CHAR},#{checkUserId,jdbcType=BIGINT},
+	   #{devState,jdbcType=VARCHAR},#{wellId,jdbcType=BIGINT})
+	</insert>
+	<insert id="insertSelectiveZG" parameterType="com.ycnet.frms.bean.Facility">
+		insert into tn_facility_zg
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="devId != null">
+				dev_id,
+			</if>
+			<if test="devCode != null">
+				dev_code,
+			</if>
+			<if test="devName != null">
+				dev_name,
+			</if>
+			<if test="devType != null">
+				dev_type,
+			</if>
+			<if test="devModel != null">
+				dev_model,
+			</if>
+			<if test="longitude != null">
+				longitude,
+			</if>
+			<if test="latitude != null">
+				latitude,
+			</if>
+			<if test="completeDate != null">
+				complete_date,
+			</if>
+			<if test="devAddr != null">
+				dev_addr,
+			</if>
+			<if test="devDesc != null">
+				dev_desc,
+			</if>
+			<if test="fiberDiscNum != null">
+				fiber_disc_num,
+			</if>
+			<if test="pdevId !=null">
+				pdev_id,
+			</if>
+			<if test="devImei != null">
+				dev_imei,
+			</if>
+			<if test="devMac != null">
+				dev_mac,
+			</if>
+			<if test="areaCode1 != null">
+				area_code1,
+			</if>
+			<if test="areaCode2 != null">
+				area_code2,
+			</if>
+			<if test="site != null">
+				site,
+			</if>
+			<if test="room != null">
+				room,
+			</if>
+			<if test="proId != null">
+				pro_id,
+			</if>
+			<if test="orgId != null">
+				org_id,
+			</if>
+			<if test="flag != null">
+				flag,
+			</if>
+			<if test="surveyResult != null">
+				survey_result,
+			</if>
+			<if test="createTime !=null">
+		          create_time,
+		    </if>
+		    <if test="createUser !=null">
+		          create_user,
+		    </if>
+		    <if test="lastModifyTime !=null">
+		          last_modify_time,
+		    </if>
+		    <if test="lastModifyUser !=null">
+		          last_modify_user,
+		    </if>
+		    <if test="isbefwell != null" >
+        		isbefwell,
+      		</if>
+	      	<if test="devKind != null" >
+	        	dev_kind,
+	      	</if>
+	      	<if test="checkType != null" >
+	        	check_type,
+	      	</if>
+	      	<if test="checkUserId != null">
+				check_user_id,
+			</if>
+	      	<if test="devState != null">
+				dev_state,
+			</if>
+			<if test="zgDevName != null">
+				zg_dev_name,
+			</if>
+			<if test="devMarking != null">
+				dev_marking,
+			</if>
+			<if test="wellId != null">
+				well_id
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="devId != null">
+				#{devId,jdbcType=BIGINT},
+			</if>
+			<if test="devCode != null">
+				#{devCode,jdbcType=VARCHAR},
+			</if>
+			<if test="devName != null">
+				#{devName,jdbcType=VARCHAR},
+			</if>
+			<if test="devType != null">
+				#{devType,jdbcType=VARCHAR},
+			</if>
+			<if test="devModel != null">
+				#{devModel,jdbcType=VARCHAR},
+			</if>
+			<if test="longitude != null">
+				#{longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude != null">
+				#{latitude,jdbcType=VARCHAR},
+			</if>
+			<if test="completeDate != null">
+				#{completeDate,jdbcType=DATE},
+			</if>
+			<if test="devAddr != null">
+				#{devAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="devDesc != null">
+				#{devDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="fiberDiscNum != null">
+				#{fiberDiscNum,jdbcType=INTEGER},
+			</if>
+			<if test="pdevId!=null">
+				#{pdevId,jdbcType=BIGINT},
+			</if>
+			<if test="devImei != null">
+				#{devImei,jdbcType=VARCHAR},
+			</if>
+			<if test="devMac != null">
+				#{devMac,jdbcType=VARCHAR},
+			</if>
+			<if test="areaCode1 != null">
+				#{areaCode1,jdbcType=VARCHAR},
+			</if>
+			<if test="areaCode2 != null">
+				#{areaCode2,jdbcType=VARCHAR},
+			</if>
+			<if test="site != null">
+				#{site,jdbcType=VARCHAR},
+			</if>
+			<if test="room != null">
+				#{room,jdbcType=VARCHAR},
+			</if>
+			<if test="proId != null">
+				#{proId,jdbcType=BIGINT},
+			</if>
+			<if test="orgId != null">
+				#{orgId,jdbcType=BIGINT},
+			</if>
+			<if test="flag != null">
+				#{flag,jdbcType=CHAR},
+			</if>
+			<if test="surveyResult != null">
+				#{surveyResult,jdbcType=CHAR},
+			</if>
+			 <if test="createTime !=null">
+		          #{createTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="createUser !=null">
+		          #{createUser,jdbcType=BIGINT},
+		      </if>
+		      <if test="lastModifyTime !=null">
+		           #{lastModifyTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="lastModifyUser !=null">
+		           #{lastModifyUser,jdbcType=BIGINT},
+		      </if>
+		      <if test="isbefwell != null" >
+		        #{isbefwell,jdbcType=CHAR},
+		      </if>
+		      <if test="devKind != null" >
+		        #{devKind,jdbcType=CHAR},
+		      </if>
+		      <if test="checkType != null" >
+	        	#{checkType,jdbcType=CHAR},
+	      	 </if>
+	      	 <if test="checkUserId != null">
+				#{checkUserId,jdbcType=BIGINT},
+			</if>
+			<if test="devState != null">
+				#{devState,jdbcType=VARCHAR},
+			</if>
+			<if test="zgDevName != null">
+				#{zgDevName,jdbcType=VARCHAR},
+			</if>
+			<if test="devMarking != null">
+				#{devMarking,jdbcType=VARCHAR},
+			</if>
+			<if test="wellId != null">
+				#{wellId,jdbcType=BIGINT}
+			</if>
+		</trim>
+	</insert>
+		<insert id="insertSelective" parameterType="com.ycnet.frms.bean.Facility" keyProperty="devId">
+		insert into tn_facility
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="devCode != null">
+				dev_code,
+			</if>
+			<if test="devName != null">
+				dev_name,
+			</if>
+			<if test="devType != null">
+				dev_type,
+			</if>
+			<if test="devModel != null">
+				dev_model,
+			</if>
+			<if test="longitude != null">
+				longitude,
+			</if>
+			<if test="latitude != null">
+				latitude,
+			</if>
+			<if test="completeDate != null">
+				complete_date,
+			</if>
+			<if test="devAddr != null">
+				dev_addr,
+			</if>
+			<if test="devDesc != null">
+				dev_desc,
+			</if>
+			<if test="fiberDiscNum != null">
+				fiber_disc_num,
+			</if>
+			<if test="pdevId !=null">
+				pdev_id,
+			</if>
+			<if test="devImei != null">
+				dev_imei,
+			</if>
+			<if test="devMac != null">
+				dev_mac,
+			</if>
+			<if test="areaCode1 != null">
+				area_code1,
+			</if>
+			<if test="areaCode2 != null">
+				area_code2,
+			</if>
+			<if test="site != null">
+				site,
+			</if>
+			<if test="room != null">
+				room,
+			</if>
+			<if test="proId != null">
+				pro_id,
+			</if>
+			<if test="orgId != null">
+				org_id,
+			</if>
+			<if test="flag != null">
+				flag,
+			</if>
+			<if test="surveyResult != null">
+				survey_result,
+			</if>
+			<if test="createTime !=null">
+		          create_time,
+		    </if>
+		    <if test="createUser !=null">
+		          create_user,
+		    </if>
+		    <if test="lastModifyTime !=null">
+		          last_modify_time,
+		    </if>
+		    <if test="lastModifyUser !=null">
+		          last_modify_user,
+		    </if>
+		    <if test="isbefwell != null" >
+        		isbefwell,
+      		</if>
+	      	<if test="devKind != null" >
+	        	dev_kind,
+	      	</if>
+	      	<if test="checkType != null" >
+	        	check_type,
+	      	</if>
+	      	<if test="checkUserId != null">
+				check_user_id,
+			</if>
+	      	<if test="devState != null">
+				dev_state,
+			</if>
+			<if test="zgDevName != null">
+				zg_dev_name,
+			</if>
+			<if test="devMarking != null">
+				dev_marking,
+			</if>
+			<if test="baiduX != null">
+				baidu_x,
+			</if>
+			<if test="baiduY != null">
+				baidu_y,
+			</if>
+			<if test="wellId != null">
+				well_id
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="devCode != null">
+				#{devCode,jdbcType=VARCHAR},
+			</if>
+			<if test="devName != null">
+				#{devName,jdbcType=VARCHAR},
+			</if>
+			<if test="devType != null">
+				#{devType,jdbcType=VARCHAR},
+			</if>
+			<if test="devModel != null">
+				#{devModel,jdbcType=VARCHAR},
+			</if>
+			<if test="longitude != null">
+				#{longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude != null">
+				#{latitude,jdbcType=VARCHAR},
+			</if>
+			<if test="completeDate != null">
+				#{completeDate,jdbcType=DATE},
+			</if>
+			<if test="devAddr != null">
+				#{devAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="devDesc != null">
+				#{devDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="fiberDiscNum != null">
+				#{fiberDiscNum,jdbcType=INTEGER},
+			</if>
+			<if test="pdevId!=null">
+				#{pdevId,jdbcType=BIGINT},
+			</if>
+			<if test="devImei != null">
+				#{devImei,jdbcType=VARCHAR},
+			</if>
+			<if test="devMac != null">
+				#{devMac,jdbcType=VARCHAR},
+			</if>
+			<if test="areaCode1 != null">
+				#{areaCode1,jdbcType=VARCHAR},
+			</if>
+			<if test="areaCode2 != null">
+				#{areaCode2,jdbcType=VARCHAR},
+			</if>
+			<if test="site != null">
+				#{site,jdbcType=VARCHAR},
+			</if>
+			<if test="room != null">
+				#{room,jdbcType=VARCHAR},
+			</if>
+			<if test="proId != null">
+				#{proId,jdbcType=BIGINT},
+			</if>
+			<if test="orgId != null">
+				#{orgId,jdbcType=BIGINT},
+			</if>
+			<if test="flag != null">
+				#{flag,jdbcType=CHAR},
+			</if>
+			<if test="surveyResult != null">
+				#{surveyResult,jdbcType=CHAR},
+			</if>
+			 <if test="createTime !=null">
+		          #{createTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="createUser !=null">
+		          #{createUser,jdbcType=BIGINT},
+		      </if>
+		      <if test="lastModifyTime !=null">
+		           #{lastModifyTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="lastModifyUser !=null">
+		           #{lastModifyUser,jdbcType=BIGINT},
+		      </if>
+		      <if test="isbefwell != null" >
+		        #{isbefwell,jdbcType=CHAR},
+		      </if>
+		      <if test="devKind != null" >
+		        #{devKind,jdbcType=CHAR},
+		      </if>
+		      <if test="checkType != null" >
+	        	#{checkType,jdbcType=CHAR},
+	      	 </if>
+	      	 <if test="checkUserId != null">
+				#{checkUserId,jdbcType=BIGINT},
+			</if>
+	      	 <if test="devState != null">
+				#{devState,jdbcType=VARCHAR},
+			</if>
+			<if test="zgDevName != null">
+				#{zgDevName,jdbcType=VARCHAR},
+			</if>
+			<if test="devMarking != null">
+				#{devMarking,jdbcType=VARCHAR},
+			</if>
+			<if test="baiduX != null">
+				#{baiduX,jdbcType=CHAR},
+			</if>
+			<if test="baiduY != null">
+				#{baiduY,jdbcType=CHAR},
+			</if>
+			<if test="wellId != null">
+				#{wellId,jdbcType=BIGINT}
+			</if>
+		</trim>
+		<selectKey order="AFTER" keyProperty="devId" resultType="java.lang.Long">
+			select LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.Facility">
+		update tn_facility
+		<set>
+			<if test="devCode != null">
+				dev_code = #{devCode,jdbcType=VARCHAR},
+			</if>
+			<if test="devName != null">
+				dev_name = #{devName,jdbcType=VARCHAR},
+			</if>
+			<if test="devType != null">
+				dev_type = #{devType,jdbcType=VARCHAR},
+			</if>
+			<if test="devModel != null">
+				dev_model = #{devModel,jdbcType=VARCHAR},
+			</if>
+			<if test="longitude != null">
+				longitude = #{longitude,jdbcType=VARCHAR},
+			</if>
+			<if test="latitude != null">
+				latitude = #{latitude,jdbcType=VARCHAR},
+			</if>
+			<if test="completeDate != null">
+				complete_date = #{completeDate,jdbcType=DATE},
+			</if>
+			<if test="devAddr != null">
+				dev_addr = #{devAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="devDesc != null">
+				dev_desc = #{devDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="fiberDiscNum != null">
+				fiber_disc_num = #{fiberDiscNum,jdbcType=INTEGER},
+			</if>
+			<if test="pdevId!=null">
+				pdev_id = #{pdevId,jdbcType=BIGINT},
+			</if>
+			<if test="devImei != null">
+				dev_imei = #{devImei,jdbcType=VARCHAR},
+			</if>
+			<if test="devMac != null">
+				dev_mac = #{devMac,jdbcType=VARCHAR},
+			</if>
+			<if test="areaCode1 != null">
+				area_code1 = #{areaCode1,jdbcType=VARCHAR},
+			</if>
+			<if test="areaCode2 != null">
+				area_code2 = #{areaCode2,jdbcType=VARCHAR},
+			</if>
+			<if test="site != null">
+				site = #{site,jdbcType=VARCHAR},
+			</if>
+			<if test="room != null">
+				room = #{room,jdbcType=VARCHAR},
+			</if>
+			<if test="proId != null">
+				pro_id = #{proId,jdbcType=BIGINT},
+			</if>
+			<if test="orgId != null">
+				org_id = #{orgId,jdbcType=BIGINT},
+			</if>
+			<if test="flag != null">
+				flag = #{flag,jdbcType=CHAR},
+			</if>
+			<if test="surveyResult != null">
+				survey_result = #{surveyResult,jdbcType=CHAR},
+			</if>
+			<if test="baiduX != null">
+				baidu_x = #{baiduX,jdbcType=CHAR},
+			</if>
+			<if test="baiduY != null">
+				baidu_y = #{baiduY,jdbcType=CHAR},
+			</if>
+			<if test="isTranslated != null">
+				is_translated = #{isTranslated,jdbcType=CHAR},
+			</if>
+			<if test="createTime !=null">
+		          create_time = #{createTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="createUser !=null">
+		          create_user = #{createUser,jdbcType=BIGINT},
+		      </if>
+		      <if test="lastModifyTime !=null">
+		          last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+		      </if>
+		      <if test="lastModifyUser !=null">
+		           last_modify_user = #{lastModifyUser,jdbcType=BIGINT},
+		      </if>		
+		      <if test="isbefwell != null">
+				isbefwell = #{isbefwell,jdbcType=VARCHAR},
+			  </if>	
+			  <if test="devKind != null">
+				dev_kind = #{devKind,jdbcType=VARCHAR},
+			  </if>	
+			   <if test="checkType != null" >
+	        	check_type = #{checkType,jdbcType=CHAR},
+	      	 </if>
+	      	 <if test="checkUserId != null">
+				check_user_id = #{checkUserId,jdbcType=BIGINT},
+			</if>
+	      	 <if test="devState != null">
+				dev_state = #{devState,jdbcType=BIGINT},
+			</if>
+			<if test="zgDevName != null">
+				zg_dev_name = #{zgDevName,jdbcType=VARCHAR},
+			</if>
+			<if test="devMarking != null">
+				dev_marking =#{devMarking,jdbcType=VARCHAR}
+			</if>
+			<if test="wellId != null">
+				well_id =#{wellId,jdbcType=BIGINT}
+			</if>
+		</set>
+		where dev_id = #{devId,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.Facility">
+		update tn_facility
+		set dev_code = #{devCode,jdbcType=VARCHAR},
+		dev_name = #{devName,jdbcType=VARCHAR},
+		dev_type = #{devType,jdbcType=VARCHAR},
+		dev_model = #{devModel,jdbcType=VARCHAR},
+		longitude = #{longitude,jdbcType=VARCHAR},
+		latitude = #{latitude,jdbcType=VARCHAR},
+		complete_date = #{completeDate,jdbcType=DATE},
+		dev_addr = #{devAddr,jdbcType=VARCHAR},
+		dev_desc = #{devDesc,jdbcType=VARCHAR},
+		fiber_disc_num = #{fiberDiscNum,jdbcType=INTEGER},
+		pdev_id = #{pdevId,jdbcType=BIGINT},
+		dev_imei = #{devImei,jdbcType=VARCHAR},
+		dev_mac = #{devMac,jdbcType=VARCHAR},
+		area_code1 = #{areaCode1,jdbcType=VARCHAR},
+		area_code2 = #{areaCode2,jdbcType=VARCHAR},
+		site = #{site,jdbcType=VARCHAR},
+		room = #{room,jdbcType=VARCHAR},
+		pro_id = #{proId,jdbcType=BIGINT},
+		org_id = #{orgId,jdbcType=BIGINT},
+		flag = #{flag,jdbcType=CHAR},
+		survey_result = #{surveyResult,jdbcType=CHAR},
+	     create_time = #{createTime,jdbcType=TIMESTAMP},
+	     create_user = #{createUser,jdbcType=BIGINT},
+	     last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+	     last_modify_user = #{lastModifyUser,jdbcType=BIGINT}
+	     check_type = #{checkType,jdbcType=CHAR},
+		check_user_id = #{checkUserId,jdbcType=BIGINT},
+		zg_dev_name = #{zgDevName,jdbcType=BIGINT},
+		dev_marking = #{devMarking,jdbcType=BIGINT},
+		dev_state = #{devState,jdbcType=BIGINT},
+		well_id = #{welId,jdbcType=BIGINT}
+		where dev_id = #{devId,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByCode"  resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from tn_facility
+		where dev_code =#{devCode,jdbcType=VARCHAR} 
+		LIMIT 0,1
+	</select>
+	<select id="selectByCode1" resultMap="BaseResultMap">
+		select
+			<include refid="Base_Column_List" />
+		from tn_facility
+		where dev_code =#{devCode,jdbcType=VARCHAR} 
+		<if test="orgId!=null and orgId!=''">
+			and org_id=#{orgId,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+	<select id="selectByCodeXYId" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />
+		from tn_facility where dev_id = #{pdevId,jdbcType=BIGINT}
+	</select>
+	<!-- 巡检任务查询设施 -->
+	<select id="queryByConditionBeanInspect" parameterType="com.ycnet.frms.vo.FacilityConditionBean" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tn_facility 
+		where dev_type not in('04','06','30','31','32','33') and dev_state not in ('4','5')
+	        and org_id=${orgId}
+	    <if test="xLog!=null and xLog!='' and xLog==0">
+			limit 0,2
+		</if>
+	</select>
+	
+	<select id="queryByConditionBean" parameterType="com.ycnet.frms.vo.FacilityConditionBean" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tn_facility
+		<where>
+			<trim prefixOverrides="and">
+				<if test="devCode!=null and devCode!=''">
+					and dev_code like concat('%',#{devCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devName!=null and devName!=''">
+					and dev_name like concat('%',#{devName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devType!=null and devType!=''">
+					and dev_type = #{devType,jdbcType=VARCHAR}
+				</if>
+				<if test="pdevId!=null">
+					and pdev_id = #{pdevId,jdbcType=BIGINT}
+				</if>
+				<if test="surveyResult!=null">
+					and survey_result=#{surveyResult,jdbcType=VARCHAR}
+				</if>
+				<if test="areaCode1!=null">
+					and area_Code1=#{areaCode1,jdbcType=VARCHAR}
+				</if>
+				<if test="site!=null and site!=''">
+					and site like concat('%',#{site,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devModel!=null  and devModel!=''">
+					and dev_Model like concat('%',#{devModel,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="room!=null  and room!=''">
+					and room like concat('%',#{room,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devImei!=null  and devImei!=''">
+					and dev_Imei like concat('%',#{devImei,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devMac!=null  and devMac!=''">
+					and dev_Mac like concat('%',#{devMac,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="surveyResult!=null">
+					and survey_result=#{surveyResult,jdbcType=VARCHAR}
+				</if>
+				<if test="isDel!=null and isDel!=0">
+					and dev_state not in('4','5')
+				</if>
+				<if test="orgId!=null">
+	                and org_id=#{orgId,jdbcType=BIGINT}
+	            </if>
+			</trim>
+		</where>
+		<if test="pageno!=null">
+			order by dev_id desc limit #{pageno,jdbcType=BIGINT},20
+		</if>
+	</select>
+	
+	
+	<select id="findFacilitysToBdMap" parameterType="map" resultType="map">
+		select
+			f.dev_id,
+			f.dev_code,
+			f.dev_name as devName,
+			f.dev_type as devType,
+			f.baidu_x as baiduX,
+			f.baidu_y as baiduY,
+			f.area_code1,
+			b.value_name
+		from tn_facility f 
+		inner join tn_basecode b on f.dev_type = b.value_code 
+		where f.dev_state <![CDATA[<>]]>'0' 
+			and f.dev_type <![CDATA[<>]]>'05' 
+			and f.latitude IS NOT NULL 
+			AND f.latitude != "" 
+			AND f.longitude IS NOT NULL 
+			AND f.longitude !=""  
+			and f.is_translated ='1' 
+			and f.org_id = #{orgId,jdbcType=BIGINT}
+			and b.class_code = "DEV_TYPE" 
+			<if test="areaCode!=null and areaCode!=''">
+				and f.area_code1 = #{areaCode,jdbcType=VARCHAR}
+			</if>
+			<if test="areaCode1!=null and areaCode1!=''">
+				and f.area_code1 = #{areaCode1,jdbcType=VARCHAR}
+			</if>
+			<if test="devCode!=null and devCode!=''">
+				and f.dev_code like #{devCode,jdbcType=VARCHAR}
+			</if>
+			<if test="devType!=null and devType!=''">
+				and f.dev_type = #{devType,jdbcType=VARCHAR}
+			</if>
+			<if test="devName!=null and devName!=''">
+				and f.dev_name like #{devName,jdbcType=VARCHAR}
+			</if>
+		limit 0,50
+	</select>
+	
+	
+	<!-- 用于导入设施修改 -->
+	<select id="queryByConditionBeanXiugai" parameterType="com.ycnet.frms.vo.FacilityConditionBean" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tn_facility
+		<where>
+			<trim prefixOverrides="and">
+				<if test="devCode!=null and devCode!=''">
+					and dev_code =#{devCode,jdbcType=VARCHAR}
+				</if>
+				<if test="devName!=null and devName!=''">
+					and dev_name =#{devName,jdbcType=VARCHAR}
+				</if>
+				<if test="devType!=null and devType!=''">
+					and dev_type = #{devType,jdbcType=VARCHAR}
+				</if>
+				<if test="pdevId!=null">
+					and pdev_id = #{pdevId,jdbcType=BIGINT}
+				</if>
+				<if test="surveyResult!=null">
+					and survey_result=#{surveyResult,jdbcType=VARCHAR}
+				</if>
+
+				<if test="areaCode1!=null">
+					and area_Code1=#{areaCode1,jdbcType=VARCHAR}
+				</if>
+				<if test="site!=null and site!=''">
+					and site like concat('%',#{site,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devModel!=null  and devModel!=''">
+					and dev_Model like concat('%',#{devModel,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="room!=null  and room!=''">
+					and room like concat('%',#{room,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devImei!=null  and devImei!=''">
+					and dev_Imei like concat('%',#{devImei,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devMac!=null  and devMac!=''">
+					and dev_Mac like concat('%',#{devMac,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="surveyResult!=null">
+					and survey_result=#{surveyResult,jdbcType=VARCHAR}
+				</if>
+				<if test="orgId!=null">
+	                and org_id=#{orgId,jdbcType=BIGINT}
+	            </if>
+			</trim>
+		</where>
+		<if test="pageno!=null">
+			order by dev_id desc limit #{pageno,jdbcType=BIGINT},20
+		</if>
+	</select>
+
+	<select id="selectAround" parameterType="map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tn_facility
+		<where>
+			<if test="devType!=null and devType!=''">
+				and dev_type = #{devType,jdbcType=VARCHAR}
+			</if>
+			<if test="surveyResult!=null and surveyResult!=''">
+				and survey_result=#{surveyResult,jdbcType=VARCHAR}
+			</if>
+			<if test="areaCode1!=null and areaCode1!=''">
+                and area_Code1=#{areaCode1,jdbcType=VARCHAR}
+            </if>
+			<if test="user!=null">
+	           	<if test="user.orgId!=null">
+	                and org_id=#{user.orgId,jdbcType=BIGINT}
+	            </if>
+            </if>
+            <!-- 未确认0 -->
+            <if test="isDel!=null and isDel==0">
+            	and dev_state ='0'
+            </if>
+            <!-- 已确认1 -->
+            <if test="isDel!=null and isDel==1">
+            	and dev_state in ('1','2','3')
+            </if>
+            <!-- 已删除2 -->
+            <if test="isDel!=null and isDel==2">
+            	and dev_state in ('4','5')
+            </if>
+<!--             <if test="pdevIdIsNull!=null"> -->
+<!--                 and pdev_id is null -->
+<!--             </if> -->
+			and dev_type <![CDATA[ <> ]]> '19' AND dev_type <![CDATA[ <> ]]>'05'  and
+			ROUND(6378138*2*ASIN(SQRT(POW(SIN((#{curLat,jdbcType=NUMERIC}*PI()/180-latitude*PI()/180)/2),2)+COS(#{curLat,jdbcType=NUMERIC}*PI()/180)*COS(latitude*PI()/180)*POW(SIN((#{curLng,jdbcType=NUMERIC}*PI()/180-longitude*PI()/180)/2),2))))
+			&lt;=#{distance,jdbcType=NUMERIC}
+
+		</where>
+	</select>
+
+	<select id="queryObdMaxCode" resultType="string">
+		select max(dev_code) from tn_facility
+		where pdev_id = #{pdevId,jdbcType=BIGINT}
+		and dev_type = #{devType,jdbcType=VARCHAR}
+		and dev_code like concat(#{devCode,jdbcType=VARCHAR},'%')
+	</select>
+
+	<select id="queryKeyListByMap" parameterType="map" resultMap="LockKeyMap">
+		select a.dev_name,a.dev_code,b.access_time,b.validate_time
+		from tn_facility a,(SELECT * FROM tn_facility_access
+		<if test="uid!=null">
+			where user_id=#{uid,jdbcType=BIGINT}
+		</if>
+		) b
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			a.dev_id IN (b.dev_ids)
+			<if test="dev!=null and dev.devMac!=null">
+				and a.dev_mac=#{dev.devMac,jdbcType=VARCHAR}
+			</if>
+			<if test="dev!=null and dev.devCode!=null">
+				and a.dev_code like concat('%',#{dev.devCode,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="dev!=null and dev.devName!=null">
+				and a.dev_name like concat('%',#{dev.devName,jdbcType=VARCHAR},'%')
+			</if>
+		</trim>
+		<if test="pb!=null">
+			order by a.dev_id limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		</if>
+	</select>
+
+	<!-- 根据mac地址获取设施信息 -->
+	<select id="facilityFromdevMac" parameterType="java.util.Map" resultType="com.ycnet.frms.vo.FacilityFromMac">
+		SELECT a.dev_id devId,a.longitude,a.latitude,a.dev_name devName,a.dev_code devCode,t.dev_mac devMac,t.dev_imei devImei,
+		    CASE WHEN (SELECT COUNT(1) FROM tn_facility_access t1 WHERE a.dev_id in (t1.dev_ids) AND t1.user_id=#{userId,jdbcType=BIGINT}  AND t1.validate_status='1')=0
+		    THEN '否' ELSE '是' END isKey
+		FROM tn_facility a inner join tn_device_reg t on a.dev_id=t.dev_id and t.dev_mac=#{devMac,jdbcType=VARCHAR}
+
+		order by a.dev_id
+	</select>
+
+   <!-- 按条件查询 支持分页-->
+   <select id="queryByConditionMap"  parameterType="map" resultMap="BaseResultMap">
+       select 
+    	<include refid="Base_Column_List" />
+   	   from tn_facility		   
+	   <include refid="sqlWhere" /> 
+	   <if test="pb!=null">
+		  order by dev_type,dev_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	   </if>
+   </select>
+   
+    <!-- 按条件查询 支持分页 zy-->
+   <select id="queryByConditionMapZY"  parameterType="map" resultMap="BaseResultMap">
+       select 
+    	<include refid="Base_Column_List" />
+   	   from tn_facility		   
+	   <include refid="sqlWhere" /> 
+	   <if test="pb!=null">
+		  order by dev_type,dev_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	   </if>
+   </select>
+   
+   <!-- 按条件查询记录总数-->
+   <select id="queryCountByConditionMap"  parameterType="map" resultType="java.lang.Integer">
+       select 
+    	  count(1)
+   	   from tn_facility a 
+	   <include refid="sqlWhere" />		   
+   </select>
+    <!-- 按条件查询where条件-->
+   <sql id="sqlWhere" >
+            <where>	           
+                    <if test="facilityCondition.devCode!=null and facilityCondition.devCode!=''">
+		                and dev_code like concat('%',#{facilityCondition.devCode,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.devName!=null and facilityCondition.devName!=''">
+		                and (dev_name like concat('%',#{facilityCondition.devName,jdbcType=VARCHAR},'%')
+		                	or zg_dev_name like concat('%',#{facilityCondition.devName,jdbcType=VARCHAR},'%'))
+		            </if>
+		            <if test="facilityCondition.devType!=null and facilityCondition.devType!=''">
+		                and dev_type = #{facilityCondition.devType,jdbcType=VARCHAR}
+		            </if>
+		            <if test="facilityCondition.pdevId!=null">
+		                and pdev_id = #{facilityCondition.pdevId,jdbcType=BIGINT}
+		            </if>
+		            <if test="facilityCondition.surveyResult!=null">
+		                and survey_result=#{facilityCondition.surveyResult,jdbcType=VARCHAR}
+		            </if>
+		            <if test="facilityCondition.checkType!=null and facilityCondition.checkType !=''">
+		                and check_type=#{facilityCondition.checkType,jdbcType=VARCHAR}
+		            </if>
+		            
+		            <if test="facilityCondition.areaCode!=null and facilityCondition.areaCode!=''">
+		                and area_Code1=#{facilityCondition.areaCode,jdbcType=VARCHAR}
+		            </if>
+		            <if test="facilityCondition.areaCode1!=null and facilityCondition.areaCode1!=''">
+		               and area_Code2 in (SELECT   area_code FROM tn_areas WHERE area_rank='4' AND 
+		               area_code like concat('%',#{facilityCondition.areaCode1,jdbcType=VARCHAR},'%') )
+		            </if>
+		            <if test="facilityCondition.site!=null and facilityCondition.site!=''">
+		                and site like concat('%',#{facilityCondition.site,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.devModel!=null  and facilityCondition.devModel!=''">
+		                and dev_Model like concat('%',#{facilityCondition.devModel,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.room!=null  and facilityCondition.room!=''">
+		                and room like concat('%',#{facilityCondition.room,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.devImei!=null  and facilityCondition.devImei!=''">
+		                and dev_Imei like concat('%',#{facilityCondition.devImei,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.devState!=null  and facilityCondition.devState!=''">
+		                and dev_state = #{facilityCondition.devState,jdbcType=VARCHAR}
+		            </if>
+		            <if test="facilityCondition.devStateall!=null  and facilityCondition.devStateall==0">
+		                and dev_state ='0'
+		            </if>
+		            <if test="facilityCondition.devStateall!=null  and facilityCondition.devStateall==1">
+		                and dev_state <![CDATA[ <> ]]> '0'
+		            </if>
+		            <if test="facilityCondition.devMac!=null and  facilityCondition.devMac!=''">
+		                and dev_Mac like concat('%',#{facilityCondition.devMac,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.pdevName!=null and  facilityCondition.pdevName!=''">
+		                and pdev_id in (select dev_id from tn_facility where dev_name like concat('%',#{facilityCondition.pdevName,jdbcType=VARCHAR},'%'))
+		            </if>
+		            <if test="facilityCondition.isNullPoint!=null and facilityCondition.isNullPoint==1">
+		                and longitude is not null and latitude is not null  
+		            </if>
+		            <if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and org_id=#{user.orgId,jdbcType=BIGINT}
+			            </if>
+		            </if>
+		            and flag='1'
+		   </where>
+     </sql>
+
+
+	<select id="queryListByAccessIds" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tn_facility where dev_id in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+    <select id="queryCountByConditionBean" parameterType="com.ycnet.frms.vo.FacilityConditionBean" resultType="java.lang.Integer">
+		select
+		count(1)
+		from tn_facility
+		<where>
+			<trim prefixOverrides="and">
+				<if test="devCode!=null and devCode!=''">
+					and dev_code like concat('%',#{devCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devName!=null and devName!=''">
+					and dev_name like concat('%',#{devName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devType!=null and devType!=''">
+					and dev_type = #{devType,jdbcType=VARCHAR}
+				</if>
+				<if test="pdevId!=null">
+					and pdev_id = #{pdevId,jdbcType=BIGINT}
+				</if>
+				<if test="surveyResult!=null">
+					and survey_result=#{surveyResult,jdbcType=VARCHAR}
+				</if>
+
+				<if test="areaCode1!=null">
+					and area_Code1=#{areaCode1,jdbcType=VARCHAR}
+				</if>
+				<if test="site!=null and site!=''">
+					and site like concat('%',#{site,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devModel!=null  and devModel!=''">
+					and dev_Model like concat('%',#{devModel,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="room!=null  and room!=''">
+					and room like concat('%',#{room,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devImei!=null  and devImei!=''">
+					and dev_Imei like concat('%',#{devImei,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devMac!=null  and devMac!=''">
+					and dev_Mac like concat('%',#{devMac,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="surveyResult!=null">
+					and survey_result=#{surveyResult,jdbcType=VARCHAR}
+				</if>
+
+			</trim>
+		</where>
+		
+	</select>
+	
+    <!-- 按照文本内容模糊查询设施列表zhouwm -->
+	<select id="queryListByContent" resultMap="BeanResultMap" parameterType="map">
+		select
+			f.*,b.value_name valueName
+		from tn_facility f left join tn_basecode b on f.dev_type=b.value_code
+		where
+			dev_type NOT IN('04','06','30','31','32','33') AND dev_state NOT IN ('4','5') and
+				<if test="content!=null and content!=''">
+				(
+					f.dev_code like concat('%',#{content,jdbcType=VARCHAR},'%')
+					or f.dev_name like concat('%',#{content,jdbcType=VARCHAR},'%')
+					or f.dev_addr like concat('%',#{content,jdbcType=VARCHAR},'%')
+				)and
+				</if>
+			
+			b.class_code='DEV_TYPE'
+			and f.org_id=#{orgId,jdbcType=BIGINT}
+			
+		order by dev_id desc
+	</select>
+	
+	<select id="selectFacilityByPosition" parameterType="map" resultMap="BaseResultMap">
+	    select 
+	    	<if test="fc.curLat!=null and fc.curLng!=null">
+			ROUND(6378138*2*ASIN(SQRT(POW(SIN((#{fc.curLat,jdbcType=NUMERIC}*PI()/180-latitude*PI()/180)/2),2)+COS(#{fc.curLat,jdbcType=NUMERIC}*PI()/180)*COS(latitude*PI()/180)*POW(SIN((#{fc.curLng,jdbcType=NUMERIC}*PI()/180-longitude*PI()/180)/2),2)))) 	distance ,
+	    	</if>
+	    <include refid="Base_Column_List"></include> 
+	    from tn_facility 
+	    <where>
+	    <if test="fc.devType!=null and fc.devType!=''">
+			and dev_type = #{fc.devType,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="fc.devCode!=null and fc.devCode!=''">
+		    and dev_code like concat('%',#{fc.devCode,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="fc.surveyResult!=null and fc.surveyResult!=''">
+			and survey_result=#{fc.surveyResult,jdbcType=VARCHAR}
+		</if>
+		<if test="fc.areaCode1!=null and fc.areaCode1!=''">
+              and area_Code1=#{fc.areaCode1,jdbcType=VARCHAR}
+          </if>
+<!--            <if test="fc.pdevId==null">
+              and pdev_id is null
+          </if> -->
+          <if test="fc.pdevId!=null">
+              and pdev_id=#{fc.pdevId,jdbcType=BIGINT}
+          </if>
+          <if test="fc.devName!=null and fc.devName!=''">
+			and dev_name like concat('%',#{fc.devName,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 未确认0 -->
+		<if test="fc.isDel!=null and fc.isDel==0">
+			and dev_state ='0'
+		</if>
+		<!-- 已确认1 -->
+		<if test="fc.isDel!=null and fc.isDel==1">
+			and dev_state in('1','2','3')
+		</if>
+		<!-- 已删除2 -->
+		<if test="fc.isDel!=null and fc.isDel==2">
+			and dev_state in('4','5')
+		</if>
+		<if test="fc.curLat!=null and fc.curLng!=null and fc.distance!=null">
+		    and ROUND(6378138*2*ASIN(SQRT(POW(SIN((#{fc.curLat,jdbcType=NUMERIC}*PI()/180-latitude*PI()/180)/2),2)+COS(#{fc.curLat,jdbcType=NUMERIC}*PI()/180)*COS(latitude*PI()/180)*POW(SIN((#{fc.curLng,jdbcType=NUMERIC}*PI()/180-longitude*PI()/180)/2),2)))) &lt;=#{fc.distance,jdbcType=NUMERIC}
+		</if>
+		and dev_type <![CDATA[ <> ]]> '06' and dev_type <![CDATA[ <> ]]> '19' and org_id = #{fc.orgId,jdbcType=BIGINT}
+		</where>
+		<choose>
+		    <when test="fc.curLat!=null and fc.curLng!=null">
+		        order by 1
+		    </when>
+		    <otherwise>
+		        ORDER BY CONVERT(dev_name USING gbk)
+		    </otherwise>
+		</choose>
+		
+		 
+		 <if test="pb!=null">
+		  limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		 </if>
+	</select>
+	
+	<select id="countFacilityByPosition" parameterType="map" resultType="int">
+	    select count(1) from
+	    tn_facility
+	     <where>
+	    <if test="fc.devType!=null and fc.devType!=''">
+			and dev_type = #{fc.devType,jdbcType=VARCHAR}
+		</if>
+		<if test="fc.devCode!=null and fc.devCode!=''">
+		    and dev_code like concat('%',#{fc.devCode,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="fc.surveyResult!=null and fc.surveyResult!=''">
+			and survey_result=#{fc.surveyResult,jdbcType=VARCHAR}
+		</if>
+		<if test="fc.areaCode1!=null and fc.areaCode1!=''">
+              and area_Code1=#{fc.areaCode1,jdbcType=VARCHAR}
+          </if>
+<!--           <if test="fc.pdevId==null">
+              and pdev_id is null
+          </if> -->
+          <if test="fc.pdevId!=null">
+              and pdev_id=#{fc.pdevId,jdbcType=BIGINT}
+          </if>
+          <if test="fc.devName!=null and fc.devName!=''">
+			and dev_name like concat('%',#{fc.devName,jdbcType=VARCHAR},'%')
+		</if>
+		<!-- 未确认0 -->
+		<if test="fc.isDel!=null and fc.isDel==0">
+			and dev_state ='0'
+		</if>
+		<!-- 已确认1 -->
+		<if test="fc.isDel!=null and fc.isDel==1">
+			and dev_state in('1','2','3')
+		</if>
+		<!-- 已删除2 -->
+		<if test="fc.isDel!=null and fc.isDel==2">
+			and dev_state in('4','5')
+		</if>
+		<if test="fc.curLat!=null and fc.curLng!=null and fc.distance!=null">
+		    and ROUND(6378138*2*ASIN(SQRT(POW(SIN((#{fc.curLat,jdbcType=NUMERIC}*PI()/180-latitude*PI()/180)/2),2)+COS(#{fc.curLat,jdbcType=NUMERIC}*PI()/180)*COS(latitude*PI()/180)*POW(SIN((#{fc.curLng,jdbcType=NUMERIC}*PI()/180-longitude*PI()/180)/2),2)))) &lt;=#{fc.distance,jdbcType=NUMERIC}
+		</if>
+		and dev_type <![CDATA[ <> ]]> '06' and dev_type <![CDATA[ <> ]]> '19' and org_id = #{fc.orgId,jdbcType=BIGINT}
+		ORDER BY CONVERT(dev_name USING gbk)
+		</where>
+	</select>
+	
+	<!-- 根据汇聚区查询 刘沧海 -->
+	<select id="findFacilities" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from tn_facility 
+		where latitude IS NOT NULL AND latitude != "" AND longitude IS NOT NULL AND longitude !=""  
+		and is_translated ='1' and org_id = #{orgId,jdbcType=BIGINT}
+	</select>
+	
+	<select id="findFacilitiesAreaCode1" resultMap="BaseResultMap" parameterType="map">
+		select
+			f.dev_id,
+			f.dev_code,
+			f.dev_name as devName,
+			f.dev_type as devType,
+			f.baidu_x as baiduX,
+			f.baidu_y as baiduY,
+			f.area_code1
+		from tn_facility f 
+		where 
+			f.dev_state <![CDATA[<>]]>'0' 
+			and f.dev_type <![CDATA[<>]]>'05' 
+			and f.latitude IS NOT NULL 
+			AND f.latitude != "" 
+			AND f.longitude IS NOT NULL AND longitude !=""  
+			and f.is_translated ='1' 
+			and f.org_id = #{orgId,jdbcType=BIGINT}
+			<if test="areaCode1 != null">
+				and f.area_code1=#{areaCode1,jdbcType=VARCHAR}
+			</if>
+	</select>
+	
+	<select id="findFacilitiesACode1ByOrgId" resultType="map" parameterType="map">
+		 SELECT 
+		 	a.baidu_x as baiduX,
+			a.baidu_y as baiduY
+		 FROM tn_facility a INNER JOIN (
+		 SELECT 
+		 	MIN(f.dev_id) AS devid 
+		 FROM tn_facility f  
+		 WHERE f.dev_state <![CDATA[<>]]> '0' 
+		 	AND f.dev_type <![CDATA[<>]]> '05' 
+		 	AND f.latitude IS NOT NULL 
+		 	AND f.latitude != "" 
+		 	AND f.longitude IS NOT NULL 
+		 	AND f.longitude !="" 
+		 	AND f.is_translated ='1' 
+		 	AND f.org_id = #{orgId,jdbcType=BIGINT}  
+		 GROUP BY f.area_code1 ORDER BY f.area_code1) b
+		 ON a.dev_id = b.devid  
+	</select>
+	
+	<select id="onSearchFacilities" resultMap="BaseResultMap" parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		from tn_facility where latitude IS NOT NULL AND latitude != "" AND longitude IS NOT NULL AND longitude !=""  and is_translated ='1' and org_id = #{orgId,jdbcType=BIGINT}
+		<if test="searchName!=null and searchName!=''">
+			and dev_name like concat('%',#{searchName,jdbcType=VARCHAR},'%')
+		</if>
+	</select>
+	
+	<!-- 查找所有没有转化过的点位剩余数量-->
+			<select id="countFacilities" resultType="java.lang.Integer">
+		select count(*)
+		from tn_facility WHERE  latitude IS NOT NULL AND latitude != "" AND longitude IS NOT NULL AND longitude !="" AND is_translated ='0' 
+		and org_id=#{orgId,jdbcType=BIGINT}
+	</select>
+	
+	<!-- 查找所有没有转化过的点位信息-->
+	<select id="findNoChangeFacilityList"  parameterType="map" resultMap="BaseResultMap">
+  			SELECT *
+		FROM tn_facility where latitude IS NOT NULL AND latitude != "" AND longitude IS NOT NULL AND longitude !="" AND is_translated !='1'
+			and org_id=#{orgId,jdbcType=BIGINT}
+		 limit   #{pageSize,jdbcType=INTEGER}
+  	</select>
+  
+  <resultMap id="FacilityImgsMap" type="com.ycnet.frms.bean.FacilityImgs">
+		<id column="dev_id" property="devId" jdbcType="BIGINT" />
+		<result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+		<result column="dev_name" property="devName" jdbcType="VARCHAR" />
+		<result column="dev_type" property="devType" jdbcType="VARCHAR" />
+		<result column="dev_model" property="devModel" jdbcType="VARCHAR" />
+		<result column="longitude" property="longitude" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
+		<result column="complete_date" property="completeDate" jdbcType="DATE" />
+		<result column="dev_addr" property="devAddr" jdbcType="VARCHAR" />
+		<result column="dev_desc" property="devDesc" jdbcType="VARCHAR" />
+		<result column="fiber_disc_num" property="fiberDiscNum" jdbcType="INTEGER" />
+		<result column="pdev_id" property="pdevId" jdbcType="BIGINT" />
+		<result column="dev_imei" property="devImei" jdbcType="VARCHAR" />
+		<result column="dev_mac" property="devMac" jdbcType="VARCHAR" />
+		<result column="area_code1" property="areaCode1" jdbcType="VARCHAR" />
+		<result column="area_name" property="areaName1" jdbcType="VARCHAR" />
+		<result column="area_code2" property="areaCode2" jdbcType="VARCHAR" />
+		<result column="site" property="site" jdbcType="VARCHAR" />
+		<result column="room" property="room" jdbcType="VARCHAR" />
+		<result column="pro_id" property="proId" jdbcType="BIGINT" />
+		<result column="org_id" property="orgId" jdbcType="BIGINT" />
+		<result column="flag" property="flag" jdbcType="CHAR" />
+		<result column="survey_result" property="surveyResult" jdbcType="CHAR" />
+		<result column="baidu_x" property="baiduX" jdbcType="DECIMAL" />
+    	<result column="baidu_y" property="baiduY" jdbcType="DECIMAL" />
+    	<result column="is_translated" property="isTranslated" jdbcType="CHAR" />
+    	<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+	    <result column="create_user" property="createUser" jdbcType="BIGINT"/>
+	    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP"/>
+	    <result column="last_modify_user" property="lastModifyUser" jdbcType="BIGINT"/>
+	    <result column="dev_kind" property="devKind" jdbcType="VARCHAR" />
+	    <result column="isbefwell" property="isbefwell" jdbcType="VARCHAR" />
+	    <result column="dev_state" property="devState" jdbcType="VARCHAR" />
+	    <result column="zg_dev_name" property="zgDevName" jdbcType="VARCHAR" />
+	    <result column="dev_marking" property="devMarking" jdbcType="VARCHAR" />
+		    <collection  property="device" ofType="com.ycnet.frms.vo.mobile.DeviceMobile">
+			    <result column="cod_code" property="codCode" jdbcType="VARCHAR" />
+			    <result column="cod_mac" property="codMac" jdbcType="VARCHAR" />
+			    <result column="cod_name" property="codName" jdbcType="VARCHAR" />
+			    <result column="cod_id" property="codId" jdbcType="BIGINT" />
+		    </collection>
+<!-- 	    	<id  column="img_url" property="imgUrl" jdbcType="VARCHAR"></id> -->
+	    	<collection property="imgs01" ofType="com.ycnet.frms.bean.Imgs01">
+	    		<id  column="imgPath01" property="imgPath01" jdbcType="VARCHAR"></id>
+<!-- 	    		<result column="imgPath01" property="imgPath01" jdbcType="VARCHAR"/> -->
+	    	</collection>
+	    	<collection property="imgs02" ofType="com.ycnet.frms.bean.Imgs02">
+	    		<id  column="imgPath02" property="imgPath02" jdbcType="VARCHAR"></id>
+<!-- 	    		<result column="imgPath02" property="imgPath02" jdbcType="VARCHAR"/> -->
+	    	</collection>
+	</resultMap>
+	<select id="selectImgById" resultMap="FacilityImgsMap" parameterType="java.lang.Long">
+		SELECT ar.area_name,f.baidu_x,f.baidu_y,f.dev_id,f.dev_code,f.dev_name,f.dev_type,f.dev_model,f.longitude,f.latitude,f.dev_addr,f.area_code1,f.site,
+		 f.org_id,f.dev_state,f.zg_dev_name,f.dev_desc,f.isbefwell,f.dev_kind,a.img_url AS imgPath01,b.img_url AS imgPath02,d.`cod_code`,
+		 d.`cod_mac`,d.`cod_name`,d.`cod_id`
+		 FROM	tn_facility  f 
+		 LEFT JOIN (
+			SELECT * FROM tn_facility_img WHERE img_types='03' 
+		 )a ON f.dev_id=a.dev_id
+		 
+		 LEFT JOIN (
+			SELECT * FROM tn_facility_img WHERE img_types='04'
+		 )b ON f.dev_id=b.dev_id
+		 LEFT JOIN tn_areas ar ON ar.area_code = f.area_code1
+		 LEFT JOIN im_device d ON d.dev_id = f.dev_id AND d.cod_state <![CDATA[<>]]> '2'
+		 where f.dev_id=#{devId,jdbcType=BIGINT} 
+	</select>
+  
+  <select id="selectArea" resultMap="BaseResultMap">
+  	SELECT DISTINCT a.area_name,a.area_code,f.area_code1 FROM tn_facility f
+				LEFT JOIN tn_areas a ON f.area_code1=a.area_code
+ 				WHERE f.org_id=#{orgId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="queryFacilityBydevCode" resultMap="BaseResultMap" parameterType="map">
+		select
+			<include refid="Base_Column_List" />
+		from tn_facility
+		where dev_code =#{devCode,jdbcType=VARCHAR} 
+		<if test="orgId!=null and orgId!=''">
+			and org_id=#{orgId,jdbcType=BIGINT}
+		</if>
+	</select>
+	<select id="selectByPdevId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from tn_facility
+		where pdev_id = #{devId,jdbcType=BIGINT} AND dev_state NOT IN ('4','5')
+	</select>
+	
+	<resultMap type="com.ycnet.frms.vo.FacilityParent" id="FacilityParentMap">
+		<id column="dev_id" property="devId" jdbcType="BIGINT"/>
+		<result column="dev_name" property="devName" jdbcType="VARCHAR"/>
+		<result column="dev_code" property="devCode" jdbcType="VARCHAR"/>
+		<result column="dev_state" property="devState" jdbcType="VARCHAR"/>
+	</resultMap>
+	<select id="selectByPdevIdCablint" resultMap="FacilityParentMap" parameterType="java.lang.Long">
+		select dev_id,dev_name,dev_code,dev_state from tn_facility
+		where pdev_id = #{devId,jdbcType=BIGINT} and dev_type='05'
+		ORDER BY CONVERT(dev_name USING gbk)
+	</select>
+	
+	<select id="querylllll" resultMap="BaseResultMap">
+		select * from tn_facility where area_code1="44130203" and dev_type='20'
+	</select>
+	
+	<resultMap id="facilityAll" type="com.ycnet.frms.vo.FacilityAll">
+		<id column="dev_id" property="devId" jdbcType="BIGINT"/>
+		<result column="dev_name" property="devName" jdbcType="VARCHAR"/>
+		<result column="dev_code" property="devCode" jdbcType="VARCHAR"/>
+		<result column="dev_id1" property="devId1" jdbcType="BIGINT"/>
+		<result column="dev_code1" property="devCode1" jdbcType="VARCHAR"/>
+		<result column="dev_name1" property="devName1" jdbcType="VARCHAR"/>
+		<result column="sec_name" property="secName" jdbcType="VARCHAR"/>
+		<result column="sect_code" property="secCode" jdbcType="VARCHAR"/>
+		<result column="xuHao" property="xuHao" jdbcType="BIGINT"/>
+		<result column="shuLiang" property="shuLiang" jdbcType="BIGINT"/>
+		<result column="bangDingId" property="bangDingId" jdbcType="BIGINT"/>
+		<result column="moStat" property="moStat" jdbcType="VARCHAR"/>
+		<result column="moPlace" property="moPlace" jdbcType="VARCHAR"/>
+		<result column="port01" property="port01" jdbcType="VARCHAR"/>
+		<result column="longitude" property="longitude" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 导出光交箱 -->
+	<select id="queryExportAll" resultMap="facilityAll">
+		SELECT f.dev_code,f.longitude,f.latitude,f.dev_name,cs.sect_code,cs.sec_name 
+		FROM tn_facility f LEFT JOIN tn_cable_section cs ON (f.dev_id=cs.dev_id_a OR f.dev_id=cs.dev_id_z)
+		WHERE f.dev_type='01' and f.dev_name NOT LIKE '%删除%' 
+			<if test="orgId!=null and orgId!=''">
+				AND f.org_id=#{orgId,jdbcType=VARCHAR}
+			</if>
+			<if test="areaCode!=null and areaCode!=''">
+				and f.area_code1=#{areaCode,jdbcType=VARCHAR}
+			</if>
+		order by f.dev_id
+	</select>
+	<!-- 导出机房/机柜 -->
+	<select id="queryExportAllJifang" resultMap="facilityAll">
+		SELECT f.dev_code,f.dev_name,f.longitude,f.latitude,f1.dev_code dev_code1 ,f1.dev_name dev_name1,cs.sect_code,cs.sec_name FROM tn_facility f 
+			LEFT JOIN tn_facility f1 ON f.dev_id=f1.pdev_id 
+			LEFT JOIN tn_cable_section cs ON (f1.dev_id=cs.dev_id_a OR f1.dev_id=cs.dev_id_z)
+		WHERE f.dev_type='20' AND f1.dev_name NOT LIKE '%删除%'
+		<if test="areaCode!=null and areaCode!=''">
+			and f.area_code1=#{areaCode,jdbcType=VARCHAR}
+		</if>
+		<if test="areaCode!=null and areaCode!=''">
+			and f1.area_code1=#{areaCode,jdbcType=VARCHAR}
+		</if>
+		<if test="orgId!=null and orgId!=''">
+			AND f.org_id=#{orgId,jdbcType=VARCHAR}
+		</if>
+		
+		ORDER BY  f.dev_id ,f1.dev_id
+	</select>
+	
+	<select id="queryall" resultMap="facilityAll">
+		SELECT sheet1.*,CASE WHEN sheet2.zcode IS NULL THEN sheet3.acode ELSE sheet2.zcode END AS moPlace,
+		CASE WHEN (sheet2.zcode IS NULL )AND (sheet3.acode IS NULL)  THEN '空闲' ELSE '占用' END  AS moStat , 
+		COUNT(DISTINCT sheet1.port01) AS countS
+		FROM 
+		(
+		SELECT a.dev_id,IFNULL(a.dev_code,"")dev_code,a.dev_name,a.dev_name1,a.dev_code1,b.sec_name,IFNULL(b.sect_code,'') AS sect_code,b.`fiber_num` AS shuLiang,tf.id bangdingId,tf.port_code1,tf.port_code2, 
+		IFNULL(a.port01,'')port01,a.fiber_num AS xuHao,a.dev_id1,b.sect_id,a.area_code1 FROM (
+		SELECT g.dev_id,g.dev_name,g.dev_code,a.dev_id dev_id1 ,a.dev_name dev_name1 ,a.dev_code dev_code1,b.disc_row_no,b.disc_col_no, b.sect_id,b.fiber_num,b.port01,b.side,a.area_code1
+		FROM tn_facility g,tn_facility a ,tn_fiberdisc b
+		WHERE 	
+			g.dev_type='20'
+			AND g.dev_id=a.pdev_id 
+			AND g.area_code1='44130210'
+			AND a.dev_id = b.dev_id 
+			AND a.area_code1='44130210'
+			ORDER BY a.dev_id
+		) a
+		LEFT JOIN tn_cable_section b
+		ON a.sect_id = b.sect_id
+		LEFT JOIN tn_twinfiber tf 
+		ON a.port01=tf.port_code1 OR a.port01=tf.port_code2
+		
+		ORDER BY a.dev_id,a.side,a.disc_row_no,a.disc_col_no
+		) AS sheet1 
+		LEFT JOIN 
+		(SELECT * FROM tn_lines WHERE line_type='02') AS sheet2 ON sheet1.port01=sheet2.acode
+		LEFT JOIN 
+		(SELECT * FROM tn_lines WHERE line_type='02') AS sheet3 ON sheet1.port01=sheet3.zcode
+		GROUP BY sheet1.port01
+	</select>
+	
+	<!-- 接口访问机柜,刘沧海,2017-9-27 -->
+	<resultMap type="com.ycnet.frms.bean.FacilityForGroups" id="facilityForMap">
+		<id column="dev_id" property="devId" jdbcType="BIGINT" />
+		<result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+		<result column="dev_name" property="devName" jdbcType="VARCHAR" />
+		<result column="dev_type" property="devType" jdbcType="VARCHAR" />
+		<result column="dev_model" property="devModel" jdbcType="VARCHAR" />
+		<result column="longitude" property="longitude" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
+		<result column="complete_date" property="completeDate" jdbcType="DATE" />
+		<result column="dev_addr" property="devAddr" jdbcType="VARCHAR" />
+		<result column="dev_desc" property="devDesc" jdbcType="VARCHAR" />
+		<result column="fiber_disc_num" property="fiberDiscNum" jdbcType="INTEGER" />
+		<result column="pdev_id" property="pdevId" jdbcType="BIGINT" />
+		<result column="dev_imei" property="devImei" jdbcType="VARCHAR" />
+		<result column="dev_mac" property="devMac" jdbcType="VARCHAR" />
+		<result column="area_code" property="areaCode1" jdbcType="VARCHAR" /><!--所属区-->
+		<result column="area_code1" property="areaCode" jdbcType="VARCHAR" /><!-- 汇聚区 -->
+		<result column="area_code2" property="areaCode2" jdbcType="VARCHAR" />
+		<result column="site" property="site" jdbcType="VARCHAR" />
+		<result column="room" property="room" jdbcType="VARCHAR" />
+		<result column="area_name" property="areaName" jdbcType="VARCHAR" />
+		<result column="pro_id" property="proId" jdbcType="BIGINT" />
+		<result column="org_id" property="orgId" jdbcType="BIGINT" />
+		<result column="flag" property="flag" jdbcType="CHAR" />
+		<result column="survey_result" property="surveyResult" jdbcType="CHAR" />
+		<result column="baidu_x" property="baiduX" jdbcType="DECIMAL" />
+    	<result column="baidu_y" property="baiduY" jdbcType="DECIMAL" />
+    	<result column="is_translated" property="isTranslated" jdbcType="CHAR" />
+    	<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+	    <result column="create_user" property="createUser" jdbcType="BIGINT"/>
+	    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP"/>
+	    <result column="last_modify_user" property="lastModifyUser" jdbcType="BIGINT"/>
+	    <result column="isbefwell" property="isbefwell" jdbcType="CHAR" />
+    	<result column="dev_kind" property="devKind" jdbcType="CHAR" />
+	    <result column="check_type" property="checkType" jdbcType="CHAR" />
+	    <result column="check_user_id" property="checkUserId" jdbcType="BIGINT"/>
+	    <result column="value_name" property="devTypeName" jdbcType="BIGINT"/>
+		<collection property="group" ofType="com.ycnet.frms.vo.Group">
+		      <result column="group_id" property="groupId" jdbcType="BIGINT"/>
+		      <result column="dev_idG" property="devIdG" jdbcType="BIGINT"/>
+		      <result column="side" property="side" jdbcType="VARCHAR"/>
+		      <result column="group_name" property="groupName" jdbcType="VARCHAR"/>
+		      <result column="group_desc" property ="groupDesc" jdbcType="VARCHAR"/>
+		      <collection property="discs" ofType="com.ycnet.frms.vo.Disc">
+		          <result column="disc_id" property="discId" jdbcType="BIGINT"/>
+		          <result column="disc_row_no" property="row" jdbcType="BIGINT"/>
+			      <result column="disc_code" property="discCode" jdbcType="VARCHAR"/>
+			      <result column="remark" property="remark" jdbcType="VARCHAR"/>
+			      <result column="disc_name" property="discName" jdbcType="VARCHAR"/>
+		      </collection>
+	      </collection>
+  </resultMap>
+	<!-- 接口访问机柜,刘沧海,2017-9-27 -->
+	<select id="queryAllForDev" parameterType="com.ycnet.frms.bean.FacilityForGroups"  resultMap="facilityForMap">
+		SELECT f.*,a.dev_id dev_idG,a.side,a.group_id,b.disc_code,b.disc_name,b.disc_id,disc_row_no
+		from
+		( select
+			*
+		from tn_facility
+		<where>
+			<trim prefixOverrides="and">
+				<if test="devId!=null and devId!=''">
+					and dev_id =#{devId,jdbcType=BIGINT}
+				</if>
+				<if test="devCode!=null and devCode!=''">
+					and dev_code like concat('%',#{devCode,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devName!=null and devName!=''">
+					and dev_name like concat('%',#{devName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devType!=null and devType!=''">
+					and dev_type = #{devType,jdbcType=VARCHAR}
+				</if>
+				<if test="pdevId!=null">
+					and pdev_id = #{pdevId,jdbcType=BIGINT}
+				</if>
+				<if test="surveyResult!=null">
+					and survey_result=#{surveyResult,jdbcType=VARCHAR}
+				</if>
+
+				<if test="areaCode1!=null">
+					and area_code1=#{areaCode1,jdbcType=VARCHAR}
+				</if>
+				<if test="site!=null and site!=''">
+					and site like concat('%',#{site,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devModel!=null  and devModel!=''">
+					and dev_Model like concat('%',#{devModel,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="room!=null  and room!=''">
+					and room like concat('%',#{room,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devImei!=null  and devImei!=''">
+					and dev_Imei like concat('%',#{devImei,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="devMac!=null  and devMac!=''">
+					and dev_Mac like concat('%',#{devMac,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="surveyResult!=null">
+					and survey_result=#{surveyResult,jdbcType=VARCHAR}
+				</if>
+				<if test="orgId!=null">
+	                and org_id=#{orgId,jdbcType=BIGINT}
+	            </if>
+			</trim>
+		</where>
+		<if test="pageno!=null">
+			order by dev_id desc limit #{pageno,jdbcType=BIGINT},20
+		</if>
+		)f 
+		LEFT JOIN tn_fiberdisc_group a ON f.dev_id=a.dev_id
+		LEFT JOIN tn_discinfo b ON a.group_id = b.group_id
+		LEFT JOIN 
+		(SELECT DISTINCT dev_id, disc_row_no,disc_code FROM tn_fiberdisc) c
+			
+	      	ON a.dev_id = c.dev_id AND  b.disc_code = c.disc_code 
+		ORDER BY  a.dev_id,a.side,b.disc_code   
+		
+	</select>
+	
+	<!-- 导出数据库新建类   DZY  2017/10/23 -->
+	<resultMap id="BaseResultMapZF" type="com.ycnet.frms.bean.FacilityZF">
+		<id column="dev_id" property="devId" jdbcType="BIGINT" />
+		<result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+		<result column="dev_name" property="devName" jdbcType="VARCHAR" />
+		<result column="dev_type" property="devType" jdbcType="VARCHAR" />
+		<result column="dev_model" property="devModel" jdbcType="VARCHAR" />
+		<result column="longitude" property="longitude" jdbcType="VARCHAR" />
+		<result column="latitude" property="latitude" jdbcType="VARCHAR" />
+		<result column="dev_addr" property="devAddr" jdbcType="VARCHAR" />
+		<result column="dev_desc" property="devDesc" jdbcType="VARCHAR" />
+		<result column="fiber_disc_num" property="fiberDiscNum" jdbcType="INTEGER" />
+		<result column="pdev_id" property="pdevId" jdbcType="BIGINT" />
+		<result column="area_code1" property="areaCode" jdbcType="VARCHAR" /><!-- 汇聚区 -->
+		<result column="area_code2" property="areaCode2" jdbcType="VARCHAR" />
+		<result column="site" property="site" jdbcType="VARCHAR" />
+		<result column="room" property="room" jdbcType="VARCHAR" />
+		<result column="pro_id" property="proId" jdbcType="BIGINT" />
+		<result column="org_id" property="orgId" jdbcType="BIGINT" />
+		<result column="flag" property="flag" jdbcType="CHAR" />
+		<result column="survey_result" property="surveyResult" jdbcType="CHAR" />
+		<result column="baidu_x" property="baiduX" jdbcType="DECIMAL" />
+    	<result column="baidu_y" property="baiduY" jdbcType="DECIMAL" />
+    	<result column="is_translated" property="isTranslated" jdbcType="CHAR" />
+	    <result column="create_user" property="createUser" jdbcType="BIGINT"/>
+	    <result column="last_modify_user" property="lastModifyUser" jdbcType="BIGINT"/>
+	    <result column="isbefwell" property="isbefwell" jdbcType="CHAR" />
+    	<result column="dev_kind" property="devKind" jdbcType="CHAR" />
+	    <result column="check_type" property="checkType" jdbcType="CHAR" />
+	    <result column="check_user_id" property="checkUserId" jdbcType="BIGINT"/>
+	   </resultMap>
+	<!-- 导出数据库 刘沧海 2017/10/13 -->
+	<select id="queryList" resultMap="BaseResultMapZF">
+		select 
+		dev_id, dev_code, dev_name, dev_type, dev_model, longitude, latitude,
+		dev_addr, dev_desc, fiber_disc_num,pdev_id, area_code1, area_code2, site,check_type,check_user_id,
+		room, pro_id, org_id, flag, survey_result,baidu_x, baidu_y, is_translated,create_user,last_modify_user, isbefwell, dev_kind
+		from tn_facility_zg 
+		where 
+		<if test="orgId!=null and orgId!=''">
+			org_id=#{orgId,jdbcType=BIGINT}
+		</if>
+		<if test="areaCode!=null and areaCode!=''">
+			and area_code1=#{areaCode,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	<!-- 根据名称查询设施 -->
+	<select id="selectByDevName" resultMap="BaseResultMap" parameterType="map">
+		select * from tn_facility 
+		where 
+		<if test="orgId!=null and orgId!=''">
+			org_id=#{orgId,jdbcType=BIGINT}
+		</if>
+		<if test="devName!=null and devName!=''">
+			and dev_name=#{devName,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	<select id="selectByDevNameZG" resultMap="BaseResultMap" parameterType="map">
+		select * from tn_facility 
+		where 
+		<if test="orgId!=null and orgId!=''">
+			org_id=#{orgId,jdbcType=BIGINT}
+		</if>
+		<if test="devName!=null and devName!=''">
+			and zg_dev_name=#{devName,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<!-- 用于导出设施本端和对端跳纤 -->
+	<resultMap id="ExportJumper" type="com.ycnet.frms.vo.ExportJumper">
+		<result column="dev_id" property="devId" jdbcType="BIGINT" />
+		<result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+		<result column="dev_name" property="devName" jdbcType="VARCHAR" />
+		<result column="dev_id1" property="devId1" jdbcType="BIGINT" />
+		<result column="dev_name1" property="devName1" jdbcType="VARCHAR" />
+		<result column="dev_code1" property="devName1" jdbcType="VARCHAR" />
+		<result column="benduan" property="benDuan" jdbcType="VARCHAR" />
+		<result column="duiduan" property="duiDuan" jdbcType="VARCHAR" />
+	 </resultMap>
+	<!-- 用于导出设施本端和对端跳纤 (光交箱)-->   
+	<select id="queryJumperGJX" resultMap="ExportJumper">
+		SELECT * FROM (
+		SELECT a.dev_id,a.dev_name,b.acode benduan,b.zcode duiduan
+		FROM `tn_facility` a
+		LEFT JOIN (SELECT * FROM tn_lines WHERE line_type='02') b ON b.adev_id=a.`dev_id`
+		WHERE a.org_id=3 AND a.dev_type='01'
+		UNION ALL
+		SELECT a.dev_id,a.dev_name,c.zcode benduan,c.acode duiduan
+		FROM `tn_facility` a
+		LEFT JOIN (SELECT * FROM tn_lines WHERE line_type='02') c ON c.zdev_id=a.`dev_id`
+		WHERE a.org_id=3 AND a.dev_type='01'
+		) a
+		WHERE a.benduan IS NOT NULL 
+		
+		ORDER BY dev_id,benduan
+	</select>   
+	<select id="queryJumperJifang" resultMap="ExportJumper">
+		SELECT * FROM (
+		SELECT a1.dev_id dev_id1,a1.dev_name dev_name1,a.dev_id,a.dev_name,b.acode benduan,b.zcode duiduan
+		FROM `tn_facility` a LEFT JOIN tn_facility a1 ON a.pdev_id=a1.dev_id
+		
+		LEFT JOIN (SELECT * FROM tn_lines WHERE line_type='02') b ON b.adev_id=a.`dev_id`
+		WHERE a.org_id=3 AND a.dev_type='05'
+		UNION ALL
+		SELECT a1.dev_id dev_id1,a1.dev_name dev_name1,a.dev_id,a.dev_name,c.zcode benduan,c.acode duiduan
+		FROM `tn_facility` a LEFT JOIN tn_facility a1 ON a.pdev_id=a1.dev_id
+		LEFT JOIN (SELECT * FROM tn_lines WHERE line_type='02') c ON c.zdev_id=a.`dev_id`
+		WHERE a.org_id=3 AND a.dev_type='05'
+		) a
+		WHERE a.benduan IS NOT NULL 
+		
+		ORDER BY dev_id,benduan
+	</select>
+	
+	<select id="queryJumperFenguangqi"  resultMap="ExportJumper">
+		SELECT * FROM (
+		SELECT a1.dev_id dev_id1,a1.dev_name dev_name1,a.dev_id,a.dev_name,b.acode benduan,b.zcode duiduan
+		FROM `tn_facility` a LEFT JOIN tn_facility a1 ON a.pdev_id=a1.dev_id
+		
+		LEFT JOIN (SELECT * FROM tn_lines WHERE line_type='02') b ON b.adev_id=a.`dev_id`
+		WHERE a.org_id=3 AND a.dev_type='06'
+		UNION ALL
+		SELECT a1.dev_id dev_id1,a1.dev_name dev_name1,a.dev_id,a.dev_name,c.zcode benduan,c.acode duiduan
+		FROM `tn_facility` a LEFT JOIN tn_facility a1 ON a.pdev_id=a1.dev_id
+		LEFT JOIN (SELECT * FROM tn_lines WHERE line_type='02') c ON c.zdev_id=a.`dev_id`
+		WHERE a.org_id=3 AND a.dev_type='06'
+		) a
+		WHERE a.benduan IS NOT NULL 
+		ORDER BY dev_id,benduan
+	</select>
+	
+	<select id="isExitWell" resultMap="BaseResultMap" parameterType="map">
+		select * from tn_facility 
+		where 
+			org_id=#{orgId,jdbcType=BIGINT}
+			and dev_name=#{devName,jdbcType=VARCHAR}
+			and longitude=#{longitude,jdbcType=VARCHAR}
+			and latitude=#{latitude,jdbcType=VARCHAR}
+	</select>
+	<!--fl 井的需求
+		 * 根据条件,名称(首字母)和经纬度范围内查询  -->
+	<select id="querywells" parameterType="map" resultMap="BaseResultFMap">
+	 SELECT  dev_id,dev_name,longitude,latitude,survey_result,check_type,dev_state  FROM `tn_facility` WHERE dev_type =11 
+	 <if test="devName !=null and devName !=''">
+		 AND dev_name LIKE concat('%',#{devName,jdbcType=VARCHAR},'%')
+	 </if>
+	<!--小写   <if test="spell !=null and spell !=''">
+		 or dev_name LIKE concat('%',#{spell,jdbcType=VARCHAR},'%')
+	 </if> -->
+	 <if test="Upper !=null and Upper !=''">
+		 or dev_name LIKE concat('%',#{Upper,jdbcType=VARCHAR},'%')
+	 </if>
+	 and ROUND(6378138*2*ASIN(SQRT(POW(SIN((#{curLat,jdbcType=NUMERIC}*PI()/180-latitude*PI()/180)/2),2)+COS(#{curLat,jdbcType=NUMERIC}*PI()/180)*COS(latitude*PI()/180)*POW(SIN((#{curLng,jdbcType=NUMERIC}*PI()/180-longitude*PI()/180)/2),2))))
+			&lt;=#{distance,jdbcType=BIGINT}
+	</select>
+	
+	<!-- 根据设施描述查询设施信息（资管导入数据 存储资管ID） -->
+	<select id="selectByDevDesc" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select 
+			<include refid="Base_Column_List" />
+	 	from tn_facility 
+		where dev_desc like concat(#{devDesc,jdbcType=VARCHAR},'%') and org_id=12
+		limit 0,1
+	</select>
+	
+	<!-- 查询子设施列表 -->
+	<select id="queryFacilityOdf" resultMap="BaseResultMap" parameterType="map">
+		select 
+		<include refid="Base_Column_List" />
+ 		from tn_facility 
+		<where>
+			<trim prefixOverrides="and">
+				<if test="devId!=null and devId!=''">
+					and pdev_id =#{devId,jdbcType=BIGINT}
+				</if>
+				<!-- <if test="queryType!=null and queryType!='' and queryType=='0'">
+					and dev_state &lt; &gt; '2' and dev_state &lt; &gt; '5'
+				</if> -->
+				<if test="queryType==0">
+					and dev_state <![CDATA[<>]]> '2' and dev_state <![CDATA[<>]]> '5'
+				</if>
+				<if test="queryType==1">
+					and dev_state <![CDATA[<>]]> '0' and dev_state <![CDATA[<>]]> '4'
+				</if>
+			</trim>
+		</where>
+		<if test="pb!=null">
+		  order by dev_id limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	</if>
+	</select>
+	<!-- 根据设施ID查询不包含此设施ID的设施，刘沧海，2017/12/10 -->
+	<select id="queryByDevIdForOppo" resultMap="BaseResultMap" parameterType="map">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM `tn_facility` 
+		WHERE dev_state <![CDATA[<>]]> '4' AND dev_state <![CDATA[<>]]> '5' 
+		  
+		  <if test="facility.devId!=null ">
+		  	and dev_id <![CDATA[<>]]>#{facility.devId,jdbcType=BIGINT}
+		  </if>
+		<if test="facility.orgId != null ">
+			and org_id=#{facility.orgId,jdbcType=BIGINT}
+		</if>
+		<if test="facility.devName != null ">
+			and dev_name like concat ('%',#{facility.devName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="facility.devCode != null ">
+			and dev_code=#{facility.devCode,jdbcType=VARCHAR}
+		</if>
+		<if test="facility.devType ==null ">
+			AND dev_type not in('06','19','30','31','32','33')  <!--fl 修改增加返回内容中的机房 去掉多余类型  -->
+		</if>
+		
+		<if test="facility.devType !=null ">
+			and dev_type=#{facility.devType,jdbcType=VARCHAR}
+		</if>
+		<if test="facility.areaCode1 !=null ">
+			and area_code1=#{facility.areaCode1,jdbcType=VARCHAR}
+		</if>
+		<if test="pb!=null">
+		  order by dev_id limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		</if>
+	</select>
+	<!-- 根据设施ID查询所属光缆段AZ端的集合，刘沧海 -->
+	<select id="queryForFacilityIds" resultMap="facilityIdsMap" parameterType="map">
+<!-- 		SELECT REPLACE(GROUP_CONCAT(cs.`dev_id_a`,cs.`dev_id_z`),f.`dev_id`,'') ids -->
+<!-- 		FROM `tn_facility` f  -->
+<!-- 		LEFT JOIN `tn_cable_section` cs ON (f.`dev_id`=cs.`dev_id_a` OR f.`dev_id`= cs.`dev_id_z`) -->
+<!-- 		WHERE 1=1 -->
+<!-- 		<if test="orgId != null"> -->
+<!-- 			AND cs.org_id=#{orgId,jdbcType=BIGINT} -->
+<!-- 		</if> -->
+<!-- 		<if test="devId !=null"> -->
+<!-- 			AND f.`dev_id`=#{devId,jdbcType=BIGINT} -->
+<!-- 		</if> -->
+		SELECT REPLACE(GROUP_CONCAT(`dev_id_a`,`dev_id_z`),${devId},'') ids
+		FROM`tn_cable_section`  
+				WHERE 1=1
+					<if test="orgId!=null">
+						and org_id=#{orgId,jdbcType=BIGINT}
+					</if>
+					<if test="devId!=null">
+						AND (dev_id_a=#{devId,jdbcType=BIGINT} OR dev_id_z=#{devId,jdbcType=BIGINT})
+					</if>
+	</select>
+	<!-- 根据ids查询设施，刘沧海 -->
+	<select id="queryInfacilityIds" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select 
+		<include refid="Base_Column_List" />
+		from tn_facility 
+		where dev_id in(${_parameter}) and baidu_x is not null and baidu_y is not null;
+	</select>
+	<!-- 验证设施名称是不是重复 -->
+	<select id="queryRepetitionDevName" resultMap="BaseResultMap" parameterType="com.ycnet.frms.bean.Facility">
+		select 
+		<include refid="Base_Column_List" />
+		from tn_facility 
+		where dev_name=#{devName,jdbcType=VARCHAR}
+		and org_id=#{orgId,jdbcType=BIGINT}
+		limit 0,1
+	</select>
+	<select id="countFacilitysByPosition" parameterType="map" resultType="int">
+	    select count(1) from
+	    tn_facility
+	     <where>
+	    <if test="fc.devType!=null and fc.devType!=''">
+			and dev_type = #{fc.devType,jdbcType=VARCHAR}
+		</if>
+		<if test="fc.devCode!=null and fc.devCode!=''">
+		    and dev_code like concat('%',#{fc.devCode,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="fc.surveyResult!=null and fc.surveyResult!=''">
+			and survey_result=#{fc.surveyResult,jdbcType=VARCHAR}
+		</if>
+		<if test="fc.areaCode1!=null and fc.areaCode1!=''">
+              and area_Code1=#{fc.areaCode1,jdbcType=VARCHAR}
+          </if>
+<!--           <if test="fc.pdevId==null">
+              and pdev_id is null
+          </if> -->
+          <if test="fc.pdevId!=null">
+              and pdev_id=#{fc.pdevId,jdbcType=BIGINT}
+          </if>
+          <if test="fc.devName!=null and fc.devName!=''">
+			and dev_name like concat('%',#{fc.devName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="fc.isDel!=null and fc.isDel!=0">
+			and dev_state not in('4','5')
+		</if>
+		<if test="fc.isDel!=null and fc.isDel!=1">
+			and dev_state in('04','05')
+		</if>
+		<if test="fc.curLat!=null and fc.curLng!=null and fc.distance!=null">
+		    and ROUND(6378138*2*ASIN(SQRT(POW(SIN((#{fc.curLat,jdbcType=NUMERIC}*PI()/180-latitude*PI()/180)/2),2)+COS(#{fc.curLat,jdbcType=NUMERIC}*PI()/180)*COS(latitude*PI()/180)*POW(SIN((#{fc.curLng,jdbcType=NUMERIC}*PI()/180-longitude*PI()/180)/2),2)))) &lt;=#{fc.distance,jdbcType=NUMERIC}
+		</if>
+		and dev_type not in('6','5') and dev_type <![CDATA[ <> ]]> '19' and org_id = #{fc.orgId,jdbcType=BIGINT}
+		ORDER BY CONVERT(dev_name USING gbk)
+		</where>
+	</select>
+	
+	<select id="selectFacilitysByPosition" parameterType="map" resultMap="BaseResultMap">
+	    select 
+	    	<if test="fc.curLat!=null and fc.curLng!=null">
+			ROUND(6378138*2*ASIN(SQRT(POW(SIN((#{fc.curLat,jdbcType=NUMERIC}*PI()/180-latitude*PI()/180)/2),2)+COS(#{fc.curLat,jdbcType=NUMERIC}*PI()/180)*COS(latitude*PI()/180)*POW(SIN((#{fc.curLng,jdbcType=NUMERIC}*PI()/180-longitude*PI()/180)/2),2)))) 	distance ,
+	    	</if>
+	    <include refid="Base_Column_List"></include> 
+	    from tn_facility 
+	    <where>
+	    <if test="fc.devType!=null and fc.devType!=''">
+			and dev_type = #{fc.devType,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="fc.devCode!=null and fc.devCode!=''">
+		    and dev_code like concat('%',#{fc.devCode,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="fc.surveyResult!=null and fc.surveyResult!=''">
+			and survey_result=#{fc.surveyResult,jdbcType=VARCHAR}
+		</if>
+		<if test="fc.areaCode1!=null and fc.areaCode1!=''">
+              and area_Code1=#{fc.areaCode1,jdbcType=VARCHAR}
+          </if>
+<!--            <if test="fc.pdevId==null">
+              and pdev_id is null
+          </if> -->
+          <if test="fc.pdevId!=null">
+              and pdev_id=#{fc.pdevId,jdbcType=BIGINT}
+          </if>
+          <if test="fc.devName!=null and fc.devName!=''">
+			and dev_name like concat('%',#{fc.devName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="fc.isDel!=null and fc.isDel!=0">
+			and dev_state not in('4','5')
+		</if>
+		<if test="fc.isDel!=null and fc.isDel!=1">
+			and dev_state in('4','5')
+		</if>
+		<if test="fc.curLat!=null and fc.curLng!=null and fc.distance!=null">
+		    and ROUND(6378138*2*ASIN(SQRT(POW(SIN((#{fc.curLat,jdbcType=NUMERIC}*PI()/180-latitude*PI()/180)/2),2)+COS(#{fc.curLat,jdbcType=NUMERIC}*PI()/180)*COS(latitude*PI()/180)*POW(SIN((#{fc.curLng,jdbcType=NUMERIC}*PI()/180-longitude*PI()/180)/2),2)))) &lt;=#{fc.distance,jdbcType=NUMERIC}
+		</if>
+		and dev_type not in('06','05') and dev_type <![CDATA[ <> ]]> '19' and org_id = #{fc.orgId,jdbcType=BIGINT}
+		</where>
+		<choose>
+		    <when test="fc.curLat!=null and fc.curLng!=null">
+		        order by 1
+		    </when>
+		    <otherwise>
+		        ORDER BY CONVERT(dev_name USING gbk)
+		    </otherwise>
+		</choose>
+		
+		 
+		 <if test="pb!=null">
+		  limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		 </if>
+	</select>
+	
+	
+	<!--fl 整合 m/v1/facilityList.htm * m/facilityByDevcode.htm * m/v1/getAround.htm -->
+	<select id="queryFacilityByConditions" resultMap="BaseResultMap" parameterType="map">
+	SELECT  
+	<include refid="Base_Column_List" />
+	FROM tn_facility 
+		<where>
+			<trim prefixOverrides="and">
+				<if test="facility.devType!=null and facility.devType!=''">
+					AND dev_type IN 
+					<foreach collection="facility.devTypes" open="(" close=")" separator="," item="devType">
+					 	#{devType,jdbcType=VARCHAR}
+					</foreach>
+				</if>
+				<if test="facility.surveyResult!=null and facility.surveyResult !=''">
+					AND survey_result=#{facility.surveyResult,jdbcType=VARCHAR}
+				</if>
+				<if test="facility.areaCode1!=null and facility.areaCode1 !=''">
+					AND area_Code1=#{facility.areaCode1,jdbcType=VARCHAR}
+				</if>
+				<if test="facility.devName !=null and facility.devName !=''">
+					AND dev_name LIKE CONCAT('%',#{facility.devName,jdbcType=VARCHAR},'%')
+				</if>
+				<!-- 未确认0 -->
+				<if test="facility.isDel!=null and facility.isDel==0">
+					AND dev_state ='0'
+				</if>
+				<!-- 已确认1 -->
+				<if test="facility.isDel!=null and facility.isDel==1">
+					AND dev_state IN('1','2','3')
+				</if>
+				<!-- 已删除2 -->
+				<if test="facility.isDel!=null and facility.isDel==2">
+					AND dev_state IN('4','5')
+				</if>
+				<if test="facility.devCode!=null and facility.devCode!=''">
+					AND dev_code like concat ('%',#{facility.devCode,jdbcType=VARCHAR},'%') 
+				</if>
+			</trim>
+			AND org_id = #{orgId,jdbcType=BIGINT} AND dev_type NOT IN ('19','05','06','31','32','33')
+		</where>
+		<if test="facility.curLat !=null and facility.curLng !=null">
+		 AND ROUND(6378138*2*ASIN(SQRT(POW(SIN((#{facility.curLat,jdbcType=NUMERIC}*PI()/180-latitude*PI()/180)/2),2)+COS(#{facility.curLat,jdbcType=NUMERIC}*PI()/180)*COS(latitude*PI()/180)*POW(SIN((#{facility.curLng,jdbcType=NUMERIC}*PI()/180-longitude*PI()/180)/2),2))))
+			&lt;=#{facility.distance,jdbcType=NUMERIC}
+		</if>
+		<if test="pb!=null">
+		  LIMIT #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+	
+	<!-- fl 查询设施列表 -->
+	<select id="queryByConditionsMap"  parameterType="map" resultMap="BaseResultMap">
+	 select 
+    	<include refid="Base_Column_List" />
+   	   from tn_facility		   
+	    <where>	           
+	    			<trim prefixOverrides="and">
+                    <if test="facilityCondition.devCode!=null and facilityCondition.devCode!=''">
+		                and dev_code like concat('%',#{facilityCondition.devCode,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.devName!=null and facilityCondition.devName!=''">
+		                and (dev_name like concat('%',#{facilityCondition.devName,jdbcType=VARCHAR},'%')
+		                	or zg_dev_name like concat('%',#{facilityCondition.devName,jdbcType=VARCHAR},'%'))
+		            </if>
+		            <if test="facilityCondition.devType!=null and facilityCondition.devType!=''">
+		                and dev_type = #{facilityCondition.devType,jdbcType=VARCHAR}
+		            </if>
+		            <if test="facilityCondition.pdevId!=null">
+		                and pdev_id = #{facilityCondition.pdevId,jdbcType=BIGINT}
+		            </if>
+		            <if test="facilityCondition.surveyResult!=null">
+		                and survey_result=#{facilityCondition.surveyResult,jdbcType=VARCHAR}
+		            </if>
+		            <if test="facilityCondition.checkType!=null and facilityCondition.checkType !=''">
+		                and check_type=#{facilityCondition.checkType,jdbcType=VARCHAR}
+		            </if>
+		            
+		            <if test="facilityCondition.areaCode!=null and facilityCondition.areaCode!=''and facilityCondition.areaCode1!=null and facilityCondition.areaCode1!='' ">
+		               and area_Code1 in (SELECT   area_code FROM tn_areas WHERE 
+		               area_code like concat('%',#{facilityCondition.areaCode1,jdbcType=VARCHAR},'%') )
+		            </if>
+		            <if test="facilityCondition.areaCode!=null and facilityCondition.areaCode!='' and (facilityCondition.areaCode1==null or facilityCondition.areaCode1 =='')">
+		               and area_Code1 in (SELECT   area_code FROM tn_areas WHERE 
+		               area_code like concat('%',#{facilityCondition.areaCode,jdbcType=VARCHAR},'%') )
+		            </if>
+		            <if test="facilityCondition.site!=null and facilityCondition.site!=''">
+		                and site like concat('%',#{facilityCondition.site,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.devModel!=null  and facilityCondition.devModel!=''">
+		                and dev_Model like concat('%',#{facilityCondition.devModel,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.room!=null  and facilityCondition.room!=''">
+		                and room like concat('%',#{facilityCondition.room,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.devImei!=null  and facilityCondition.devImei!=''">
+		                and dev_Imei like concat('%',#{facilityCondition.devImei,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.devState!=null  and facilityCondition.devState!=''">
+		                and dev_state = #{facilityCondition.devState,jdbcType=VARCHAR}
+		            </if>
+		            <if test="facilityCondition.devStateall!=null  and facilityCondition.devStateall==0">
+		                and dev_state ='0'
+		            </if>
+		            <if test="facilityCondition.devStateall!=null  and facilityCondition.devStateall==1">
+		                and dev_state <![CDATA[ <> ]]> '0'
+		            </if>
+		            <if test="facilityCondition.devMac!=null and  facilityCondition.devMac!=''">
+		                and dev_Mac like concat('%',#{facilityCondition.devMac,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.pdevName!=null and  facilityCondition.pdevName!=''">
+		                and pdev_id in (select dev_id from tn_facility where dev_name like concat('%',#{facilityCondition.pdevName,jdbcType=VARCHAR},'%'))
+		            </if>
+		           <if test="facilityCondition.existLngLat!=null and facilityCondition.existLngLat!='' and facilityCondition.existLngLat==0">
+		                and (longitude is null or  longitude ='')
+		            </if>
+		            <if test="facilityCondition.existLngLat!=null  and facilityCondition.existLngLat!='' and facilityCondition.existLngLat==1">
+		                and longitude is not null and longitude <![CDATA[<>]]> ''
+		            </if>
+		            <if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and org_id=#{user.orgId,jdbcType=BIGINT}
+			            </if>
+		            </if>
+		            and flag='1'
+		         </trim>
+		   </where>
+
+	   <if test="pb!=null">
+		  order by dev_type,dev_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	   </if>
+	</select>
+	
+	<!-- fl 按条件查询记录总数-->
+   <select id="queryCountByConditionsMap"  parameterType="map" resultType="java.lang.Integer">
+       select 
+    	  count(1)
+   	   from tn_facility  
+	    <where>	           
+	    	<trim prefixOverrides="and">
+                    <if test="facilityCondition.devCode!=null and facilityCondition.devCode!=''">
+		                and dev_code like concat('%',#{facilityCondition.devCode,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.devName!=null and facilityCondition.devName!=''">
+		                and (dev_name like concat('%',#{facilityCondition.devName,jdbcType=VARCHAR},'%')
+		                	or zg_dev_name like concat('%',#{facilityCondition.devName,jdbcType=VARCHAR},'%'))
+		            </if>
+		            <if test="facilityCondition.devType!=null and facilityCondition.devType!=''">
+		                and dev_type = #{facilityCondition.devType,jdbcType=VARCHAR}
+		            </if>
+		            <if test="facilityCondition.pdevId!=null">
+		                and pdev_id = #{facilityCondition.pdevId,jdbcType=BIGINT}
+		            </if>
+		            <if test="facilityCondition.surveyResult!=null">
+		                and survey_result=#{facilityCondition.surveyResult,jdbcType=VARCHAR}
+		            </if>
+		            <if test="facilityCondition.checkType!=null and facilityCondition.checkType !=''">
+		                and check_type=#{facilityCondition.checkType,jdbcType=VARCHAR}
+		            </if>
+		            
+		           <if test="facilityCondition.areaCode!=null and facilityCondition.areaCode!=''and facilityCondition.areaCode1!=null and facilityCondition.areaCode1!='' ">
+		               and area_Code1 in (SELECT   area_code FROM tn_areas WHERE 
+		               area_code like concat('%',#{facilityCondition.areaCode1,jdbcType=VARCHAR},'%') )
+		            </if>
+		            <if test="facilityCondition.areaCode!=null and facilityCondition.areaCode!='' and (facilityCondition.areaCode1==null or facilityCondition.areaCode1 =='')">
+		                and area_Code1 in (SELECT   area_code FROM tn_areas WHERE 
+		               area_code like concat('%',#{facilityCondition.areaCode,jdbcType=VARCHAR},'%') )
+		            </if>
+		            <if test="facilityCondition.site!=null and facilityCondition.site!=''">
+		                and site like concat('%',#{facilityCondition.site,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.devModel!=null  and facilityCondition.devModel!=''">
+		                and dev_Model like concat('%',#{facilityCondition.devModel,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.room!=null  and facilityCondition.room!=''">
+		                and room like concat('%',#{facilityCondition.room,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.devImei!=null  and facilityCondition.devImei!=''">
+		                and dev_Imei like concat('%',#{facilityCondition.devImei,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.devState!=null  and facilityCondition.devState!=''">
+		                and dev_state = #{facilityCondition.devState,jdbcType=VARCHAR}
+		            </if>
+		            <if test="facilityCondition.devStateall!=null  and facilityCondition.devStateall==0">
+		                and dev_state ='0'
+		            </if>
+		            <if test="facilityCondition.devStateall!=null  and facilityCondition.devStateall==1">
+		                and dev_state <![CDATA[ <> ]]> '0'
+		            </if>
+		            <if test="facilityCondition.devMac!=null and  facilityCondition.devMac!=''">
+		                and dev_Mac like concat('%',#{facilityCondition.devMac,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="facilityCondition.pdevName!=null and  facilityCondition.pdevName!=''">
+		                and pdev_id in (select dev_id from tn_facility where dev_name like concat('%',#{facilityCondition.pdevName,jdbcType=VARCHAR},'%'))
+		            </if>
+		            <if test="facilityCondition.existLngLat!=null and facilityCondition.existLngLat!='' and facilityCondition.existLngLat==0">
+		                and (longitude is null or  longitude ='')
+		            </if>
+		            <if test="facilityCondition.existLngLat!=null  and facilityCondition.existLngLat!='' and facilityCondition.existLngLat==1">
+		                and longitude is not null and longitude <![CDATA[<>]]> ''
+		            </if>
+		            <if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and org_id=#{user.orgId,jdbcType=BIGINT}
+			            </if>
+		            </if>
+		            and flag='1'
+		         </trim>
+		   </where>	   
+   </select>
+   <!-- fl导出设施数据,根据是否有经纬度 -->
+   <select id="queryExportExisttLngLat" parameterType="map" resultMap="BeanResultMap">
+	  select 
+		f1.dev_id, f1.dev_code, f1.dev_name, 
+		CASE WHEN f1.dev_type='01' THEN '光交箱' 
+		WHEN f1.dev_type='02' THEN '光终端盒'  
+		WHEN f1.dev_type='03' THEN '光分纤箱' 
+		WHEN f1.dev_type='04' THEN '光缆接头'  
+		WHEN f1.dev_type='05' THEN '机柜' 
+		ELSE '其他' END dev_type, 
+		f1.dev_model, f1.longitude, f1.latitude,
+		f1.complete_date,f1.zg_dev_name,f1.dev_marking, f1.dev_addr, f1.dev_desc, f1.fiber_disc_num,f1.pdev_id, 
+		f1.dev_imei, f1.dev_mac, f1.area_code1, f1.area_code2, f1.site,f1.check_type,f1.check_user_id,f1.dev_state,
+		f1.room, f1.pro_id, f1.org_id, f1.flag, f1.survey_result,f1.baidu_x, f1.baidu_y, f1.is_translated,f1.create_time,
+		f1.create_user,f1.last_modify_time,f1.last_modify_user, f1.isbefwell, f1.dev_kind ,f2.`dev_name` pdev_name
+   	   from tn_facility	f1 LEFT JOIN tn_facility f2 ON f2.dev_id = f1.`pdev_id` 	   
+   		<where>
+   			<trim prefixOverrides="and">
+   				 <if test="existLngLat!=null and existLngLat!='' and existLngLat==0">
+		             and (f1.longitude is null or f1.longitude='')  
+	            </if>
+	            <if test="existLngLat!=null and existLngLat!='' and existLngLat==1">
+	                and f1.longitude is not null and f1.longitude <![CDATA[ <> ]]> '' 
+	            </if>
+   				 <if test="orgId!=null">
+	                and f1.org_id=#{orgId,jdbcType=BIGINT} and f1.dev_type NOT IN('06','30','31','32','33') AND f1.dev_state NOT IN('0','4','5')
+	            </if>
+   			</trim>
+   		</where>
+   </select>
+   
+  <!-- fl 查询有问题的业务点 -->
+<select id="queryProblematicalFactilityByUser" parameterType="map" resultMap="BaseResultVoBeanMap">
+	SELECT a.dev_code ,a.dev_name,a.dev_id,a.dev_type,a.dev_state,
+	CASE WHEN a.longitude IS NULL OR a.longitude='' THEN '0' ELSE '1' END isCoordinate,
+	CASE WHEN c.dev_img_id IS NULL THEN '0' ELSE '1' END isDevImg,a.longitude,a.latitude,a.area_code1,a.dev_addr
+	,a.create_time,a.create_user,a.last_modify_time,a.last_modify_user,tu.user_name create_user_name,tu1.user_name modify_user_name
+	FROM `tn_facility` a
+	LEFT JOIN tn_facility b ON b.dev_id=a.pdev_id
+	LEFT JOIN (SELECT dev_img_id,dev_id FROM tn_facility_img GROUP BY dev_id) c ON c.dev_id=a.dev_id
+	LEFT JOIN tn_users tu ON tu.user_id=a.create_user
+	LEFT JOIN tn_users tu1 ON tu1.user_id=a.last_modify_user
+	WHERE a.dev_type NOT IN('06','30','31','32','33') AND a.dev_state NOT IN('0','4','5') AND a.org_id=#{orgId,jdbcType=BIGINT} 
+	<if test="isCheckAll !=null and isCheckAll ==0">
+		AND  (a.last_modify_user=#{userId,jdbcType=BIGINT} OR (a.last_modify_user IS NULL AND a.create_user=#{userId,jdbcType=BIGINT}))
+	</if>
+	<if test="bean.devName !=null and bean.devName !=''">
+		AND a.dev_name LIKE CONCAT('%',#{bean.devName,jdbcType=VARCHAR},'%') 
+	</if>
+	<if test="bean.devCode !=null and bean.devCode !=''">
+		AND a.dev_code LIKE CONCAT('%',#{bean.devCode,jdbcType=VARCHAR},'%') 
+	</if>
+	<if test="bean.devType !=null and bean.devType !=''">
+		AND a.dev_type=#{bean.devType,jdbcType=VARCHAR}
+	</if>
+	AND ((a.longitude IS NULL OR a.longitude='') OR c.dev_img_id IS NULL)
+	<!-- ORDER BY b.dev_id -->
+	ORDER BY  a.last_modify_time, a.create_time DESC
+	<if test="pb!=null">
+		 limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	</if>
+</select>
+
+	<!-- 查询组织机构下是否有设施 -->
+	<select id="queryByOrgId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+		select
+		count(1)
+		from tn_facility
+		where org_id = #{orgId,jdbcType=BIGINT}
+	</select>
+	
+	<!-- 根据设施ID,查询所属设施 -->
+	<select id="selectByDevId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		SELECT dev_id,dev_name
+		 FROM tn_facility WHERE pdev_id = #{devId,jdbcType=BIGINT}
+		 AND dev_state NOT IN ('4','5') AND dev_type NOT IN ('06')
+	</select>
+	
+	<!-- 查询已绑定中控器的设施，并且只有光交箱，光终端盒，光分纤箱，机房 -->
+	<select id="queryListByContentAndBindCod" resultMap="BeanResultMap" parameterType="map">
+		select
+		f.*,b.value_name valueName
+		from tn_facility f 
+		left join tn_basecode b on f.dev_type=b.value_code
+		LEFT JOIN im_device id ON id.dev_id=f.dev_id
+		where
+			dev_type IN('01','02','03','20') AND dev_state NOT IN ('4','5') and
+				<if test="content!=null and content!=''">
+				(
+					f.dev_code like concat('%',#{content,jdbcType=VARCHAR},'%')
+					or f.dev_name like concat('%',#{content,jdbcType=VARCHAR},'%')
+					or f.dev_addr like concat('%',#{content,jdbcType=VARCHAR},'%')
+				)and
+				</if>
+			
+			b.class_code='DEV_TYPE' AND id.cod_state<![CDATA[<>]]> '2'
+			and f.org_id=#{orgId,jdbcType=BIGINT}
+			and id.dev_id IS NOT NULL
+			<if test="areaCode1 != null and areaCode1 != ''">
+				and f.area_code1 = #{areaCode1,jdbcType=VARCHAR}
+			</if>
+			<if test="code != null and code != ''">
+				and f.area_code1 like CONCAT(#{code,jdbcType=VARCHAR},'%') 
+			</if>
+		GROUP BY id.dev_id
+	</select>
+	
+	<!-- 根据设施ID,查询所属设施 -->
+	<select id="findFacilityByPdevId" parameterType="java.lang.Long" resultType="map">
+		SELECT
+			DISTINCT a.dev_id devId, 
+			a.dev_name devName, 
+			a.dev_code devCode,
+			a.dev_state devState , 
+			a.dev_type devType,
+			IFNULL(c.cod_id,0) AS codId, 
+			IFNULL(c.cod_name,'') AS codName, 
+			IFNULL(c.cod_code,'') AS codCode,
+			IFNULL(c.cod_state,'') AS codState	
+		FROM tn_facility a 
+		LEFT JOIN im_device_discinfo b ON b.dev_id = a.dev_id  AND b.disc_contr_state <![CDATA[<>]]> '2' 
+		LEFT JOIN im_device c ON c.cod_id = b.cod_id AND c.`cod_state` <![CDATA[<>]]> '2'
+		WHERE a.dev_type='05' AND a.pdev_id=#{devId,jdbcType=BIGINT}  AND a.dev_state NOT IN ('4','5')
+	</select>
+	
+	<!-- 根据设施ID查询机房中机柜列表 -->
+	<select id="queryopdFacilityOdf" resultMap="BaseResultOdf" parameterType="map">
+	  select 
+		<include refid="Base_Column_List" />
+ 		from tn_facility 
+		where pdev_id =#{devId,jdbcType=BIGINT}
+		and dev_state NOT IN ('4','5')
+		<!-- <if test="pb!=null">
+		  order by dev_id limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		</if> -->
+	</select>
+	
+	<!-- 根据orgId分组查询 -->
+	<select id="queryFacilityByOrgId" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+ 		from tn_facility 
+ 		GROUP BY org_id
+	</select>
+	
+	<!-- 根据名称查询 -->
+	<select id="queryIamRepetitionDevName" resultMap="BaseResultMap" parameterType="com.ycnet.frms.bean.Facility">
+		select 
+		<include refid="Base_Column_List" />
+		from tn_facility 
+		where dev_name=#{devName,jdbcType=VARCHAR}
+		and org_id=#{orgId,jdbcType=BIGINT}
+		and dev_state <![CDATA[<>]]> '5'
+		limit 0,1
+	</select>
+	
+	<!-- 根据机房下的机柜名称查询 -->
+	<select id="queryByPdevIdAndDevName" parameterType="map" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from tn_facility 
+		where dev_name=#{devName,jdbcType=VARCHAR}
+		and pdev_id = #{pdevId,jdbcType=BIGINT}
+		and dev_state <![CDATA[<>]]> '5'
+		limit 1
+	</select>
+	
+	<!-- 根据井Id下的所有接头 -->
+	<select id="queryJointByWellId" parameterType="java.lang.Long" resultType="map">
+		select 
+			dev_name devName,dev_id devId
+		from tn_facility where well_id = #{wellId,jdbcType=BIGINT}
+	</select>
+	
+	<!-- 设施列表查询 -->
+	<select id="queryOciiFacilityList" parameterType="map" resultType="com.ycnet.frms.vo.mobile.ocii.OciiFacility">
+	SELECT  
+		dev_id devId,dev_code devCode,dev_name devName,IF(last_modify_time IS NOT NULL ,last_modify_time,create_time) time,
+		dev_type devType,dev_addr devAddr,baidu_x baiduX,baidu_y baiduY,dev_state devState
+	FROM tn_facility 
+		<where>
+			<trim prefixOverrides="and">
+				<if test="facility.devType!=null and facility.devType!=''">
+					AND dev_type =#{devType,jdbcType=VARCHAR}
+				</if>
+				<if test="facility.surveyResult!=null and facility.surveyResult !=''">
+					AND survey_result=#{facility.surveyResult,jdbcType=VARCHAR}
+				</if>
+				<if test="facility.areaCode1!=null and facility.areaCode1 !=''">
+					AND area_Code1=#{facility.areaCode1,jdbcType=VARCHAR}
+				</if>
+				<if test="facility.devName !=null and facility.devName !=''">
+					AND dev_name LIKE CONCAT('%',#{facility.devName,jdbcType=VARCHAR},'%')
+				</if>
+				<!-- 已删除2 -->
+				<if test="facility.isDel!=null and facility.isDel==2">
+					AND dev_state IN('4','5')
+				</if>
+				<if test="facility.devCode!=null and facility.devCode!=''">
+					AND dev_code like concat ('%',#{facility.devCode,jdbcType=VARCHAR},'%') 
+				</if>
+			</trim>
+			AND org_id = #{orgId,jdbcType=BIGINT} AND dev_type IN ('01','02','03','04','20')
+		</where>
+		<if test="facility.curLat !=null and facility.curLng !=null">
+		 AND ROUND(6378138*2*ASIN(SQRT(POW(SIN((#{facility.curLat,jdbcType=NUMERIC}*PI()/180-latitude*PI()/180)/2),2)+COS(#{facility.curLat,jdbcType=NUMERIC}*PI()/180)*COS(latitude*PI()/180)*POW(SIN((#{facility.curLng,jdbcType=NUMERIC}*PI()/180-longitude*PI()/180)/2),2))))
+			&lt;=#{facility.distance,jdbcType=NUMERIC}
+		</if>
+		<if test="pb!=null">
+		  LIMIT #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+	<!-- 根据设施ID查询设施(机房,光交) -->
+	<select id="queryOciiFacilityByDevId" parameterType="java.lang.Long" resultType="com.ycnet.frms.vo.mobile.ocii.OciiFacilityBean">
+		SELECT 
+			dev_id devId,dev_code devCode,dev_name devName,dev_type devType,dev_addr devAddr,baidu_x baiduX,baidu_y baiduY,dev_state devState,
+			longitude,latitude,a.`area_name` areaName,f.dev_desc devDesc
+		FROM tn_facility f LEFT JOIN tn_areas a ON a.`area_code`= f.`area_code1` WHERE dev_id = #{devId,jdbcType=BIGINT}
+	</select>
+	
+	<!--查询机房下的机柜列表  -->
+	<select id="queryOciiFacilityByPdevId" parameterType="java.lang.Long" resultType="map">
+		SELECT  
+			dev_name devName,dev_code devCode,dev_state devState,dev_id devId
+		FROM tn_facility
+		WHERE dev_type='05' AND pdev_id= #{devId,jdbcType=BIGINT}  AND dev_state NOT IN ('4','5')
+	</select>
+	
+	<!-- 通过坐标查询首页设施信息 -->
+	<select id="OcIndexFacByType" parameterType="com.ycnet.frms.vo.mobile.ocii.IndexInBean" resultType="com.ycnet.frms.vo.mobile.ocii.IndexPoint">
+	SELECT  
+		dev_id id,dev_name devName,dev_type type,baidu_x curLng,baidu_y curLat,
+		if(dev_state='0','未核查','已核查') devState
+	FROM tn_facility 
+		<where>
+			<trim prefixOverrides="and">
+				<if test="type=='20'">
+					AND dev_type ='20'
+				</if>
+				<if test="type=='01'">
+					AND dev_type ='01'
+				</if>
+				<if test="type=='0'.toString()">
+					AND dev_type in('01','20')
+				</if>
+				<if test="devName !=null and devName !=''">
+					AND dev_name LIKE CONCAT('%',#{devName,jdbcType=VARCHAR},'%')
+				</if>
+			</trim>
+			AND dev_state not IN('4','5') AND org_id = #{orgId,jdbcType=BIGINT}
+		</where>
+		<if test="curLat !=null and curLng !=null">
+		 AND ROUND(6378138*2*ASIN(SQRT(POW(SIN((#{curLat,jdbcType=NUMERIC}*PI()/180-latitude*PI()/180)/2),2)+COS(#{curLat,jdbcType=NUMERIC}*PI()/180)*COS(latitude*PI()/180)*POW(SIN((#{curLng,jdbcType=NUMERIC}*PI()/180-longitude*PI()/180)/2),2))))
+			&lt;=#{distance,jdbcType=NUMERIC}
+		</if>
+		 LIMIT #{maxNum,jdbcType=BIGINT}
+	</select>
+</mapper>

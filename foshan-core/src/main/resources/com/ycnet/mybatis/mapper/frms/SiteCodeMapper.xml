@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.SiteCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.SiteCode" >
+    <id column="site_code_id" property="siteCodeId" jdbcType="BIGINT" />
+    <result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+    <result column="sect_code" property="sectCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    site_code_id, dev_code, sect_code
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_site_code
+    where site_code_id = #{siteCodeId,jdbcType=BIGINT}
+  </select>
+  <select id="query_count" resultType="int" parameterType="com.ycnet.core.util.SqlAdapter">
+      ${sql}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_site_code
+    where site_code_id = #{siteCodeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.SiteCode" >
+    insert into tn_site_code (site_code_id, dev_code, sect_code
+      )
+    values (#{siteCodeId,jdbcType=BIGINT}, #{devCode,jdbcType=VARCHAR}, #{sectCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.SiteCode" >
+    insert into tn_site_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="siteCodeId != null" >
+        site_code_id,
+      </if>
+      <if test="devCode != null" >
+        dev_code,
+      </if>
+      <if test="sectCode != null" >
+        sect_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="siteCodeId != null" >
+        #{siteCodeId,jdbcType=BIGINT},
+      </if>
+      <if test="devCode != null" >
+        #{devCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sectCode != null" >
+        #{sectCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.SiteCode" >
+    update tn_site_code
+    <set >
+      <if test="devCode != null" >
+        dev_code = #{devCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sectCode != null" >
+        sect_code = #{sectCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where site_code_id = #{siteCodeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.SiteCode" >
+    update tn_site_code
+    set dev_code = #{devCode,jdbcType=VARCHAR},
+      sect_code = #{sectCode,jdbcType=VARCHAR}
+    where site_code_id = #{siteCodeId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectSiteCode"  resultMap="BaseResultMap" >
+      select 
+    <include refid="Base_Column_List" />
+    from tn_site_code
+    limit 1
+  </select>
+  <!-- 导出数据库 刘沧海 2017/10/13 -->
+  <select id="queryList" resultMap="BaseResultMap">
+  	select * from tn_site_code
+  </select>
+</mapper>

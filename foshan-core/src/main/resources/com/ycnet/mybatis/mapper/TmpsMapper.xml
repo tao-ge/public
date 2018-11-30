@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.TmpsMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.Tmps" >
+    <id column="tmp_id" property="tmpId" jdbcType="BIGINT" />
+    <result column="dev_imei" property="devImei" jdbcType="VARCHAR" />
+    <result column="col_time" property="colTime" jdbcType="TIMESTAMP" />
+    <result column="types" property="types" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="rpt_time" property="rptTime" jdbcType="TIMESTAMP" />
+    <result column="deal_sign" property="dealSign" jdbcType="CHAR" />
+    <result column="deal_time" property="dealTime" jdbcType="TIMESTAMP" />
+    <result column="owner_id" property="ownerId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tmp_id, dev_imei, col_time, types, content, rpt_time, deal_sign, deal_time, owner_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_tmps
+    where tmp_id = #{tmpId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_tmps
+    where tmp_id = #{tmpId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.Tmps" >
+    insert into tn_tmps (tmp_id, dev_imei, col_time, 
+      types, content, rpt_time, 
+      deal_sign, deal_time, owner_id
+      )
+    values (#{tmpId,jdbcType=BIGINT}, #{devImei,jdbcType=VARCHAR}, #{colTime,jdbcType=TIMESTAMP}, 
+      #{types,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{rptTime,jdbcType=TIMESTAMP}, 
+      #{dealSign,jdbcType=CHAR}, #{dealTime,jdbcType=TIMESTAMP}, #{ownerId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.Tmps" >
+    insert into tn_tmps
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tmpId != null" >
+        tmp_id,
+      </if>
+      <if test="devImei != null" >
+        dev_imei,
+      </if>
+      <if test="colTime != null" >
+        col_time,
+      </if>
+      <if test="types != null" >
+        types,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="rptTime != null" >
+        rpt_time,
+      </if>
+      <if test="dealSign != null" >
+        deal_sign,
+      </if>
+      <if test="dealTime != null" >
+        deal_time,
+      </if>
+      <if test="ownerId != null" >
+        owner_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tmpId != null" >
+        #{tmpId,jdbcType=BIGINT},
+      </if>
+      <if test="devImei != null" >
+        #{devImei,jdbcType=VARCHAR},
+      </if>
+      <if test="colTime != null" >
+        #{colTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="types != null" >
+        #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="rptTime != null" >
+        #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealSign != null" >
+        #{dealSign,jdbcType=CHAR},
+      </if>
+      <if test="dealTime != null" >
+        #{dealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.Tmps" >
+    update tn_tmps
+    <set >
+      <if test="devImei != null" >
+        dev_imei = #{devImei,jdbcType=VARCHAR},
+      </if>
+      <if test="colTime != null" >
+        col_time = #{colTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="types != null" >
+        types = #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="rptTime != null" >
+        rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealSign != null" >
+        deal_sign = #{dealSign,jdbcType=CHAR},
+      </if>
+      <if test="dealTime != null" >
+        deal_time = #{dealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ownerId != null" >
+        owner_id = #{ownerId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where tmp_id = #{tmpId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.Tmps" >
+    update tn_tmps
+    set dev_imei = #{devImei,jdbcType=VARCHAR},
+      col_time = #{colTime,jdbcType=TIMESTAMP},
+      types = #{types,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      deal_sign = #{dealSign,jdbcType=CHAR},
+      deal_time = #{dealTime,jdbcType=TIMESTAMP},
+      owner_id = #{ownerId,jdbcType=BIGINT}
+    where tmp_id = #{tmpId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryByConditionBeans"  parameterType="com.ycnet.frms.vo.TmpsConditionBean" resultMap="BaseResultMap">
+    SELECT 
+    tmp_id, dev_imei, col_time, TYPES, content, rpt_time, 
+    CASE WHEN deal_sign='0' THEN '未处理' WHEN deal_sign='1' THEN '已处理' WHEN deal_sign='2' THEN '处理异常' END deal_sign,
+    deal_time, owner_id
+    FROM tn_tmps
+    order by tmp_id desc
+    limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+   </select>
+   
+   <select id="queryCountByConditionMap"  parameterType="map" resultType="java.lang.Integer">
+   select 
+    count(1)
+    FROM tn_tmps
+   </select>
+</mapper>

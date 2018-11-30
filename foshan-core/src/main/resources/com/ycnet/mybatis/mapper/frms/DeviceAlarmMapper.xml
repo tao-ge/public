@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.DeviceAlarmMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.DeviceAlarm" >
+    <id column="alarm_process_id" property="alarmProcessId" jdbcType="BIGINT" />
+    <result column="alarm_id" property="alarmId" jdbcType="BIGINT" />
+    <result column="dev_id" property="devId" jdbcType="BIGINT" />
+    <result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+    <result column="dev_name" property="devName" jdbcType="VARCHAR" />
+    <result column="dev_imei" property="devImei" jdbcType="VARCHAR" />
+    <result column="dev_mac" property="devMac" jdbcType="VARCHAR" />
+    <result column="alarm_time" property="alarmTime" jdbcType="TIMESTAMP" />
+    <result column="rpt_time" property="rptTime" jdbcType="TIMESTAMP" />
+    <result column="alarm_types" property="alarmTypes" jdbcType="VARCHAR" />
+    <result column="alarm_content" property="alarmContent" jdbcType="VARCHAR" />
+    <result column="deal_sign" property="dealSign" jdbcType="CHAR" />
+    <result column="deal_situation" property="dealSituation" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="f_name" property="fName" jdbcType="VARCHAR" />
+    <result column="fdevName" property="fdevName" jdbcType="VARCHAR" />
+    <result column="date_time" property="dateTime" jdbcType="VARCHAR" />
+  </resultMap>
+   <resultMap id="LogResultMap" type="com.ycnet.frms.bean.AlarmPushlog" >
+    <id column="push_id" property="pushId" jdbcType="BIGINT" />
+    <result column="alarm_process_id" property="alarmProcessId" jdbcType="BIGINT" />
+    <result column="dev_id" property="devId" jdbcType="BIGINT" />
+    <result column="push_time" property="pushTime" jdbcType="TIMESTAMP" />
+    <result column="push_sign" property="pushSign" jdbcType="CHAR" />
+    <result column="push_situation" property="pushSituation" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Log_Column_List" >
+    push_id, alarm_process_id, dev_id, push_time, push_sign, push_situation, org_id
+  </sql>
+  <sql id="Base_Column_List" >
+    alarm_process_id, alarm_id, dev_id, dev_code, dev_name, dev_imei, dev_mac, alarm_time, 
+    rpt_time, alarm_types, alarm_content, deal_sign, deal_situation, user_id, user_name
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_device_alarm
+    where alarm_process_id = #{alarmProcessId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_device_alarm
+    where alarm_process_id = #{alarmProcessId,jdbcType=BIGINT}
+  </delete>
+  
+  <!-- 根据imei和mac删除报警记录 -->
+  <delete id="deleteAlarmByImeiAndMac" parameterType="com.ycnet.frms.bean.DeviceAlarm" >
+    delete from tn_device_alarm
+    where  dev_imei=#{devImei,jdbcType=VARCHAR} 	
+    and    dev_mac=#{devMac,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="com.ycnet.frms.bean.DeviceAlarm" >
+    insert into tn_device_alarm (alarm_process_id, alarm_id, dev_id, 
+      dev_code, dev_name, dev_imei, 
+      dev_mac, alarm_time, rpt_time, 
+      alarm_types, alarm_content, deal_sign, 
+      deal_situation, user_id, user_name
+      )
+    values (#{alarmProcessId,jdbcType=BIGINT}, #{alarmId,jdbcType=BIGINT}, #{devId,jdbcType=BIGINT}, 
+      #{devCode,jdbcType=VARCHAR}, #{devName,jdbcType=VARCHAR}, #{devImei,jdbcType=VARCHAR}, 
+      #{devMac,jdbcType=VARCHAR}, #{alarmTime,jdbcType=TIMESTAMP}, #{rptTime,jdbcType=TIMESTAMP}, 
+      #{alarmTypes,jdbcType=VARCHAR}, #{alarmContent,jdbcType=VARCHAR}, #{dealSign,jdbcType=CHAR}, 
+      #{dealSituation,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.DeviceAlarm" >
+    insert into tn_device_alarm
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="alarmProcessId != null" >
+        alarm_process_id,
+      </if>
+      <if test="alarmId != null" >
+        alarm_id,
+      </if>
+      <if test="devId != null" >
+        dev_id,
+      </if>
+      <if test="devCode != null" >
+        dev_code,
+      </if>
+      <if test="devName != null" >
+        dev_name,
+      </if>
+      <if test="devImei != null" >
+        dev_imei,
+      </if>
+      <if test="devMac != null" >
+        dev_mac,
+      </if>
+      <if test="alarmTime != null" >
+        alarm_time,
+      </if>
+      <if test="rptTime != null" >
+        rpt_time,
+      </if>
+      <if test="alarmTypes != null" >
+        alarm_types,
+      </if>
+      <if test="alarmContent != null" >
+        alarm_content,
+      </if>
+      <if test="dealSign != null" >
+        deal_sign,
+      </if>
+      <if test="dealSituation != null" >
+        deal_situation,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="alarmProcessId != null" >
+        #{alarmProcessId,jdbcType=BIGINT},
+      </if>
+      <if test="alarmId != null" >
+        #{alarmId,jdbcType=BIGINT},
+      </if>
+      <if test="devId != null" >
+        #{devId,jdbcType=BIGINT},
+      </if>
+      <if test="devCode != null" >
+        #{devCode,jdbcType=VARCHAR},
+      </if>
+      <if test="devName != null" >
+        #{devName,jdbcType=VARCHAR},
+      </if>
+      <if test="devImei != null" >
+        #{devImei,jdbcType=VARCHAR},
+      </if>
+      <if test="devMac != null" >
+        #{devMac,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmTime != null" >
+        #{alarmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rptTime != null" >
+        #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmTypes != null" >
+        #{alarmTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmContent != null" >
+        #{alarmContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dealSign != null" >
+        #{dealSign,jdbcType=CHAR},
+      </if>
+      <if test="dealSituation != null" >
+        #{dealSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.DeviceAlarm" >
+    update tn_device_alarm
+    <set >
+      <if test="alarmId != null" >
+        alarm_id = #{alarmId,jdbcType=BIGINT},
+      </if>
+      <if test="devId != null" >
+        dev_id = #{devId,jdbcType=BIGINT},
+      </if>
+      <if test="devCode != null" >
+        dev_code = #{devCode,jdbcType=VARCHAR},
+      </if>
+      <if test="devName != null" >
+        dev_name = #{devName,jdbcType=VARCHAR},
+      </if>
+      <if test="devImei != null" >
+        dev_imei = #{devImei,jdbcType=VARCHAR},
+      </if>
+      <if test="devMac != null" >
+        dev_mac = #{devMac,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmTime != null" >
+        alarm_time = #{alarmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rptTime != null" >
+        rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmTypes != null" >
+        alarm_types = #{alarmTypes,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmContent != null" >
+        alarm_content = #{alarmContent,jdbcType=VARCHAR},
+      </if>
+      <if test="dealSign != null" >
+        deal_sign = #{dealSign,jdbcType=CHAR},
+      </if>
+      <if test="dealSituation != null" >
+        deal_situation = #{dealSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where alarm_process_id = #{alarmProcessId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.DeviceAlarm" >
+    update tn_device_alarm
+    set alarm_id = #{alarmId,jdbcType=BIGINT},
+      dev_id = #{devId,jdbcType=BIGINT},
+      dev_code = #{devCode,jdbcType=VARCHAR},
+      dev_name = #{devName,jdbcType=VARCHAR},
+      dev_imei = #{devImei,jdbcType=VARCHAR},
+      dev_mac = #{devMac,jdbcType=VARCHAR},
+      alarm_time = #{alarmTime,jdbcType=TIMESTAMP},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      alarm_types = #{alarmTypes,jdbcType=VARCHAR},
+      alarm_content = #{alarmContent,jdbcType=VARCHAR},
+      deal_sign = #{dealSign,jdbcType=CHAR},
+      deal_situation = #{dealSituation,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      user_name = #{userName,jdbcType=VARCHAR}
+    where alarm_process_id = #{alarmProcessId,jdbcType=BIGINT}
+  </update>
+  
+  <!-- 按条件查询 支持分页-->
+   <select id="queryByConditionMap"  parameterType="map" resultMap="BaseResultMap">
+       select 
+    	a.alarm_process_id, a.alarm_id, a.dev_id, a.dev_code, a.dev_name, a.dev_imei, a.dev_mac, (SELECT DATE_FORMAT(a.alarm_time,'%Y-%m-%d %H:%m:%S')) date_time,a.alarm_time, 
+    	a.rpt_time, a.alarm_types, a.alarm_content, a.deal_sign, a.deal_situation, a.user_id, a.user_name,f.dev_name fdevName
+   	   from tn_device_alarm	a
+   	   LEFT JOIN tn_facility f on a.dev_id = f.dev_id
+   	   LEFT JOIN tn_device_reg d on a.dev_imei = d.dev_imei
+	   <include refid="sqlWhere"/>
+	   <if test="deviceAlarmCon.alarmTimeStart!=null and deviceAlarmCon.alarmTimeStart!=''">
+		   and a.alarm_time <![CDATA[>]]> #{deviceAlarmCon.alarmTimeStart,jdbcType=TIMESTAMP}
+		</if>
+	   <if test="deviceAlarmCon.alarmTypes!=null and deviceAlarmCon.alarmTypes!=''">
+		   and a.alarm_types = #{deviceAlarmCon.alarmTypes,jdbcType=VARCHAR}
+		</if>
+		<if test="deviceAlarmCon.alarmTimeEnd!=null and deviceAlarmCon.alarmTimeEnd!=''">
+		  and a.alarm_time <![CDATA[<]]> #{deviceAlarmCon.alarmTimeEnd,jdbcType=TIMESTAMP}
+		 </if>  
+		  order by a.deal_sign='0' DESC ,a.alarm_time DESC 
+	   <if test="pb!=null">
+		  limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	   </if>
+   </select>
+   <!-- 按条件查询记录总数-->
+   <select id="queryCountByConditionMap"  parameterType="map" resultType="java.lang.Integer">
+       select 
+    	  count(1)
+   	   from tn_device_alarm a
+   	   INNER JOIN tn_facility f on a.dev_id = f.dev_id
+   	   LEFT JOIN tn_device_reg d on a.dev_imei = d.dev_imei
+	   <include refid="sqlWhere" />	
+	   <if test="deviceAlarmCon.alarmTimeStart!=null and deviceAlarmCon.alarmTimeStart!=''">
+		   and a.alarm_time <![CDATA[>]]> #{deviceAlarmCon.alarmTimeStart,jdbcType=TIMESTAMP}
+		</if>
+		  <if test="deviceAlarmCon.alarmTypes!=null and deviceAlarmCon.alarmTypes!=''">
+		   and a.alarm_types = #{deviceAlarmCon.alarmTypes,jdbcType=VARCHAR}
+		</if>    
+		<if test="deviceAlarmCon.alarmTimeEnd!=null and deviceAlarmCon.alarmTimeEnd!=''">
+		  and a.alarm_time <![CDATA[<]]> #{deviceAlarmCon.alarmTimeEnd,jdbcType=TIMESTAMP}
+		 </if>  	   
+   </select>
+   <!-- 关联tn_device_status表按条件查询 支持分页-->
+   <select id="queryNewRecordByConditionMap"  parameterType="map" resultMap="BaseResultMap">
+       select 
+    	*,f.dev_name f_name
+   	   from tn_device_alarm as t inner join tn_device_status as tds on t.alarm_id=tds.dev_status_id	  
+   	   INNER JOIN tn_facility f on t.dev_id = f.dev_id 	   
+	   	<if test="user.orgId!=null">
+		        and tds.org_id = #{user.orgId}
+		</if>
+	   <if test="pb!=null">
+		  order by t.alarm_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	   </if>
+   </select>
+      <!-- 关联tn_device_status表按条件查询记录总数-->
+   <select id="queryNewRecordCountByConditionMap"  parameterType="map" resultType="java.lang.Integer">
+       select 
+    	  count(1)
+   	   from tn_device_alarm as t inner join tn_device_status as tds on t.alarm_id=tds.dev_status_id	
+   	   INNER JOIN tn_facility f on t.dev_id = f.dev_id 	   	   
+	   	<if test="user.orgId!=null">
+		        and tds.org_id = #{user.orgId}
+		</if>
+			   	  
+   </select>
+   <!-- 关联tn_device_status表按条件查询未处理报警记录总数-->
+   <select id="queryUntreatedCountByConditionMap"  parameterType="map" resultType="java.lang.Integer">
+       select 
+    	  count(1)
+   	   from tn_device_alarm as t 
+   	   inner join tn_device_status as tds on t.alarm_id=tds.dev_status_id 
+   	   LEFT JOIN tn_device_reg d ON t.dev_imei = d.dev_imei
+   	   where t.deal_sign='0'   
+<!--    	   <if test="user.devPlatform!=null and user.devPlatform!=''"> -->
+<!--    	   		and d.dev_platform = #{user.devPlatform,jdbcType=VARCHAR} -->
+<!--    	   </if> -->
+ 	   <if test="user.orgId!=null">
+        	and tds.org_id = #{user.orgId,jdbcType=BIGINT}
+	   </if>
+   </select>
+    <!-- 按条件查询where条件-->
+   <sql id="sqlWhere" >
+            <where>	           
+                    <if test="deviceAlarmCon.devCode!=null and deviceAlarmCon.devCode!=''">
+		                and f.dev_code = #{deviceAlarmCon.devCode,jdbcType=VARCHAR}
+		            </if>
+		            <if test="deviceAlarmCon.devName!=null and deviceAlarmCon.devName!=''">
+		                and f.dev_name like concat('%',#{deviceAlarmCon.devName,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="deviceAlarmCon.alarmTypes!=null and deviceAlarmCon.alarmTypes!=''">
+		                and a.alarm_types=#{deviceAlarmCon.alarmTypes,jdbcType=VARCHAR}
+		            </if>
+		           <!--  zhouyu 1/16函数不存在 注掉不影响功能 -->
+		             <!--  <if test="deviceAlarmCon.alarmTimeStart!=null and deviceAlarmCon.alarmTimeStart!=''">
+		                and a.DATE_FORMAT(alarm_time,'%Y-%m-%d') &gt;=#{deviceAlarmCon.alarmTimeStart,jdbcType=VARCHAR}
+		            </if>
+		            
+		                <if test="deviceAlarmCon.alarmTimeEnd!=null and deviceAlarmCon.alarmTimeEnd!=''">
+		                and a.DATE_FORMAT(alarm_time,'%Y-%m-%d') &lt;= #{deviceAlarmCon.alarmTimeEnd,jdbcType=VARCHAR}
+		            </if> -->
+		            
+		            <if test="deviceAlarmCon.dealSign!=null and deviceAlarmCon.dealSign!=''">
+		                and a.deal_sign =#{deviceAlarmCon.dealSign,jdbcType=VARCHAR}
+		            </if>
+		            <if test="deviceAlarmCon.fName!=null and deviceAlarmCon.fName!=''">
+						and f.dev_name like concat('%',#{deviceAlarmCon.fName,jdbcType=VARCHAR},'%')
+					</if>
+		            
+		             <if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and ((SELECT `org_id` FROM `tn_device_status` WHERE dev_status_id=a.alarm_id )=#{user.orgId,jdbcType=BIGINT})
+			            </if>
+<!-- 			            <if test="user.devPlatform!=null and user.devPlatform!=''"> -->
+<!-- 			            	and d.dev_platform = #{user.devPlatform,jdbcType=VARCHAR} -->
+<!-- 			            </if> -->
+		             </if>
+		   </where>
+     </sql>
+     <!-- 推送报警信息 -->
+     <select id="getAlarmList" resultMap="BaseResultMap">
+       select 
+    	a.alarm_process_id, a.alarm_id, a.dev_id, a.dev_code, a.dev_name, a.dev_imei, a.dev_mac, a.alarm_time, 
+    	a.rpt_time, a.alarm_types, a.alarm_content, a.deal_sign, a.deal_situation, a.user_id, a.user_name
+   	   from tn_device_alarm	a	 
+   	   where deal_sign = "0" and a.alarm_process_id not in(select alarm_process_id from tn_alarm_pushlog)
+		order by a.alarm_id desc 
+   </select>
+   
+     <insert id="AlarmPushlogAdd" parameterType="com.ycnet.frms.bean.AlarmPushlog" >
+    insert into tn_alarm_pushlog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pushId != null" >
+        push_id,
+      </if>
+      <if test="alarmProcessId != null" >
+        alarm_process_id,
+      </if>
+      <if test="devId != null" >
+        dev_id,
+      </if>
+      <if test="pushTime != null" >
+        push_time,
+      </if>
+      <if test="pushSign != null" >
+        push_sign,
+      </if>
+      <if test="pushSituation != null" >
+        push_situation,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pushId != null" >
+        #{pushId,jdbcType=BIGINT},
+      </if>
+      <if test="alarmProcessId != null" >
+        #{alarmProcessId,jdbcType=BIGINT},
+      </if>
+      <if test="devId != null" >
+        #{devId,jdbcType=BIGINT},
+      </if>
+      <if test="pushTime != null" >
+        #{pushTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushSign != null" >
+        #{pushSign,jdbcType=CHAR},
+      </if>
+      <if test="pushSituation != null" >
+        #{pushSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="getOrgIdByDevId" resultType="java.lang.String" parameterType="java.lang.Long" >
+    select 
+    org_id
+    from tn_facility
+    where dev_id = #{devId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="getIsExitByLogTS" resultMap="LogResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Log_Column_List" />
+    from tn_alarm_pushlog
+    where alarm_process_id = #{alarmProcessId,jdbcType=BIGINT} and push_sign in("0","1")
+  </select>
+  
+  <select id="getIsExitByLogDX" resultMap="LogResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Log_Column_List" />
+    from tn_alarm_pushlog
+    where alarm_process_id = #{alarmProcessId,jdbcType=BIGINT} and push_sign = "2"
+  </select>
+  
+  <update id="updateByPrimaryKeySelectives" parameterType="com.ycnet.frms.bean.AlarmPushlog" >
+    update tn_alarm_pushlog
+    <set >
+      <if test="alarmProcessId != null" >
+        alarm_process_id = #{alarmProcessId,jdbcType=BIGINT},
+      </if>
+      <if test="devId != null" >
+        dev_id = #{devId,jdbcType=BIGINT},
+      </if>
+      <if test="pushTime != null" >
+        push_time = #{pushTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushSign != null" >
+        push_sign = #{pushSign,jdbcType=CHAR},
+      </if>
+      <if test="pushSituation != null" >
+        push_situation = #{pushSituation,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where push_id = #{pushId,jdbcType=BIGINT}
+  </update>
+  <!--fl 根据设施ID,查询报警记录  -->
+  <select id="queryDeviceAlarmByDevId" parameterType="map" resultMap="BaseResultMap">
+   	    select 
+    	a.alarm_process_id, a.alarm_id, a.dev_id, a.dev_code, a.dev_name, a.dev_imei, a.dev_mac, (SELECT DATE_FORMAT(a.alarm_time,'%Y-%m-%d %H:%m:%S')) date_time,a.alarm_time, 
+    	a.rpt_time, a.alarm_types, a.alarm_content, a.deal_sign, a.deal_situation, a.user_id, a.user_name,f.dev_name fdevName
+   	   from tn_device_alarm	a
+   	   LEFT JOIN tn_facility f on a.dev_id = f.dev_id
+   	   LEFT JOIN tn_device_reg d on a.dev_imei = d.dev_imei
+   		<where>
+   			<trim prefixOverrides="and">
+   				<if test="devId!=null">
+		   			AND  a.dev_id = #{devId,jdbcType=BIGINT} 
+		   		</if>
+		   		
+		   		<if test="areaCode1!=null">
+		   			AND f.area_code1 IN 
+					<foreach collection="areaCode1" open="(" close=")" separator="," item="code">
+		                #{code, jdbcType=VARCHAR}
+		            </foreach>
+		   		</if>
+		   		
+		   		<if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and ((SELECT `org_id` FROM `tn_device_status` WHERE dev_status_id=a.alarm_id )=#{user.orgId,jdbcType=BIGINT})
+			            </if>
+<!-- 			            <if test="user.devPlatform!=null and user.devPlatform!=''"> -->
+<!-- 			            	and d.dev_platform = #{user.devPlatform,jdbcType=VARCHAR} -->
+<!-- 			            </if> -->
+		             </if>
+   			</trim>
+   		</where>
+   		order by a.deal_sign='0' DESC ,a.alarm_time DESC
+   		<if test="pb!=null">
+		 	limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	   </if>
+  </select>
+   <!--fl 根据设施ID,查询报警记录总条数  -->
+   <select id="queryCountDeviceAlarmByDevId" parameterType="map" resultType="java.lang.Integer">
+		select
+		count(1)
+		from tn_device_alarm a
+		LEFT JOIN tn_facility f on a.dev_id = f.dev_id
+   	   	LEFT JOIN tn_device_reg d on a.dev_imei = d.dev_imei
+		<where>
+			<trim prefixOverrides="and">
+				<if test="devId!=null">
+					AND a.dev_id = #{devId,jdbcType=BIGINT}
+				</if>
+				<if test="areaCode1!=null">
+		   			AND f.area_code1 IN 
+					<foreach collection="areaCode1" open="(" close=")" separator="," item="code">
+		                #{code, jdbcType=VARCHAR}
+		            </foreach>
+		   		</if>
+		   		<if test="user.orgId!=null">
+		   			AND  f.org_id = #{user.orgId,jdbcType=BIGINT}
+		   		</if>
+<!-- 		   		<if test="user.devPlatform!=null and user.devPlatform!=''"> -->
+<!-- 		   			AND  d.dev_platform = #{user.devPlatform,jdbcType=VARCHAR} -->
+<!-- 		   		</if> -->
+			</trim>
+		</where>
+  </select>
+  <!-- 查询报警内容 -->
+  <select id="queryByDevId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	SELECT a.alarm_content 
+	FROM `tn_device_alarm` a
+	WHERE  a.dev_id=#{devId,jdbcType=BIGINT} AND deal_sign='0'
+	ORDER BY a.alarm_time DESC
+	LIMIT 0,1
+  </select>
+  
+</mapper>

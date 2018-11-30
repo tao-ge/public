@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.DeviceStatusMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.DeviceStatus" >
+    <id column="dev_status_id" property="devStatusId" jdbcType="BIGINT" />
+    <result column="dev_id" property="devId" jdbcType="BIGINT" />
+    <result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+    <result column="dev_name" property="devName" jdbcType="VARCHAR" />
+    <result column="col_time" property="colTime" jdbcType="TIMESTAMP" />
+    <result column="rpt_time" property="rptTime" jdbcType="TIMESTAMP" />
+    <result column="opr_style" property="oprStyle" jdbcType="CHAR" />
+    <result column="lock_status" property="lockStatus" jdbcType="CHAR" />
+    <result column="door_status" property="doorStatus" jdbcType="CHAR" />
+    <result column="low_temp_thd" property="lowTempThd" jdbcType="VARCHAR" />
+    <result column="high_temp_shd" property="highTempShd" jdbcType="VARCHAR" />
+    <result column="temp" property="temp" jdbcType="VARCHAR" />
+    <result column="humidity_shd" property="humidityShd" jdbcType="VARCHAR" />
+    <result column="humidity" property="humidity" jdbcType="VARCHAR" />
+    <result column="battery_thd" property="batteryThd" jdbcType="VARCHAR" />
+    <result column="battery" property="battery" jdbcType="VARCHAR" />
+    <result column="tilt_thd" property="tiltThd" jdbcType="VARCHAR" />
+    <result column="tilt" property="tilt" jdbcType="VARCHAR" />
+    <result column="signals" property="signals" jdbcType="VARCHAR" />
+    <result column="dev_imei" property="devImei" jdbcType="VARCHAR" />
+    <result column="dev_mac" property="devMac" jdbcType="VARCHAR" />
+    <result column="alarm_sign" property="alarmSign" jdbcType="VARCHAR" />
+    <result column="deal_sign" property="dealSign" jdbcType="CHAR" />
+    <result column="cur_status" property="curStatus" jdbcType="CHAR" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="f_name" property="fName" jdbcType="VARCHAR" />
+    <result column="fdevName" property="fdevName" jdbcType="VARCHAR" />
+    <result column="date_time" property="dateTime" jdbcType="VARCHAR" />
+    <result column="alarm_content" property="alarmContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dev_status_id, dev_id, dev_code, dev_name, col_time, rpt_time, opr_style, lock_status, 
+    door_status, low_temp_thd, high_temp_shd, temp, humidity_shd, humidity, battery_thd, 
+    battery, tilt_thd, tilt, signals, dev_imei, dev_mac, alarm_sign, deal_sign, cur_status, 
+    org_id,alarm_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_device_status
+    where dev_status_id = #{devStatusId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_device_status
+    where dev_status_id = #{devStatusId,jdbcType=BIGINT}
+  </delete>  
+  
+  <!-- 根据IMEI和MAC删除设备状态记录 -->
+  <delete id="deleteDevStatusByImeiAndMac" parameterType="com.ycnet.frms.bean.DeviceStatus" >
+    delete from tn_device_status
+    where  dev_imei=#{devImei,jdbcType=VARCHAR} 	
+    and    dev_mac=#{devMac,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.DeviceStatus" >
+    insert into tn_device_status (dev_status_id, dev_id, dev_code, 
+      dev_name, col_time, rpt_time, 
+      opr_style, lock_status, door_status, 
+      low_temp_thd, high_temp_shd, temp, 
+      humidity_shd, humidity, battery_thd, 
+      battery, tilt_thd, tilt, 
+      signals, dev_imei, dev_mac, 
+      alarm_sign, deal_sign, cur_status, 
+      org_id,alarm_content)
+    values (#{devStatusId,jdbcType=BIGINT}, #{devId,jdbcType=BIGINT}, #{devCode,jdbcType=VARCHAR}, 
+      #{devName,jdbcType=VARCHAR}, #{colTime,jdbcType=TIMESTAMP}, #{rptTime,jdbcType=TIMESTAMP}, 
+      #{oprStyle,jdbcType=CHAR}, #{lockStatus,jdbcType=CHAR}, #{doorStatus,jdbcType=CHAR}, 
+      #{lowTempThd,jdbcType=VARCHAR}, #{highTempShd,jdbcType=VARCHAR}, #{temp,jdbcType=VARCHAR}, 
+      #{humidityShd,jdbcType=VARCHAR}, #{humidity,jdbcType=VARCHAR}, #{batteryThd,jdbcType=VARCHAR}, 
+      #{battery,jdbcType=VARCHAR}, #{tiltThd,jdbcType=VARCHAR}, #{tilt,jdbcType=VARCHAR}, 
+      #{signals,jdbcType=VARCHAR}, #{devImei,jdbcType=VARCHAR}, #{devMac,jdbcType=VARCHAR}, 
+      #{alarmSign,jdbcType=VARCHAR}, #{dealSign,jdbcType=CHAR}, #{curStatus,jdbcType=CHAR}, 
+      #{orgId,jdbcType=BIGINT},#{alarmContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.DeviceStatus" keyProperty="devStatusId">
+    insert into tn_device_status
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="devStatusId != null" >
+        dev_status_id,
+      </if>
+      <if test="devId != null" >
+        dev_id,
+      </if>
+      <if test="devCode != null" >
+        dev_code,
+      </if>
+      <if test="devName != null" >
+        dev_name,
+      </if>
+      <if test="colTime != null" >
+        col_time,
+      </if>
+      <if test="rptTime != null" >
+        rpt_time,
+      </if>
+      <if test="oprStyle != null" >
+        opr_style,
+      </if>
+      <if test="lockStatus != null" >
+        lock_status,
+      </if>
+      <if test="doorStatus != null" >
+        door_status,
+      </if>
+      <if test="lowTempThd != null" >
+        low_temp_thd,
+      </if>
+      <if test="highTempShd != null" >
+        high_temp_shd,
+      </if>
+      <if test="temp != null" >
+        temp,
+      </if>
+      <if test="humidityShd != null" >
+        humidity_shd,
+      </if>
+      <if test="humidity != null" >
+        humidity,
+      </if>
+      <if test="batteryThd != null" >
+        battery_thd,
+      </if>
+      <if test="battery != null" >
+        battery,
+      </if>
+      <if test="tiltThd != null" >
+        tilt_thd,
+      </if>
+      <if test="tilt != null" >
+        tilt,
+      </if>
+      <if test="signals != null" >
+        signals,
+      </if>
+      <if test="devImei != null" >
+        dev_imei,
+      </if>
+      <if test="devMac != null" >
+        dev_mac,
+      </if>
+      <if test="alarmSign != null" >
+        alarm_sign,
+      </if>
+      <if test="dealSign != null" >
+        deal_sign,
+      </if>
+      <if test="curStatus != null" >
+        cur_status,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+       <if test="alarmContent != null" >
+        alarm_content
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="devStatusId != null" >
+        #{devStatusId,jdbcType=BIGINT},
+      </if>
+      <if test="devId != null" >
+        #{devId,jdbcType=BIGINT},
+      </if>
+      <if test="devCode != null" >
+        #{devCode,jdbcType=VARCHAR},
+      </if>
+      <if test="devName != null" >
+        #{devName,jdbcType=VARCHAR},
+      </if>
+      <if test="colTime != null" >
+        #{colTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rptTime != null" >
+        #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oprStyle != null" >
+        #{oprStyle,jdbcType=CHAR},
+      </if>
+      <if test="lockStatus != null" >
+        #{lockStatus,jdbcType=CHAR},
+      </if>
+      <if test="doorStatus != null" >
+        #{doorStatus,jdbcType=CHAR},
+      </if>
+      <if test="lowTempThd != null" >
+        #{lowTempThd,jdbcType=VARCHAR},
+      </if>
+      <if test="highTempShd != null" >
+        #{highTempShd,jdbcType=VARCHAR},
+      </if>
+      <if test="temp != null" >
+        #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="humidityShd != null" >
+        #{humidityShd,jdbcType=VARCHAR},
+      </if>
+      <if test="humidity != null" >
+        #{humidity,jdbcType=VARCHAR},
+      </if>
+      <if test="batteryThd != null" >
+        #{batteryThd,jdbcType=VARCHAR},
+      </if>
+      <if test="battery != null" >
+        #{battery,jdbcType=VARCHAR},
+      </if>
+      <if test="tiltThd != null" >
+        #{tiltThd,jdbcType=VARCHAR},
+      </if>
+      <if test="tilt != null" >
+        #{tilt,jdbcType=VARCHAR},
+      </if>
+      <if test="signals != null" >
+        #{signals,jdbcType=VARCHAR},
+      </if>
+      <if test="devImei != null" >
+        #{devImei,jdbcType=VARCHAR},
+      </if>
+      <if test="devMac != null" >
+        #{devMac,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmSign != null" >
+        #{alarmSign,jdbcType=VARCHAR},
+      </if>
+      <if test="dealSign != null" >
+        #{dealSign,jdbcType=CHAR},
+      </if>
+      <if test="curStatus != null" >
+        #{curStatus,jdbcType=CHAR},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="alarmContent != null" >
+        #{alarmContent,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="devStatusId">
+        select LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.DeviceStatus" >
+    update tn_device_status
+    <set >
+      <if test="devId != null" >
+        dev_id = #{devId,jdbcType=BIGINT},
+      </if>
+      <if test="devCode != null" >
+        dev_code = #{devCode,jdbcType=VARCHAR},
+      </if>
+      <if test="devName != null" >
+        dev_name = #{devName,jdbcType=VARCHAR},
+      </if>
+      <if test="colTime != null" >
+        col_time = #{colTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rptTime != null" >
+        rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oprStyle != null" >
+        opr_style = #{oprStyle,jdbcType=CHAR},
+      </if>
+      <if test="lockStatus != null" >
+        lock_status = #{lockStatus,jdbcType=CHAR},
+      </if>
+      <if test="doorStatus != null" >
+        door_status = #{doorStatus,jdbcType=CHAR},
+      </if>
+      <if test="lowTempThd != null" >
+        low_temp_thd = #{lowTempThd,jdbcType=VARCHAR},
+      </if>
+      <if test="highTempShd != null" >
+        high_temp_shd = #{highTempShd,jdbcType=VARCHAR},
+      </if>
+      <if test="temp != null" >
+        temp = #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="humidityShd != null" >
+        humidity_shd = #{humidityShd,jdbcType=VARCHAR},
+      </if>
+      <if test="humidity != null" >
+        humidity = #{humidity,jdbcType=VARCHAR},
+      </if>
+      <if test="batteryThd != null" >
+        battery_thd = #{batteryThd,jdbcType=VARCHAR},
+      </if>
+      <if test="battery != null" >
+        battery = #{battery,jdbcType=VARCHAR},
+      </if>
+      <if test="tiltThd != null" >
+        tilt_thd = #{tiltThd,jdbcType=VARCHAR},
+      </if>
+      <if test="tilt != null" >
+        tilt = #{tilt,jdbcType=VARCHAR},
+      </if>
+      <if test="signals != null" >
+        signals = #{signals,jdbcType=VARCHAR},
+      </if>
+      <if test="devImei != null" >
+        dev_imei = #{devImei,jdbcType=VARCHAR},
+      </if>
+      <if test="devMac != null" >
+        dev_mac = #{devMac,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmSign != null" >
+        alarm_sign = #{alarmSign,jdbcType=VARCHAR},
+      </if>
+      <if test="dealSign != null" >
+        deal_sign = #{dealSign,jdbcType=CHAR},
+      </if>
+      <if test="curStatus != null" >
+        cur_status = #{curStatus,jdbcType=CHAR},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="alarmContent != null" >
+        alarm_content = #{alarmContent,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where dev_status_id = #{devStatusId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.DeviceStatus" >
+    update tn_device_status
+    set dev_id = #{devId,jdbcType=BIGINT},
+      dev_code = #{devCode,jdbcType=VARCHAR},
+      dev_name = #{devName,jdbcType=VARCHAR},
+      col_time = #{colTime,jdbcType=TIMESTAMP},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      opr_style = #{oprStyle,jdbcType=CHAR},
+      lock_status = #{lockStatus,jdbcType=CHAR},
+      door_status = #{doorStatus,jdbcType=CHAR},
+      low_temp_thd = #{lowTempThd,jdbcType=VARCHAR},
+      high_temp_shd = #{highTempShd,jdbcType=VARCHAR},
+      temp = #{temp,jdbcType=VARCHAR},
+      humidity_shd = #{humidityShd,jdbcType=VARCHAR},
+      humidity = #{humidity,jdbcType=VARCHAR},
+      battery_thd = #{batteryThd,jdbcType=VARCHAR},
+      battery = #{battery,jdbcType=VARCHAR},
+      tilt_thd = #{tiltThd,jdbcType=VARCHAR},
+      tilt = #{tilt,jdbcType=VARCHAR},
+      signals = #{signals,jdbcType=VARCHAR},
+      dev_imei = #{devImei,jdbcType=VARCHAR},
+      dev_mac = #{devMac,jdbcType=VARCHAR},
+      alarm_sign = #{alarmSign,jdbcType=VARCHAR},
+      deal_sign = #{dealSign,jdbcType=CHAR},
+      cur_status = #{curStatus,jdbcType=CHAR},
+      org_id = #{orgId,jdbcType=BIGINT}
+      alarm_content = #{alarmContent,jdbcType=BIGINT}
+    where dev_status_id = #{devStatusId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryByConditionBeans"  parameterType="com.ycnet.frms.vo.DeviceStatusConditionBean" resultMap="BaseResultMap">
+    SELECT 
+    dev_status_id, dev_id, dev_code, dev_name, col_time, rpt_time, 
+    CASE WHEN opr_style='1' THEN '蓝牙开关锁' WHEN opr_style='2' THEN '机械开关锁' WHEN opr_style='3' THEN '异常开关锁'  ELSE '无操作' END opr_style, 
+    CASE WHEN lock_status='0' THEN '关' WHEN lock_status='1' THEN '开' ELSE '未知' END lock_status, 
+    CASE WHEN door_status='0' THEN '关' WHEN door_status='1' THEN '开' ELSE '未知' END door_status, 
+    low_temp_thd, high_temp_shd, temp, humidity_shd, humidity, battery_thd, 
+    battery, tilt_thd, tilt, signals, dev_imei, dev_mac, 
+    CASE WHEN alarm_sign LIKE '%0%' THEN '报警'  ELSE '正常' END alarm_sign, 
+    CASE WHEN deal_sign='0' THEN '未处理' WHEN deal_sign='1' THEN '已处理' ELSE '无需处理' END deal_sign, 
+    cur_status, org_id
+    FROM tn_device_status
+    <where>
+        <trim prefixOverrides="and">
+            <if test="devCode!=null and devCode!=''">
+                and dev_code like concat('%',#{devCode,jdbcType=VARCHAR},'%') 
+            </if>
+            <if test="devName!=null and devName!=''">
+                and dev_name like concat('%',#{devName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="oprStyle!=null and oprStyle!=''">
+                and opr_style = #{oprStyle,jdbcType=CHAR}
+            </if>
+            <if test="startTime!=null and startTime!=''">
+                and col_time>#{startTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="endTime!=null and endTime!=''">
+                and col_time &lt; #{endTime,jdbcType=TIMESTAMP} 
+            </if>
+            <if test='alarmSign=="0"'>
+	            and alarm_sign like concat('%','0','%')
+	        </if>
+	        <if test='alarmSign=="1"'>
+	            and alarm_sign='11111111'
+	        </if>
+	         
+        </trim>
+    </where>
+    order by dev_status_id desc
+    limit  #{page},#{pageSize}
+   </select>
+   
+   <select id="queryByConditionBean"  parameterType="com.ycnet.frms.vo.DeviceStatusConditionBean" resultMap="BaseResultMap">
+    SELECT 
+    dev_status_id, dev_id, dev_code, dev_name, col_time, rpt_time, 
+    CASE WHEN opr_style='1' THEN '蓝牙开关锁' WHEN opr_style='2' THEN '机械开关锁' WHEN opr_style='3' THEN '异常开关锁'  ELSE '无操作' END opr_style, 
+    CASE WHEN lock_status='0' THEN '关' WHEN lock_status='1' THEN '开' ELSE '未知' END lock_status, 
+    CASE WHEN door_status='0' THEN '关' WHEN door_status='1' THEN '开' ELSE '未知' END door_status, 
+    low_temp_thd, high_temp_shd, temp, humidity_shd, humidity, battery_thd, 
+    battery, tilt_thd, tilt, signals, dev_imei, dev_mac, 
+    CASE WHEN alarm_sign LIKE '%0%' THEN '报警'  ELSE '正常' END alarm_sign, 
+    CASE WHEN deal_sign='0' THEN '未处理' WHEN deal_sign='1' THEN '已处理' ELSE '无需处理' END deal_sign, 
+    cur_status, org_id
+    FROM tn_device_status
+    where  cur_status='1'
+        
+            <if test="devCode!=null and devCode!=''">
+                and dev_code like concat('%',#{devCode,jdbcType=VARCHAR},'%') 
+            </if>
+            <if test="devName!=null and devName!=''">
+                and dev_name like concat('%',#{devName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="lockStatus!=null and lockStatus!=''">
+                and lock_status = #{lockStatus,jdbcType=CHAR}
+            </if>
+            <if test="doorStatus!=null and doorStatus!=''">
+                and door_status>#{doorStatus,jdbcType=CHAR}
+            </if>
+            
+
+     order by dev_status_id desc
+    limit  #{page},#{pageSize}
+   </select>
+   
+   <!-- 按条件查询 支持分页-->
+   <select id="queryByConditionMap"  parameterType="map" resultMap="BaseResultMap">
+       select 
+       	s.dev_status_id, s.dev_id, s.dev_code, s.dev_name, s.col_time, s.rpt_time, s.opr_style, s.lock_status, 
+	    s.door_status, s.low_temp_thd, s.high_temp_shd, s.temp, s.humidity_shd, s.humidity, s.battery_thd, 
+	    s.battery, s.tilt_thd, s.tilt, s.signals, s.dev_imei, s.dev_mac, s.alarm_sign, s.deal_sign, s.cur_status, 
+	    s.org_id,f.dev_name f_name
+   	   from tn_device_status s	
+   	   <!-- 关联查询所属设施 -->
+   	   INNER JOIN tn_facility f on s.dev_id = f.dev_id
+	   <include refid="sqlWhere" /> 
+	   <if test="pb!=null">
+	   GROUP BY s.dev_id
+	   order by s.col_time desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	   </if>
+   </select>
+   <!-- 按条件查询记录总数-->
+   <!-- dzy 2018年3月10日22:33:45 修改，查询分组条件后的条数 -->
+   <select id="queryCountByConditionMap"  parameterType="map" resultType="java.lang.Integer">
+       SELECT COUNT(*) FROM
+       (select 
+    	  count(1)
+   	   from tn_device_status s	
+   	   INNER JOIN tn_facility f on s.dev_id = f.dev_id
+	   <include refid="sqlWhere" />	
+	   GROUP BY s.dev_id
+	   order by s.col_time desc)t	   
+   </select>
+    <!-- 按条件查询where条件-->
+   <sql id="sqlWhere" >
+            <where>          
+                    <if test="devStaCon.devId!=null">
+		                and s.dev_id = #{devStaCon.devId,jdbcType=BIGINT}
+		            </if>
+                    <if test="devStaCon.devCode!=null and devStaCon.devCode!=''">
+		                and s.dev_code like concat('%',#{devStaCon.devCode,jdbcType=VARCHAR},'%') 
+		            </if>
+		            <if test="devStaCon.devName!=null and devStaCon.devName!=''">
+		                and s.dev_name like concat('%',#{devStaCon.devName,jdbcType=VARCHAR},'%')
+		            </if>
+		            <if test="devStaCon.oprStyle!=null and devStaCon.oprStyle!=''">
+		                and s.opr_style = #{devStaCon.oprStyle,jdbcType=CHAR}
+		            </if>
+		            <if test="devStaCon.startTime!=null and devStaCon.startTime!=''">
+		                and s.col_time>#{devStaCon.startTime,jdbcType=TIMESTAMP}
+		            </if>
+		            <if test="devStaCon.endTime!=null and devStaCon.endTime!=''">
+		                and s.col_time &lt; #{devStaCon.endTime,jdbcType=TIMESTAMP} 
+		            </if>
+		            <if test='devStaCon.alarmSign=="0"'>
+			            and s.alarm_sign like concat('%','0','%')
+			        </if>
+			        <if test='devStaCon.alarmSign=="1"'>
+			            and s.alarm_sign='11111111'
+			        </if>
+			        <if test="devStaCon.curStatus!=null and devStaCon.curStatus!=''">
+			            and s.cur_status =#{devStaCon.curStatus,jdbcType=VARCHAR}
+			        </if>
+			        
+			         <if test="devStaCon.lockStatus!=null and devStaCon.lockStatus!=''">
+		                and s.lock_status = #{devStaCon.lockStatus,jdbcType=CHAR}
+		            </if>
+		            <if test="devStaCon.doorStatus!=null and devStaCon.doorStatus!=''">
+		                and s.door_status=#{devStaCon.doorStatus,jdbcType=CHAR}
+		            </if>
+		            <if test="devStaCon.alarmType!=null and devStaCon.alarmType!=9">
+		                and SUBSTRING(`alarm_sign`,#{devStaCon.alarmType,jdbcType=INTEGER},1)=0
+		            </if>
+		            
+		            <if test="devStaCon.alarmType == 9">
+		                and s.alarm_sign='11111111'
+		            </if>
+		            <if test="devStaCon.fName!=null and devStaCon.fName!=''">
+						and f.dev_name like concat('%',#{devStaCon.fName,jdbcType=VARCHAR},'%')
+					</if>
+		            
+                     <if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and s.org_id=#{user.orgId,jdbcType=BIGINT}
+			            </if>
+		            </if>
+		           
+		   </where>
+     </sql>
+     
+     <!-- 获取设施的当前且没有报警的数据 -->
+     <select id="queryCurStatusByNoAlarm"  parameterType="map" resultMap="BaseResultMap">
+       select 
+    	<include refid="Base_Column_List" />
+   	   from tn_device_status		   
+	   where alarm_sign='11111111' 
+       and cur_status = '1'
+	   <if test="user!=null">
+           	<if test="user.orgId!=null">
+                and org_id=#{user.orgId,jdbcType=BIGINT}
+            </if>
+       </if>
+	   <if test="pb!=null">
+		  order by col_time desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	   </if>
+   </select>
+     <!-- 获取设施的当前且没有报警的数据 的数量 -->
+     <select id="queryCountByCurStatusByNoAlarm"  parameterType="map" resultMap="BaseResultMap">
+       select 
+    	 count(1)
+   	   from tn_device_status		   
+	   where alarm_sign='11111111' 
+       and cur_status = '1'
+	   <if test="user!=null">
+           	<if test="user.orgId!=null">
+                and org_id=#{user.orgId,jdbcType=BIGINT}
+            </if>
+       </if>
+   </select>
+   
+   <!-- 获取设施没有报警的数据 -->
+    <select id="queryAllByNoAlarm"  parameterType="map" resultMap="BaseResultMap">
+       select 
+    	<include refid="Base_Column_List" />
+   	   from tn_device_status		   
+	   where alarm_sign='11111111' 
+	   <if test="user!=null">
+           	<if test="user.orgId!=null">
+                and org_id=#{user.orgId,jdbcType=BIGINT}
+            </if>
+       </if>
+	   <if test="pb!=null">
+		  order by col_time desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	   </if>
+   </select>
+   <!-- 获取设施没有报警的数据 的数量 -->
+   <select id="queryCountByAllByNoAlarm"  parameterType="map" resultMap="BaseResultMap">
+       select 
+    	 count(1)
+   	   from tn_device_status		   
+	   where alarm_sign='11111111' 
+	   <if test="user!=null">
+           	<if test="user.orgId!=null">
+                and org_id=#{user.orgId,jdbcType=BIGINT}
+            </if>
+       </if>
+   </select>
+   <!--fl 定时上报记录查询  -->
+   <select id="querydevTimeNewStatusList" parameterType="map" resultMap="BaseResultMap">
+   	SELECT 
+       	s.dev_status_id, s.dev_id, s.dev_code, s.dev_name,(SELECT DATE_FORMAT(s.col_time,'%Y-%m-%d %H:%m:%S')) date_time, s.col_time, s.rpt_time, s.opr_style, s.lock_status, 
+	    s.door_status, s.low_temp_thd, s.high_temp_shd, s.temp, s.humidity_shd, s.humidity, s.battery_thd, 
+	    s.battery, s.tilt_thd, s.tilt, s.signals, s.dev_imei, s.dev_mac, s.alarm_sign, s.deal_sign, s.cur_status, 
+	    s.org_id,f.dev_name fdevName,s.alarm_content
+   	   FROM tn_device_status s 
+   	  
+   	   INNER JOIN tn_facility f ON s.dev_id = f.dev_id WHERE s.opr_style = '4'
+		 <if test="devStaCon.devId!=null">
+             and s.dev_id = #{devStaCon.devId,jdbcType=BIGINT}
+         </if>
+               <if test="devStaCon.devCode!=null and devStaCon.devCode!=''">
+             and s.dev_code like concat('%',#{devStaCon.devCode,jdbcType=VARCHAR},'%') 
+         </if>
+         <if test="devStaCon.devName!=null and devStaCon.devName!=''">
+             and s.dev_name like concat('%',#{devStaCon.devName,jdbcType=VARCHAR},'%')
+         </if>
+         <if test="devStaCon.startTime!=null and devStaCon.startTime!=''">
+             and s.col_time>#{devStaCon.startTime,jdbcType=TIMESTAMP}
+         </if>
+         <if test="devStaCon.endTime!=null and devStaCon.endTime!=''">
+             and s.col_time &lt; #{devStaCon.endTime,jdbcType=TIMESTAMP} 
+         </if>
+         <if test='devStaCon.alarmSign=="0"'>
+          and s.alarm_sign like concat('%','0','%')
+      </if>
+      <if test='devStaCon.alarmSign=="1"'>
+          and s.alarm_sign='11111111'
+      </if>
+      <if test="devStaCon.curStatus!=null and devStaCon.curStatus!=''">
+          and s.cur_status =#{devStaCon.curStatus,jdbcType=VARCHAR}
+      </if>
+      
+       <if test="devStaCon.lockStatus!=null and devStaCon.lockStatus!=''">
+             and s.lock_status = #{devStaCon.lockStatus,jdbcType=CHAR}
+         </if>
+         <if test="devStaCon.doorStatus!=null and devStaCon.doorStatus!=''">
+             and s.door_status=#{devStaCon.doorStatus,jdbcType=CHAR}
+         </if>
+         <if test="devStaCon.alarmType!=null and devStaCon.alarmType!=9">
+             and SUBSTRING(`alarm_sign`,#{devStaCon.alarmType,jdbcType=INTEGER},1)=0
+         </if>
+         
+         <if test="devStaCon.alarmType == 9">
+             and s.alarm_sign='11111111'
+         </if>
+         <if test="devStaCon.fName!=null and devStaCon.fName!=''">
+			and f.dev_name like concat('%',#{devStaCon.fName,jdbcType=VARCHAR},'%')
+		</if>
+         <if test="user!=null">
+	        <if test="user.orgId!=null">
+	              and s.org_id=#{user.orgId,jdbcType=BIGINT}
+	         </if>
+         </if>
+	   <if test="pb!=null">
+		  ORDER BY s.col_time DESC LIMIT #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	   </if>
+   </select>
+   <!--fl 定时上报记录查询 总数 -->
+   <select id="queryCountdevTimeNewStatusList" parameterType="map" resultType="java.lang.Integer">
+   select count(1) FROM (
+   	SELECT 
+       	s.dev_status_id, s.dev_id, s.dev_code, s.dev_name, s.col_time, s.rpt_time, s.opr_style, s.lock_status, 
+	    s.door_status, s.low_temp_thd, s.high_temp_shd, s.temp, s.humidity_shd, s.humidity, s.battery_thd, 
+	    s.battery, s.tilt_thd, s.tilt, s.signals, s.dev_imei, s.dev_mac, s.alarm_sign, s.deal_sign, s.cur_status, 
+	    s.org_id,f.dev_name f_name
+   	   FROM tn_device_status s 
+   	  
+   	   INNER JOIN tn_facility f ON s.dev_id = f.dev_id WHERE s.opr_style = '4'
+	    <if test="devStaCon.devId!=null">
+             and s.dev_id = #{devStaCon.devId,jdbcType=BIGINT}
+         </if>
+               <if test="devStaCon.devCode!=null and devStaCon.devCode!=''">
+             and s.dev_code like concat('%',#{devStaCon.devCode,jdbcType=VARCHAR},'%') 
+         </if>
+         <if test="devStaCon.devName!=null and devStaCon.devName!=''">
+             and s.dev_name like concat('%',#{devStaCon.devName,jdbcType=VARCHAR},'%')
+         </if>
+         <if test="devStaCon.startTime!=null and devStaCon.startTime!=''">
+             and s.col_time>#{devStaCon.startTime,jdbcType=TIMESTAMP}
+         </if>
+         <if test="devStaCon.endTime!=null and devStaCon.endTime!=''">
+             and s.col_time &lt; #{devStaCon.endTime,jdbcType=TIMESTAMP} 
+         </if>
+         <if test='devStaCon.alarmSign=="0"'>
+          and s.alarm_sign like concat('%','0','%')
+      </if>
+      <if test='devStaCon.alarmSign=="1"'>
+          and s.alarm_sign='11111111'
+      </if>
+      <if test="devStaCon.curStatus!=null and devStaCon.curStatus!=''">
+          and s.cur_status =#{devStaCon.curStatus,jdbcType=VARCHAR}
+      </if>
+      
+       <if test="devStaCon.lockStatus!=null and devStaCon.lockStatus!=''">
+             and s.lock_status = #{devStaCon.lockStatus,jdbcType=CHAR}
+         </if>
+         <if test="devStaCon.doorStatus!=null and devStaCon.doorStatus!=''">
+             and s.door_status=#{devStaCon.doorStatus,jdbcType=CHAR}
+         </if>
+         <if test="devStaCon.alarmType!=null and devStaCon.alarmType!=9">
+             and SUBSTRING(`alarm_sign`,#{devStaCon.alarmType,jdbcType=INTEGER},1)=0
+         </if>
+         
+         <if test="devStaCon.alarmType == 9">
+             and s.alarm_sign='11111111'
+         </if>
+         <if test="devStaCon.fName!=null and devStaCon.fName!=''">
+			and f.dev_name like concat('%',#{devStaCon.fName,jdbcType=VARCHAR},'%')
+		</if>
+         <if test="user!=null">
+	        <if test="user.orgId!=null">
+	              and s.org_id=#{user.orgId,jdbcType=BIGINT}
+	         </if>
+         </if> 
+   ) a
+   </select>
+   <!-- fl 根据设施ID 定时上报记录 -->
+   <select id="querydevTimeNewStatuByDevId" parameterType="map" resultMap="BaseResultMap">
+   	SELECT 
+       	s.dev_status_id, s.dev_id, s.dev_code, s.dev_name,(SELECT DATE_FORMAT(s.col_time,'%Y-%m-%d %H:%m:%S')) date_time, s.col_time, s.rpt_time, s.opr_style, s.lock_status, 
+	    s.door_status, s.low_temp_thd, s.high_temp_shd, s.temp, s.humidity_shd, s.humidity, s.battery_thd, 
+	    s.battery, s.tilt_thd, s.tilt, s.signals, s.dev_imei, s.dev_mac, s.alarm_sign, s.deal_sign, s.cur_status, 
+	    s.org_id,f.dev_name fdevName
+   	   FROM tn_device_status s 
+   	   INNER JOIN tn_facility f ON s.dev_id = f.dev_id WHERE s.opr_style = '4'
+   	   <if test="devId!=null">
+   	   		and s.dev_id = #{devId,jdbcType=BIGINT}
+   	   </if>
+   	   <if test="pb !=null">
+   	   	 ORDER BY s.col_time DESC LIMIT #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+   	   </if>
+   </select>
+    <!-- fl 根据设施ID 定时上报记录总条数 -->
+   <select id="queryCountdevTimeNewStatuByDevId" parameterType="map" resultType="java.lang.Integer">
+    select count(1) from (
+    	SELECT 
+       	s.dev_status_id, s.dev_id, s.dev_code, s.dev_name,(SELECT DATE_FORMAT(s.col_time,'%Y-%m-%d %H:%m:%S')) date_time, s.col_time, s.rpt_time, s.opr_style, s.lock_status, 
+	    s.door_status, s.low_temp_thd, s.high_temp_shd, s.temp, s.humidity_shd, s.humidity, s.battery_thd, 
+	    s.battery, s.tilt_thd, s.tilt, s.signals, s.dev_imei, s.dev_mac, s.alarm_sign, s.deal_sign, s.cur_status, 
+	    s.org_id,f.dev_name fdevName
+   	   FROM tn_device_status s 
+   	   INNER JOIN tn_facility f ON s.dev_id = f.dev_id WHERE s.opr_style = '4'
+   	   and s.dev_id = #{devId,jdbcType=BIGINT}
+    )a
+   </select>
+   
+   <!--修改状态表中的所有当前状态改为历史状态  -->
+   <update id="updateByImei" parameterType="java.lang.String">
+   	UPDATE  tn_device_status
+		SET cur_status = '0'
+		WHERE dev_imei = #{devImei,jdbcType=VARCHAR} AND cur_status ='1'
+   </update>
+</mapper>

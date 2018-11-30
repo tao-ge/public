@@ -1,0 +1,1608 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.CableSectionMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.CableSection" >
+    <id column="sect_id" property="sectId" jdbcType="BIGINT" />
+    <result column="sect_code" property="sectCode" jdbcType="VARCHAR" />
+    <result column="route_Id" property="routeId" jdbcType="VARCHAR" />  
+    <result column="log_type" property="logType1" jdbcType="VARCHAR" />
+    <result column="sec_name" property="secName" jdbcType="VARCHAR" />
+    <result column="cable_model" property="cableModel" jdbcType="VARCHAR" />
+    <result column="cable_len" property="cableLen" jdbcType="DECIMAL" />
+    <result column="fiber_num" property="fiberNum" jdbcType="BIGINT" />
+    <result column="complete_date" property="completeDate" jdbcType="DATE" />
+    <result column="dev_id_a" property="devIdA" jdbcType="BIGINT" />
+    <result column="dev_code_a" property="devCodeA" jdbcType="VARCHAR" />
+    <result column="dev_id_z" property="devIdZ" jdbcType="BIGINT" />
+    <result column="dev_code_z" property="devCodeZ" jdbcType="VARCHAR" />
+    <result column="cable_id" property="cableId" jdbcType="BIGINT" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="survey_result" property="surveyResult" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    <result column="create_user" property="createUser" jdbcType="BIGINT"/>
+    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP"/>
+    <result column="last_modify_user" property="lastModifyUser" jdbcType="BIGINT"/>
+    <result column="type_a" property="typeA"  jdbcType="VARCHAR"/>
+    <result column="type_z" property="typeZ"  jdbcType="VARCHAR"/>
+    <result column="acode" property="codeA" jdbcType="VARCHAR"/>
+    <result column="zcode" property="codeZ" jdbcType="VARCHAR"/>
+    <result column="orgId" property="orgId" jdbcType="VARCHAR"/>
+    <result column="user_Id" property="userId" jdbcType="VARCHAR"/>
+    <result column="sect_state" property="sectState" jdbcType="VARCHAR"/>
+    <result column="zg_sec_name" property="zgSecName" jdbcType="VARCHAR"/>
+    <result column="log_content" property="logcontent" jdbcType="VARCHAR"/>	
+    <result column="is_endfibercable" property="isEndfibercable" jdbcType="VARCHAR"/>
+    <result column="zgDevAName" property="zgDevAName" jdbcType="VARCHAR" />
+    <result column="zgDevZName" property="zgDevZName" jdbcType="VARCHAR" />
+    <result column="zg_fiber_num" property="zgFiberNum" jdbcType="BIGINT"/>
+     <result column="zg_dev_id_a" property="zgDevIdA" jdbcType="BIGINT"/>
+    <result column="zg_dev_id_z" property="zgDevIdZ" jdbcType="BIGINT"/>
+    <result column="devId" property="devId" jdbcType="VARCHAR" />
+    <result column="sect_dec" property="sectDec" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="FiberListMap" extends="BaseResultMap" type="com.ycnet.frms.bean.CableSection">
+    	<result column="fiber_no" property="fiberNo" jdbcType="BIGINT" />
+    	<result column="aSet" property="aset" jdbcType="VARCHAR" />
+    	<result column="zSet" property="zset" jdbcType="VARCHAR" />
+    	<result column="zcode" property="zcode" jdbcType="VARCHAR" />
+    	<result column="acode" property="acode" jdbcType="VARCHAR" />
+    	 <result column="log_content" property="logcontent" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+  <resultMap id="ResultCabinetMobile" type="com.ycnet.frms.vo.mobile.FacilityCabinetMobile">
+ 	 <result column="dev_id" property="devId" jdbcType="BIGINT" />
+ 	 <result column="otherDevId" property="otherDevId" jdbcType="BIGINT" />
+  	<result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+  	<result column="dev_name" property="devName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  
+  <resultMap id="BeanResultMap" type="com.ycnet.frms.vo.CableSectionBean" >
+  
+    <id column="sect_id" property="sectId" jdbcType="BIGINT" />
+    <result column="sect_code" property="sectCode" jdbcType="VARCHAR" />
+    <result column="sec_name" property="secName" jdbcType="VARCHAR" />
+     <result column="log_content" property="logcontent" jdbcType="VARCHAR"/>
+    <result column="cable_model" property="cableModel" jdbcType="VARCHAR" />
+    <result column="cable_len" property="cableLen" jdbcType="DECIMAL" />
+    <result column="fiber_num" property="fiberNum" jdbcType="BIGINT" />
+    <result column="complete_date" property="completeDate" jdbcType="DATE" />
+    <result column="dev_id_a" property="devIdA" jdbcType="BIGINT" />
+    <result column="dev_code_a" property="devCodeA" jdbcType="VARCHAR" />
+    <result column="dev_id_z" property="devIdZ" jdbcType="BIGINT" />
+    <result column="dev_code_z" property="devCodeZ" jdbcType="VARCHAR" />
+    <result column="cable_id" property="cableId" jdbcType="BIGINT" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="survey_result" property="surveyResult" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    <result column="create_user" property="createUser" jdbcType="BIGINT"/>
+    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP"/>
+    <result column="last_modify_user" property="lastModifyUser" jdbcType="BIGINT"/>
+    <result column="type_a" property="typeA"  jdbcType="VARCHAR"/>
+    <result column="type_z" property="typeZ"  jdbcType="VARCHAR"/>
+    <result column="acode" property="codeA" jdbcType="VARCHAR"/>
+    <result column="zcode" property="codeZ" jdbcType="VARCHAR"/>	
+    <result column="devAName" property="devAName"  jdbcType="VARCHAR"/>
+    <result column="devZName" property="devZName" jdbcType="VARCHAR"/>
+    <result column="cableName" property="cableName" jdbcType="VARCHAR"/>
+    <result column="sect_state" property="sectState" jdbcType="VARCHAR"/>
+    <result column="surveyResultName" property="surveyResultName" jdbcType="VARCHAR"/>
+    <result column="isTerminat" property="isTerminat" jdbcType="VARCHAR"/>
+    <result column="zgDevAName" property="zgDevAName" jdbcType="VARCHAR"/>
+    <result column="zgDevZName" property="zgDevZName" jdbcType="VARCHAR"/>
+    <result column="zg_sec_name" property="zgSecName" jdbcType="VARCHAR"/>
+    <result column="zg_fiber_num" property="zgFiberNum" jdbcType="BIGINT"/>
+     <result column="zg_dev_id_a" property="zgDevIdA" jdbcType="BIGINT"/>
+    <result column="zg_dev_id_z" property="zgDevIdZ" jdbcType="BIGINT"/>
+    <result column="sect_dec" property="sectDec" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="ids" property="ids" jdbcType="VARCHAR" />
+    <result column="devTypeA" property="devTypeA" jdbcType="VARCHAR" />
+    <result column="devTypeZ" property="devTypeZ" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!--FL重复光缆  -->
+  <resultMap id="CableSectionNotEndBeanMap" type="com.ycnet.frms.vo.CableSectionNotEndBean">
+    <id column="sect_id" property="sectId" jdbcType="BIGINT" />
+    <result column="sect_code" property="sectCode" jdbcType="VARCHAR" />
+    <result column="sec_name" property="secName" jdbcType="VARCHAR" />
+    <result column="fiber_num" property="fiberNum" jdbcType="BIGINT" />
+	<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    <result column="create_user" property="createUser" jdbcType="BIGINT"/>
+    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP"/>
+    <result column="last_modify_user" property="lastModifyUser" jdbcType="BIGINT"/>
+	<result column="adev_name" property="adevName" jdbcType="VARCHAR" />
+	<result column="zdev_name" property="zdevName" jdbcType="VARCHAR" />
+	<result column="sect_state" property="sectState" jdbcType="VARCHAR" />
+	<result column="asurvey_result" property="asurveyResult" jdbcType="VARCHAR" />
+	<result column="zsurvey_result" property="zsurveyResult" jdbcType="VARCHAR" />
+	<result column="isTerminatZ" property="isTerminatZ" jdbcType="VARCHAR" />
+	<result column="isTerminatA" property="isTerminatA" jdbcType="VARCHAR" />
+	<result column="devIdZ" property="devIdZ" jdbcType="BIGINT" />
+	<result column="devIdA" property="devIdA" jdbcType="BIGINT" />
+	<result column="a_type" property="aType" jdbcType="VARCHAR" />
+	<result column="z_type" property="zType" jdbcType="VARCHAR" />
+	<result column="adev_code" property="adevCode" jdbcType="VARCHAR" />
+	<result column="zdev_code" property="zdevCode" jdbcType="VARCHAR" />
+	<result column="create_user_name" property="createUserName" jdbcType="VARCHAR" />
+	<result column="modify_user_name" property="modifyUserName" jdbcType="VARCHAR" />
+	<result column="orderDevIdA" property="orderDevIdA" jdbcType="BIGINT" />
+	<result column="orderDevIdZ" property="orderDevIdZ" jdbcType="BIGINT" />
+	<result column="area_code1" property="areaCode1" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap type="com.ycnet.frms.vo.CableSectionWellBean" id="BaseCableWellMap">
+  	<id column="sect_id" property="sectId" jdbcType="BIGINT" />
+    <result column="sect_code" property="sectCode" jdbcType="VARCHAR" />
+    <result column="sec_name" property="secName" jdbcType="VARCHAR" />
+    <result column="fiber_num" property="fiberNum" jdbcType="BIGINT" />
+    <result column="sect_state" property="sectState" jdbcType="VARCHAR" />
+    <collection property="wellList" ofType="com.ycnet.frms.bean.Well">
+    	<id column="well_id" property="wellId" jdbcType="BIGINT" />
+	    <result column="well_name" property="wellName" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    sect_id, sect_code, sec_name, cable_model, cable_len, fiber_num, complete_date, dev_id_a, sect_state,zg_sec_name,
+    dev_code_a, dev_id_z, dev_code_z, cable_id, org_id, survey_result,create_time,create_user,last_modify_time,
+    last_modify_user,is_endfibercable,zg_dev_id_a,zg_dev_id_z,zg_fiber_num,sect_dec,remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_cable_section
+    where sect_id = #{sectId,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByDevId" parameterType="java.lang.Long">
+  	delete from tn_cable_section WHERE dev_id_a=#{devId,jdbcType=BIGINT} OR #{devId,jdbcType=BIGINT}
+  </delete>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_cable_section
+    where sect_id = #{sectId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.CableSection" >
+    insert into tn_cable_section (sect_id, sect_code, sec_name, 
+      cable_model, cable_len, fiber_num, 
+      complete_date, dev_id_a, dev_code_a, 
+      dev_id_z, dev_code_z, cable_id, 
+      org_id, survey_result,
+      create_time,create_user,last_modify_time,last_modify_user,is_endfibercable,sect_state,zg_sec_name,sect_dec,remark)
+    values (#{sectId,jdbcType=BIGINT}, #{sectCode,jdbcType=VARCHAR}, #{secName,jdbcType=VARCHAR}, 
+      #{cableModel,jdbcType=VARCHAR}, #{cableLen,jdbcType=DECIMAL}, #{fiberNum,jdbcType=BIGINT}, 
+      #{completeDate,jdbcType=DATE}, #{devIdA,jdbcType=BIGINT}, #{devCodeA,jdbcType=VARCHAR}, 
+      #{devIdZ,jdbcType=BIGINT}, #{devCodeZ,jdbcType=VARCHAR}, #{cableId,jdbcType=BIGINT}, 
+      #{orgId,jdbcType=BIGINT}, #{surveyResult,jdbcType=CHAR},
+      #{createTime,jdbcType=TIMESTAMP},#{createUser,jdbcType=BIGINT},#{lastModifyTime,jdbcType=TIMESTAMP},
+      #{lastModifyUser,jdbcType=BIGINT}, #{isEndfibercable,jdbcType=VARCHAR},#{sectState,jdbcType=VARCHAR},#{zgSecName,jdbcType=VARCHAR},#{sectDec,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})
+  </insert>
+  
+  
+  <insert id="addopticalcables" parameterType="com.ycnet.frms.bean.CableSection" >
+    insert into tn_task_log (log_id, log_type, sect_id, 
+      log_content, create_time, user_id, 
+      org_id, area_code)
+    values (#{logid,jdbcType=BIGINT},#{logType1,jdbcType=BIGINT} , #{sectId,jdbcType=BIGINT}, 
+      #{logcontent,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}, 
+      #{orgId,jdbcType=BIGINT}, #{areaCode1,jdbcType=VARCHAR})
+  </insert>
+  <insert id="addisentering" parameterType="com.ycnet.frms.bean.CableSection" >
+    insert into tn_task_log (log_id, log_type, route_id, 
+      log_content, create_time, user_id, 
+      org_id, area_code)
+    values (#{logid,jdbcType=BIGINT}, '02', #{routeId,jdbcType=BIGINT}, 
+      #{logcontent,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=BIGINT}, 
+      #{orgId,jdbcType=BIGINT}, #{areaCode1,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.CableSection"  useGeneratedKeys="true" keyProperty="sectId">
+    insert into tn_cable_section
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sectCode != null" >
+        sect_code,
+      </if>
+      <if test="secName != null" >
+        sec_name,
+      </if>
+      <if test="cableModel != null" >
+        cable_model,
+      </if>
+      <if test="cableLen != null" >
+        cable_len,
+      </if>
+      <if test="fiberNum != null" >
+        fiber_num,
+      </if>
+      <if test="completeDate != null" >
+        complete_date,
+      </if>
+      <if test="devIdA != null" >
+        dev_id_a,
+      </if>
+      <if test="devCodeA != null" >
+        dev_code_a,
+      </if>
+      <if test="devIdZ != null" >
+        dev_id_z,
+      </if>
+      <if test="devCodeZ != null" >
+        dev_code_z,
+      </if>
+      <if test="cableId != null" >
+        cable_id,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="surveyResult != null" >
+        survey_result,
+      </if>
+      <if test="createTime !=null">
+          create_time,
+      </if>
+      <if test="createUser !=null">
+          create_user,
+      </if>
+      <if test="lastModifyTime !=null">
+          last_modify_time,
+      </if>
+      <if test="lastModifyUser !=null">
+          last_modify_user,
+      </if>
+      <if test="isEndfibercable !=null">
+          is_endfibercable,
+      </if>
+      <if test="sectState !=null">
+          sect_state,
+      </if>
+      <if test="zgSecName !=null">
+          zg_sec_name,
+      </if>
+      <if test="zgDevIdA != null" >
+        zg_dev_id_a,
+      </if>
+      <if test="zgDevIdZ != null" >
+        zg_dev_id_z,
+      </if>
+      <if test="zgFiberNum != null" >
+        zg_fiber_num,
+      </if>
+       <if test="sectDec != null" >
+        sect_dec,
+      </if>
+       <if test="remark != null" >
+        remark
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sectCode != null" >
+        #{sectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="secName != null" >
+        #{secName,jdbcType=VARCHAR},
+      </if>
+      <if test="cableModel != null" >
+        #{cableModel,jdbcType=VARCHAR},
+      </if>
+      <if test="cableLen != null" >
+        #{cableLen,jdbcType=DECIMAL},
+      </if>
+      <if test="fiberNum != null" >
+        #{fiberNum,jdbcType=BIGINT},
+      </if>
+      <if test="completeDate != null" >
+        #{completeDate,jdbcType=DATE},
+      </if>
+      <if test="devIdA != null" >
+        #{devIdA,jdbcType=BIGINT},
+      </if>
+      <if test="devCodeA != null" >
+        #{devCodeA,jdbcType=VARCHAR},
+      </if>
+      <if test="devIdZ != null" >
+        #{devIdZ,jdbcType=BIGINT},
+      </if>
+      <if test="devCodeZ != null" >
+        #{devCodeZ,jdbcType=VARCHAR},
+      </if>
+      <if test="cableId != null" >
+        #{cableId,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="surveyResult != null" >
+        #{surveyResult,jdbcType=CHAR},
+      </if>
+      <if test="createTime !=null">
+          #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser !=null">
+          #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="lastModifyTime !=null">
+           #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyUser !=null">
+           #{lastModifyUser,jdbcType=BIGINT},
+      </if>
+       <if test="isEndfibercable !=null">
+          #{isEndfibercable,jdbcType=CHAR},
+      </if>
+      <if test="sectState !=null">
+          #{sectState,jdbcType=VARCHAR},
+      </if>
+       <if test="zgSecName !=null">
+          #{zgSecName,jdbcType=VARCHAR},
+      </if>
+      <if test="zgDevIdA != null" >
+        #{zgDevIdA,jdbcType=BIGINT},
+      </if>
+      <if test="zgDevIdZ != null" >
+        #{zgDevIdZ,jdbcType=BIGINT},
+      </if>
+      <if test="zgFiberNum != null" >
+        #{zgFiberNum,jdbcType=BIGINT},
+      </if>
+      <if test="sectDec != null" >
+        #{sectDec,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR}
+      </if>
+    </trim>
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="sectId">
+        select LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.CableSection" >
+    update tn_cable_section
+    <set >
+      <if test="sectCode != null" >
+        sect_code = #{sectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="secName != null" >
+        sec_name = #{secName,jdbcType=VARCHAR},
+      </if>
+      <if test="cableModel != null" >
+        cable_model = #{cableModel,jdbcType=VARCHAR},
+      </if>
+      <if test="cableLen != null" >
+        cable_len = #{cableLen,jdbcType=DECIMAL},
+      </if>
+      <if test="fiberNum != null" >
+        fiber_num = #{fiberNum,jdbcType=BIGINT},
+      </if>
+      <if test="completeDate != null" >
+        complete_date = #{completeDate,jdbcType=DATE},
+      </if>
+      <if test="devIdA != null" >
+        dev_id_a = #{devIdA,jdbcType=BIGINT},
+      </if>
+      <if test="devCodeA != null" >
+        dev_code_a = #{devCodeA,jdbcType=VARCHAR},
+      </if>
+      <if test="devIdZ != null" >
+        dev_id_z = #{devIdZ,jdbcType=BIGINT},
+      </if>
+      <if test="devCodeZ != null" >
+        dev_code_z = #{devCodeZ,jdbcType=VARCHAR},
+      </if>
+      <if test="cableId != null" >
+        cable_id = #{cableId,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="surveyResult != null" >
+        survey_result = #{surveyResult,jdbcType=CHAR},
+      </if>
+       <if test="createTime !=null">
+          create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser !=null">
+          create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="lastModifyTime !=null">
+          last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyUser !=null">
+           last_modify_user = #{lastModifyUser,jdbcType=BIGINT},
+      </if>
+      <if test="isEndfibercable !=null">
+          is_endfibercable = #{isEndfibercable,jdbcType=CHAR},
+      </if>
+      <if test="sectState !=null">
+          sect_state = #{sectState,jdbcType=VARCHAR},
+      </if>
+      <if test="zgSecName !=null">
+          zg_sec_name = #{zgSecName,jdbcType=VARCHAR},
+      </if>
+      <if test="zgFiberNum != null" >
+          zg_fiber_num= #{zgFiberNum,jdbcType=BIGINT},
+      </if>
+      <if test="zgDevIdA != null" >
+          zg_dev_id_a= #{zgDevIdA,jdbcType=BIGINT},
+      </if>
+       <if test="zgDevIdZ != null" >
+          zg_dev_id_z= #{zgDevIdZ,jdbcType=BIGINT},
+      </if>
+       <if test="sectDec != null" >
+        sect_dec= #{sectDec,jdbcType=VARCHAR},
+      </if>
+       <if test="remark != null" >
+        remark= #{remark,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where sect_id = #{sectId,jdbcType=BIGINT}
+  </update>
+  <update id="updateisentering" parameterType="com.ycnet.frms.bean.CableSection" >
+    update tn_route set is_entering='1' 
+    <if test="routeId!=null">
+              where   route_Id=#{routeId,jdbcType=BIGINT} 
+            </if>
+    
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.CableSection" >
+    update tn_cable_section
+    set sect_code = #{sectCode,jdbcType=VARCHAR},
+      sec_name = #{secName,jdbcType=VARCHAR},
+      cable_model = #{cableModel,jdbcType=VARCHAR},
+      cable_len = #{cableLen,jdbcType=DECIMAL},
+      fiber_num = #{fiberNum,jdbcType=BIGINT},
+      complete_date = #{completeDate,jdbcType=DATE},
+      dev_id_a = #{devIdA,jdbcType=BIGINT},
+      dev_code_a = #{devCodeA,jdbcType=VARCHAR},
+      dev_id_z = #{devIdZ,jdbcType=BIGINT},
+      dev_code_z = #{devCodeZ,jdbcType=VARCHAR},
+      cable_id = #{cableId,jdbcType=BIGINT},
+      org_id = #{orgId,jdbcType=BIGINT},
+      survey_result = #{surveyResult,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=BIGINT},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      last_modify_user = #{lastModifyUser,jdbcType=BIGINT},
+      is_endfibercable = #{isEndfibercable,jdbcType=CHAR},
+      zg_sec_name = #{zgSecName,jdbcType=VARCHAR},
+      zg_dev_id_z = #{zgDevIdZ,jdbcType=BIGINT},
+      zg_dev_id_a = #{zgDevIdA,jdbcType=BIGINT},
+      sect_dec = #{sectDec,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where sect_id = #{sectId,jdbcType=VARCHAR}
+  </update>
+   <select id="queryByConditionBean"  parameterType="com.ycnet.frms.vo.CableSectionConditionBean" resultMap="BaseResultMap">
+       select 
+    	cs.sect_id,cs.sect_code, cs.sec_name, cs.cable_model, cs.cable_len, cs.fiber_num, cs.complete_date, cs.dev_id_a, 
+    	cs.dev_code_a, cs.dev_id_z, cs.dev_code_z, cs.cable_id, cs.org_id, cs.survey_result,c.type_a,c.type_z,cs.remark
+   	   from tn_cable_section cs left join tn_cable c on cs.cable_id=c.cable_id
+    <where>
+        <trim prefixOverrides="and">
+            <if test="devId!=null">
+                and (dev_id_a=#{devId,jdbcType=BIGINT} or dev_id_z=#{devId,jdbcType=BIGINT})
+            </if>
+            <if test="secName !=null and secName !=''">
+                and cs.sec_name like concat('%',#{secName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="sectCode !=null and sectCode !=''">
+                and cs.sect_code like concat('%',#{sectCode,jdbcType=VARCHAR},'%')
+            </if>
+        </trim>        
+    </where>
+   </select>
+   
+   
+   <resultMap id="CableRouteNodesMap" type="com.ycnet.frms.vo.CableRouteNodes" >
+    <result column="devName" property="devName" jdbcType="VARCHAR" />
+    <result column="devCode" property="devCode" jdbcType="VARCHAR" />
+    <result column="devId" property="devId" jdbcType="VARCHAR" />
+    <result column="devType" property="devType" jdbcType="VARCHAR" />
+  </resultMap>
+   
+   <select id="queryCableRouteNodes"  parameterType="com.ycnet.frms.vo.CableRouteCondition" resultMap="CableRouteNodesMap">
+       SELECT  
+			dev_name devName,
+			
+			dev_id devId,
+			
+			(SELECT `value_name` FROM `tn_basecode` tb WHERE tb.`value_code`=dev_type AND tb.`class_code`='DEV_TYPE')  devType
+			
+			FROM tn_facility
+			  <where>          
+			      <if test="orgId!=null">
+			          and org_id=#{orgId,jdbcType=BIGINT}
+			      </if>
+			      and dev_type!='06'
+		     </where>
+			
+   </select>
+   
+   <select id="queryCableRouteNodesV1"  parameterType="com.ycnet.frms.vo.CableRouteCondition" resultMap="CableRouteNodesMap">
+       SELECT  
+			concat(replace(dev_name,'\n',''),'(',dev_code,')')  devName,
+			dev_id devId,
+			(SELECT `value_name` FROM `tn_basecode` tb WHERE tb.`value_code`=dev_type AND tb.`class_code`='DEV_TYPE')  devType
+			FROM tn_facility
+			  <where>          
+			      <if test="orgId!=null">
+			          and org_id=#{orgId,jdbcType=BIGINT}
+			      </if>
+			      and dev_type!='06'
+			      and pdev_id is null
+		     </where>
+   </select>
+   <!-- 
+   SELECT  
+			devName,
+			
+			devId,
+			
+			(SELECT `value_name` FROM `tn_basecode` tb WHERE tb.`value_code`=a.devType AND tb.`class_code`='DEV_TYPE')  devType
+			
+			FROM
+			(
+			
+			SELECT
+			(CASE t.`dev_code_a`
+			WHEN 'GJ0000' THEN CONCAT('未知设施',t.`sect_id`)
+			ELSE  (SELECT f.`dev_name` FROM `tn_facility` f WHERE f.`dev_code`=t.`dev_code_a`) END) devName
+			,
+			(SELECT `dev_type` FROM `tn_facility` tf WHERE tf.`dev_code`= t.`dev_code_a`) devType
+			
+			,t.dev_id_a devId
+			  FROM tn_cable_section t  WHERE t.`survey_result`='1'  AND  t.`dev_code_a`!='GJ0000' AND t.`dev_code_z`!='GJ0000'
+			   
+			UNION
+			
+			SELECT
+			(CASE t.`dev_code_z`
+			WHEN 'GJ0000' THEN CONCAT('未知设施',t.`sect_id`)
+			ELSE  (SELECT f.`dev_name` FROM `tn_facility` f WHERE f.`dev_code`=t.`dev_code_z`) END) devName
+			,(SELECT `dev_type` FROM `tn_facility` tf WHERE tf.`dev_code`= t.`dev_code_z`) devType,t.dev_id_z devId
+			  FROM tn_cable_section t  WHERE t.`survey_result`='1' AND  t.`dev_code_a`!='GJ0000' AND t.`dev_code_z`!='GJ0000'
+			  ) a   GROUP BY a.devName
+    -->
+   
+  <resultMap id="CableRouteLinksMap" type="com.ycnet.frms.vo.CableRouteLinks" >
+    <result column="devAName" property="devAName" jdbcType="VARCHAR" />
+    <result column="devZName" property="devZName" jdbcType="VARCHAR" />
+    <result column="cableName" property="cableName" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="queryCableRouteLinks"  parameterType="com.ycnet.frms.vo.CableRouteCondition" resultMap="CableRouteLinksMap">
+     SELECT 
+
+		cableName,devAName,devZName
+		FROM 
+		(
+		
+		SELECT
+		(CASE t.`dev_code_a`
+		WHEN 'GJ0000' THEN CONCAT('未知设施',t.`sect_id`)
+		ELSE  (SELECT f.`dev_name` FROM `tn_facility` f WHERE f.`dev_code`=t.`dev_code_a`) END) devAName,
+		(CASE t.`dev_code_z`
+		WHEN 'GJ0000' THEN CONCAT('未知设施',t.`sect_id`)
+		ELSE  (SELECT f.`dev_name` FROM `tn_facility` f WHERE f.`dev_code`=t.`dev_code_z`) END) devZName,t.`sec_name` cableName
+		
+		  FROM tn_cable_section t   
+		  
+		  WHERE t.`dev_code_a`!='GJ0000' AND t.`dev_code_z`!='GJ0000' 
+		  <if test="orgId!=null">
+			          and org_id=#{orgId,jdbcType=BIGINT}
+		   </if>
+		  
+		  ) b
+  </select>
+  
+ <select id="queryCableRouteLinksV1"  parameterType="com.ycnet.frms.vo.CableRouteCondition" resultMap="CableRouteLinksMap">
+     SELECT  c.sec_name  cableName , case when  pid_a is null then devname_a else pdevName_a end devAName,
+     case when  pid_z is null then devname_z else pdevName_z end devZName
+      FROM tn_cable_section c,
+	(SELECT a1.dev_id  id_a ,concat(replace(a1.dev_name,'\n',''),'(',a1.dev_code,')') devname_a ,a2.dev_id pid_a, concat(replace(a2.dev_name,'\n',''),'(',a2.dev_code,')') pdevName_a FROM 
+	tn_facility a1 LEFT JOIN tn_facility a2
+	ON   a1.pdev_id =  a2.dev_id
+	  AND   a1.org_id  = a2.org_id
+	   <if test="orgId!=null">
+	WHERE a1.org_id =  #{orgId,jdbcType=BIGINT}
+	</if>) a ,
+	(SELECT z1.dev_id  id_z ,concat(replace(z1.dev_name,'\n',''),'(',z1.dev_code,')') devname_z ,z2.dev_id pid_z, concat(replace(z2.dev_name,'\n',''),'(',z2.dev_code,')') pdevName_z FROM 
+	tn_facility z1 LEFT JOIN tn_facility z2
+	ON   z1.pdev_id =  z2.dev_id
+	 AND   z1.org_id  = z2.org_id
+	 <if test="orgId!=null">
+	WHERE z1.org_id = #{orgId,jdbcType=BIGINT}
+	 </if>
+	 ) z 
+	WHERE dev_id_a = a.id_a AND dev_id_z = z.id_z
+	 <if test="orgId!=null">
+			     and org_id=#{orgId,jdbcType=BIGINT}
+	 </if>
+	    
+ </select>
+  
+  <!-- AND t.`survey_result`='1'   -->
+  
+  <select id="findSection"  resultType="string">
+       select  findSection(#{devId,jdbcType=BIGINT})
+  </select>
+  
+  <select id="selectRelativeSection"  resultMap="BaseResultMap">
+       select  <include refid="Base_Column_List" />
+    from  tn_cable_section where find_in_set(sect_id,#{code,jdbcType=BIGINT})
+  </select>
+   
+  <select id="selectByCode" resultMap="BaseResultMap">
+       select  <include refid="Base_Column_List" />
+    from  tn_cable_section where sect_code = #{sectCode,jdbcType=VARCHAR}
+  </select>
+  
+  
+  
+  <select id="querySectionList" parameterType="com.ycnet.frms.vo.CableSectionConditionBean" resultMap="BaseResultMap">
+  	select sect_id,sec_name,sect_code,fiber_num
+  	from tn_cable_section
+  	<where>
+  		<trim prefixOverrides="and">
+  			<if test="cableSection.secName!=null">
+  				and sec_name like concat('%',#{cableSection.secName,jdbcType=VARCHAR},'%')
+  			</if>
+  			<if test="cableSection.sectCode!=null">
+  			    and sect_code like concat('%',#{cableSection.sectCode,jdbcType=VARCHAR},'%')
+  			</if>
+  			<if test="cableSection.orgId!=null">
+  				and org_id=#{cableSection.orgId,jdbcType=BIGINT}
+  			</if>
+  		</trim>
+  	</where>
+  		limit #{pageBean.startRowNum},#{pageBean.endRowNum}
+  </select>
+  
+  <resultMap id="cableSectionMap" type="com.ycnet.frms.vo.CableSectionResultVo" >
+  	<result column="fiber_num" property="fiberNum" jdbcType="BIGINT"/>
+    <result column="acode" property="acode" jdbcType="VARCHAR"/>
+    <result column="zcode" property="zcode" jdbcType="VARCHAR"/>
+    <result column="sec_name" property="secName" jdbcType="VARCHAR"/>
+    <result column="sect_code" property="secCode" jdbcType="VARCHAR"/>
+    <result column="sect_id" property="sectId" jdbcType="BIGINT"/>
+    <result column="fiber_no" property="fiberNo" jdbcType="BIGINT"/>
+    <result column="dev_code_a" property="devCodeA" jdbcType="VARCHAR"/>
+    <result column="dev_code_z" property="devCodeZ" jdbcType="VARCHAR"/>
+    <result column="aname" property="adevName" jdbcType="VARCHAR"/>
+    <result column="zname" property="zdevName" jdbcType="VARCHAR"/>
+  	<result column="org_id" property="orgId" jdbcType="BIGINT" />
+  	<result column="aaddr" property="aaddr" jdbcType="VARCHAR"/>
+  	<result column="zaddr" property="zaddr" jdbcType="VARCHAR"/>
+  	<result column="cable_sect_num" property="cableSectNum" jdbcType="BIGINT"/>
+  	<result column="complete_date" property="completeDate" jdbcType="DATE"/>
+  	<result column="cable_len" property="cableLen" jdbcType="BIGINT"/>
+  	<result column="zdevid" property="zdevId" jdbcType="BIGINT"/>
+  	<result column="adevid" property="adevId" jdbcType="BIGINT"/>
+  	<result column="is_endfibercable" property="isEndfibercable" jdbcType="VARCHAR"/>
+  	<result column="fa_dev_state" property="faDevState" jdbcType="VARCHAR" />
+    <result column="fz_dev_state" property="fzDevState" jdbcType="VARCHAR" />
+    <result column="sect_state" property="sectState" jdbcType="VARCHAR" />
+    <result column="adev_code" property="adevCode" jdbcType="VARCHAR" />
+    <result column="zdev_code" property="zdevCode" jdbcType="VARCHAR" />
+    <result column="sect_dec" property="sectDec" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="adev_type" property="adevType" jdbcType="VARCHAR" />
+    <result column="zdev_type" property="zdevType" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 刘沧海更改,光缆段AZ端详情查询慢进行优化,2017-9-27 -->
+  <select id="selectCableSections"  resultMap="cableSectionMap" parameterType="java.lang.Long">
+<!-- 	SELECT e.*,f.dev_name AS zname,f.dev_id AS zdevid,f.dev_addr AS aaddr FROM  -->
+<!-- 	(SELECT d.dev_name AS aname,d.dev_id AS adevid,d.dev_addr AS zaddr,c.* FROM  -->
+<!-- 	(SELECT b.fiber_num,a.acode,a.zcode,b.sect_code, b.sec_name,b.is_endfibercable,a.sect_id,a.fiber_no,b.dev_code_a,b.dev_code_z,cb.cable_sect_num,cb.complete_date,cb.cable_len FROM  -->
+<!-- 	(SELECT acode,zcode,sect_id,fiber_no -->
+<!-- 	FROM tn_lines WHERE  -->
+<!-- 	  line_type='01' GROUP BY sect_id) AS a -->
+<!-- 	LEFT JOIN tn_cable_section b ON a.sect_id=b.sect_id -->
+<!-- 	LEFT JOIN  tn_cable cb ON b.cable_id=cb.cable_id -->
+<!-- 	) -->
+<!-- 	AS c -->
+<!-- 	LEFT JOIN tn_facility d ON c.dev_code_a=d.dev_code ) -->
+<!-- 	AS e -->
+<!-- 	LEFT JOIN tn_facility f ON e.dev_code_z=f.dev_code -->
+<!-- 	WHERE  -->
+<!--  		<if test="_parameter!=null and _parameter!=''">  -->
+<!-- 			  sect_id=#{_parameter,jdbcType=BIGINT} -->
+<!--  		</if>  -->
+<!-- 	ORDER BY aname,zcode DESC -->
+		SELECT cs.sect_id,cs.sect_code,cs.sect_code,cs.sec_name,cs.fiber_num,cs.is_endfibercable,l.acode,l.zcode,l.sect_id,l.fiber_no,
+fa.dev_id adevid,fa.`dev_code` adev_code,
+				 fa.`dev_code` dev_code_a,fa.dev_name aname,fa.dev_addr aaddr, 
+			   fz.dev_id zdevid ,fz.`dev_code` zdev_code,fz.`dev_code` dev_code_z,fz.dev_name zname,fz.dev_addr zaddr,c.cable_sect_num,
+			   c.complete_date,cs.cable_len,fa.dev_state fa_dev_state,fz.dev_state fz_dev_state,cs.sect_state sect_state
+		FROM tn_cable_section cs  
+		LEFT JOIN tn_cable c ON cs.cable_id=c.cable_id
+		LEFT JOIN (SELECT acode,zcode,sect_id,fiber_no FROM tn_lines WHERE line_type='01' GROUP BY sect_id ) l ON cs.sect_id=l.sect_id
+		LEFT JOIN tn_facility fa ON cs.dev_id_a=fa.dev_id
+		LEFT JOIN tn_facility fz ON cs.dev_id_z=fz.dev_id
+		WHERE  
+			<if test="_parameter!=null and _parameter!=''"> 
+			  cs.sect_id=#{_parameter,jdbcType=BIGINT}
+ 			</if> 
+		ORDER BY aname,zcode DESC
+	</select>
+	
+	
+      <select id="findFiberList"  resultMap="FiberListMap" parameterType="map">
+<!--       SELECT cs.* -->
+<!-- 		FROM `tn_cable_section` cs  -->
+<!-- 		LEFT JOIN `tn_facility` fa ON cs.`dev_id_a`=fa.`dev_id` -->
+<!-- 		LEFT JOIN `tn_facility` fz ON cs.`dev_id_z`=fz.`dev_id` -->
+<!-- 		WHERE fa.`is_translated`='1' and fz.`is_translated`='1' -->
+<!-- 			<if test="orgId != null"> -->
+<!-- 				and cs.`org_id`=#{orgId,jdbcType=BIGINT} -->
+<!-- 				and fa.`org_id`=#{orgId,jdbcType=BIGINT} -->
+<!-- 				and fz.`org_id`=#{orgId,jdbcType=BIGINT} -->
+<!-- 			</if> -->
+<!-- 			<if test="areaCode1 != null"> -->
+<!-- 				and fz.`area_code1`=#{areaCode1,jdbcType=VARCHAR} -->
+<!-- 				and fa.`area_code1`=#{areaCode1,jdbcType=VARCHAR} -->
+<!-- 			</if> -->
+		SELECT 
+		  e.*,
+		  f.dev_name AS zSet 
+		FROM
+		  (SELECT 
+		    d.dev_name AS aSet,
+		    c.* 
+		  FROM
+		    (SELECT 
+		      b.fiber_num,
+		      a.acode,
+		      a.zcode,
+		      b.sec_name,
+		      a.sect_id,
+		      a.fiber_no,
+		      b.dev_code_a,
+		      b.dev_code_z,
+		      b.dev_id_a,
+		      b.dev_id_z 
+		    FROM
+		      (SELECT 
+		        acode,
+		        zcode,
+		        sect_id,
+		        fiber_no 
+		      FROM
+		        tn_lines 
+		      WHERE org_id = #{orgId,jdbcType=BIGINT}
+		        AND line_type = '01' 
+		      GROUP BY sect_id) AS a 
+		      LEFT JOIN tn_cable_section b 
+		        ON a.sect_id = b.sect_id) AS c 
+		    LEFT JOIN tn_facility d 
+		      ON c.dev_code_a = d.dev_code 
+		  WHERE d.dev_type <![CDATA[<>]]>'05' and d.is_Translated='1' 
+		  	<if test="areaCode1 != null">
+		  		and d.area_code1=#{areaCode1,jdbcType=VARCHAR}
+		  	</if>
+		  ) AS e 
+		  LEFT JOIN tn_facility f 
+		    ON e.dev_code_z = f.dev_code 
+		WHERE f.dev_type <![CDATA[<>]]>'05' and f.is_Translated='1'
+			<if test="areaCode1 != null">
+				and f.area_code1=#{areaCode1,jdbcType=VARCHAR}
+			</if>		
+		ORDER BY zcode DESC ;
+  </select>
+  
+  <select id="findFiberList2" resultType="map" parameterType="map">
+  		SELECT 
+  			a.sec_name, 
+  			a.fiber_num, 
+  			b.baidu_x as a_baidu_x, 
+  			b.baidu_y as a_baidu_y,
+  			c.baidu_x as b_baidu_x,
+  			c.baidu_y as b_baidu_y
+		FROM tn_cable_section  a
+		INNER JOIN tn_facility b ON b.dev_id=a.dev_id_a
+		INNER JOIN tn_facility c ON c.dev_id=a.dev_id_z
+		WHERE b.baidu_x  IS NOT NULL 
+			AND b.baidu_y IS NOT NULL 
+			AND c.baidu_x IS NOT NULL 
+			AND c.baidu_y IS NOT NULL
+			and a.org_id=#{orgId,jdbcType=BIGINT} 
+			<if test="areaCode1 != null">
+				AND b.area_code1=#{areaCode1,jdbcType=VARCHAR} 
+				AND c.area_code1=#{areaCode1,jdbcType=VARCHAR}
+			</if>
+  </select>
+  
+  <select id="querySectionListBySectId" parameterType="com.ycnet.frms.vo.CableSectionBean" resultMap="BeanResultMap">
+  	SELECT a.sect_id,a.sec_name,a.sect_state,a.sect_code,a.fiber_num,CASE WHEN a.survey_result='0' THEN '未普查' 
+		WHEN a.survey_result='1' THEN '已普查' WHEN a.survey_result='2' THEN '无设施'  END surveyResultName,
+		b.dev_name devAName,c.dev_name devZName,g.cable_name cableName,
+		 CASE WHEN d.isTerminat0  > 0 THEN '1' ELSE '0' END isTerminat
+	FROM tn_cable_section a 
+	LEFT JOIN tn_facility b ON b.dev_id = a.dev_id_a
+	LEFT JOIN tn_facility c ON c.dev_id = a.dev_id_z
+	LEFT JOIN tn_cable g ON g.cable_id = a.cable_id
+	LEFT JOIN (  
+		 SELECT b.sect_id,SUM(iTem) isTerminat0 FROM (
+			SELECT a.sect_id,
+				CASE WHEN (a.acode IS NULL AND a.zcode IS NOT NULL) THEN -100000
+				WHEN (a.acode IS NOT NULL AND a.zcode IS NULL) THEN -100000
+				WHEN (a.acode IS NULL AND a.zcode IS NULL) THEN 0
+				ELSE 1 END iTem	
+			FROM tn_lines a ) b
+		GROUP BY b.sect_id
+	    ) d ON d.sect_id = a.sect_id
+  	<where>
+  		<trim prefixOverrides="and">
+  			<if test="cableSection.secName!=null">
+  				and (a.sec_name like concat('%',#{cableSection.secName,jdbcType=VARCHAR},'%')
+  					or a.zg_sec_name like concat('%',#{cableSection.secName,jdbcType=VARCHAR},'%')
+  				)
+  			</if>
+  			<if test="cableSection.sectCode!=null">
+  			    and a.sect_code like concat('%',#{cableSection.sectCode,jdbcType=VARCHAR},'%')
+  			</if>
+  			<if test="orgId!=null">
+  				and a.org_id=#{orgId,jdbcType=BIGINT}
+  			</if>
+  			<if test="cableSection.sectState!=null">
+  				and a.sect_state=#{cableSection.sectState,jdbcType=VARCHAR}
+  			</if>
+  		</trim>
+  	</where>
+  		limit #{pageBean.startRowNum},#{pageBean.endRowNum}
+  </select>
+  
+  <select id="queryByConditionBeanSect"  parameterType="com.ycnet.frms.vo.CableSectionConditionBean" resultMap="BeanResultMap">
+      SELECT a.sect_id,a.sect_code, a.sec_name, a.cable_model, a.cable_len, a.fiber_num, a.complete_date, a.dev_id_a, 
+	    a.dev_code_a, a.dev_id_z, a.dev_code_z, a.cable_id, a.org_id, a.survey_result,g.type_a,g.type_z,a.sect_state,
+	  	CASE WHEN a.survey_result='0' THEN '未普查' 
+			WHEN a.survey_result='1' THEN '已普查' WHEN a.survey_result='2' THEN '无设施'  END surveyResultName,
+			b.dev_name devAName,c.dev_name devZName,g.cable_name cableName,
+			 CASE WHEN d.isTerminat0  > 0 THEN '1' ELSE '0' END isTerminat
+		FROM tn_cable_section a 
+		LEFT JOIN tn_facility b ON b.dev_id = a.dev_id_a
+		LEFT JOIN tn_facility c ON c.dev_id = a.dev_id_z
+		LEFT JOIN tn_cable g ON g.cable_id = a.cable_id
+		LEFT JOIN (  
+			 SELECT b.sect_id,SUM(iTem) isTerminat0 FROM (
+				SELECT a.sect_id,
+					CASE WHEN (a.acode IS NULL AND a.zcode IS NOT NULL) THEN -100000
+					WHEN (a.acode IS NOT NULL AND a.zcode IS NULL) THEN -100000
+					WHEN (a.acode IS NULL AND a.zcode IS NULL) THEN 0
+					ELSE 1 END iTem	
+				FROM tn_lines a ) b
+			GROUP BY b.sect_id
+		    ) d ON d.sect_id = a.sect_id
+	    <where>
+	        <trim prefixOverrides="and">
+	            <if test="devId!=null">
+	                and (dev_id_a=#{devId,jdbcType=BIGINT} or dev_id_z=#{devId,jdbcType=BIGINT})
+	            </if>
+	        </trim>        
+	    </where>
+   </select>
+   <select id="queryByDevId" resultMap="BaseResultMap">
+   	  select 
+		<include refid="Base_Column_List" />
+		from tn_cable_section where  dev_id_a=#{devId,jdbcType=BIGINT} OR dev_id_z=#{devId,jdbcType=BIGINT}
+   </select>
+   <!-- zhouyu 18/1/4 -->
+  <resultMap id="sectRouteResultMap" type="com.ycnet.frms.vo.SectRouteBean" >
+    <id column="sect_id" property="sectId" jdbcType="BIGINT" />
+    <result column="fiber_num" property="fiberNum" jdbcType="BIGINT"/>
+    <result column="dev_name" property="devName" jdbcType="VARCHAR"/>
+    <result column="dev_name1" property="devName1" jdbcType="VARCHAR"/>
+    <result column="sec_name" property="secName" jdbcType="VARCHAR"/>
+    <result column="adevName" property="adevName" jdbcType="VARCHAR"/>
+    <result column="zdevName" property="zdevName" jdbcType="VARCHAR"/>
+    <result column="adevId" property="adevId" jdbcType="BIGINT"/>
+    <result column="zdevId" property="zdevId" jdbcType="BIGINT"/>
+    <result column="side" property="side" jdbcType="VARCHAR"/>
+    <result column="sectState" property="sectState" jdbcType="VARCHAR"/>
+    <result column="disc_num" property="discNum" jdbcType="BIGINT" />
+  </resultMap>
+   <!-- zhouyu 改 18/1/4 -->
+   <!-- 按条件查询 支持分页-->
+   <select id="queryByConditionMap"  parameterType="map" resultMap="sectRouteResultMap">
+       SELECT d.dev_name,e.dev_name dev_name1,a.sect_id,a.sec_name,a.dev_id_a,a.fiber_num,b.dev_name adevName,a.dev_id_z,c.dev_name zdevName,a.sect_state sectState<!-- ,f.side,f.disc_num -->
+		FROM tn_cable_section a
+		LEFT JOIN tn_facility b ON b.dev_id=a.dev_id_a
+		LEFT JOIN tn_facility c ON c.dev_id=a.dev_id_z
+		LEFT JOIN tn_facility d ON d.dev_id=b.pdev_id
+		LEFT JOIN tn_facility e ON e.dev_id=c.pdev_id
+<!-- 		LEFT JOIN tn_fiberdisc_group f ON f.dev_id=a.dev_id_a -->
+	   <where>
+	   		a.org_id=#{user.orgId,jdbcType=BIGINT}  
+	        <if test="routeBean.devName!=null and routeBean.devName!=''">
+	            and (d.dev_name like concat('%',#{routeBean.devName,jdbcType=VARCHAR},'%')
+	            or e.dev_name like concat('%',#{routeBean.devName,jdbcType=VARCHAR},'%'))
+	        </if>
+	        <if test="routeBean.adevName!=null and routeBean.adevName!=''">
+	            and (b.dev_name like concat('%',#{routeBean.adevName,jdbcType=VARCHAR},'%')
+	            or c.dev_name like concat('%',#{routeBean.adevName,jdbcType=VARCHAR},'%'))
+	        </if>
+	        <if test="routeBean.secName!=null and routeBean.secName!=''">
+	            and a.sec_name like concat('%',#{routeBean.secName,jdbcType=VARCHAR},'%')
+	        </if>
+	        
+	        <if test="routeBean.sectStateall ==null or routeBean.sectStateall==1">
+	        	and a.sect_state <![CDATA[ <> ]]>'0'
+	        </if>
+	        <if test="routeBean.sectStateall !=null and routeBean.sectStateall==0">
+	        	and a.sect_state ='0'
+	        </if>
+	    </where>
+	   <if test="pb!=null">
+		  order by b.dev_id limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	   </if>
+   </select>
+   <select id="queryCountByConditionMap"  parameterType="map" resultType="java.lang.Integer">
+       SELECT count(1)
+		FROM tn_cable_section a
+		LEFT JOIN tn_facility b ON b.dev_id=a.dev_id_a
+		LEFT JOIN tn_facility c ON c.dev_id=a.dev_id_z
+		LEFT JOIN tn_facility d ON d.dev_id=b.pdev_id
+		LEFT JOIN tn_facility e ON e.dev_id=c.pdev_id
+		<!-- LEFT JOIN tn_fiberdisc_group f ON f.dev_id=a.dev_id_a -->
+	   <where>
+	   		a.org_id=#{user.orgId,jdbcType=BIGINT}  
+	        <if test="routeBean.devName!=null and routeBean.devName!=''">
+	            and (d.dev_name like concat('%',#{routeBean.devName,jdbcType=VARCHAR},'%')
+	            or e.dev_name like concat('%',#{routeBean.devName,jdbcType=VARCHAR},'%'))
+	        </if>
+	        <if test="routeBean.adevName!=null and routeBean.adevName!=''">
+	            and (b.dev_name like concat('%',#{routeBean.adevName,jdbcType=VARCHAR},'%')
+	            or c.dev_name like concat('%',#{routeBean.adevName,jdbcType=VARCHAR},'%'))
+	        </if>
+	        <if test="routeBean.secName!=null and routeBean.secName!=''">
+	            and a.sec_name like concat('%',#{routeBean.secName,jdbcType=VARCHAR},'%')
+	        </if>
+	        <if test="routeBean.sectStateall ==null or routeBean.sectStateall==1">
+	        	and a.sect_state <![CDATA[ <> ]]>'0'
+	        </if>
+	        <if test="routeBean.sectStateall !=null and routeBean.sectStateall==0">
+	        	and a.sect_state ='0'
+	        </if>
+	    </where>
+   </select>
+   <select id="selectisentering" resultType="java.lang.Integer">
+      select count(1) from tn_route
+      where route_id = #{routeId,jdbcType=BIGINT}
+  </select>
+  <select id="selectopticalcables" parameterType="com.ycnet.frms.bean.CableSection" resultType="java.lang.Integer">
+      select count(1) from tn_task_log
+      where sect_id = #{sectId,jdbcType=BIGINT} and log_type = #{logType1,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 导出数据库新建类	DZY	2017/10/23 -->
+  <resultMap id="BaseResultMapZF" type="com.ycnet.frms.bean.CableSectionZF" >
+    <id column="sect_id" property="sectId" jdbcType="BIGINT" />
+    <result column="sect_code" property="sectCode" jdbcType="VARCHAR" />
+    <result column="sec_name" property="secName" jdbcType="VARCHAR" />
+    <result column="cable_model" property="cableModel" jdbcType="VARCHAR" />
+    <result column="cable_len" property="cableLen" jdbcType="DECIMAL" />
+    <result column="fiber_num" property="fiberNum" jdbcType="BIGINT" />
+    <result column="dev_id_a" property="devIdA" jdbcType="BIGINT" />
+    <result column="dev_code_a" property="devCodeA" jdbcType="VARCHAR" />
+    <result column="dev_id_z" property="devIdZ" jdbcType="BIGINT" />
+    <result column="dev_code_z" property="devCodeZ" jdbcType="VARCHAR" />
+    <result column="cable_id" property="cableId" jdbcType="BIGINT" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="survey_result" property="surveyResult" jdbcType="CHAR" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT"/>
+    <result column="last_modify_user" property="lastModifyUser" jdbcType="BIGINT"/>
+    <result column="is_endfibercable" property="isEndfibercable" jdbcType="VARCHAR"/>
+  </resultMap>
+  <!-- //导出数据库  刘沧海 2017/10/13 -->
+  <select id="queryCableSectionList" resultMap="BaseResultMapZF">
+  	SELECT 
+  	cs.sect_id,cs.sect_code,cs.sec_name,cs.cable_model,cs.cable_len,cs.fiber_num,cs.dev_id_a,
+  	cs.dev_code_a,cs.dev_id_z,cs.dev_code_z,cs.cable_id,cs.org_id,cs.survey_result,cs.create_user,cs.last_modify_user,cs.is_endfibercable 
+  	FROM tn_cable_section_zg cs  
+  	LEFT JOIN tn_facility_zg f1  ON f1.dev_id=cs.dev_id_a
+   	LEFT JOIN tn_facility_zg f2  ON f2.dev_id=cs.dev_id_z
+  	where 
+  	<if test="orgId!=null and orgId!=''">
+  		f1.org_id=#{orgId,jdbcType=BIGINT}
+  	</if>
+  	<if test="areaCode!=null and areaCode!=''">
+  		and (f1.area_code1=#{areaCode,jdbcType=VARCHAR} OR f2.area_code1=#{areaCode,jdbcType=VARCHAR})
+  	</if>
+  </select>
+  
+  <select id="selectByName" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from tn_cable_section
+    where sec_name = #{secName,jdbcType=VARCHAR}
+    limit 0,1
+  </select>
+  
+   <select id="selectByNameZG" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from tn_cable_section
+    where zg_sec_name = #{secName,jdbcType=VARCHAR}
+    limit 0,1
+  </select>
+  
+  <!--  根据 dev_id 查询光缆信息  selectByDevId  zhouyu-->
+ <select id="queryByDevIdzy" resultMap="BeanResultMap" >
+ 	SELECT a.sect_id,a.sec_name,a.sect_code,b.dev_name devAName,c.dev_name devZName ,a.cable_model,a.cable_len,a.fiber_num,a.complete_date,a.dev_id_a,a.dev_code_a,a.dev_id_z,a.dev_code_z,a.cable_id,a.org_id,a.survey_result,a.create_time,a.create_user,a.last_modify_time,a.last_modify_user,a.is_endfibercable,a.zg_dev_id_a,a.zg_dev_id_z,a.zg_fiber_num,a.sect_state,
+		IF(e.dev_name IS NULL,e.zg_dev_name,e.dev_name) zgDevAName,IF(f.dev_name IS NULL,f.zg_dev_name,f.dev_name) zgDevZName, a.zg_sec_name
+ 	FROM `tn_cable_section` a
+	INNER JOIN tn_facility b ON b.dev_id = a.dev_id_a
+	INNER JOIN tn_facility c ON c.dev_id = a.dev_id_z
+	left JOIN tn_facility e ON e.dev_id = a.zg_dev_id_a
+	left JOIN tn_facility f ON f.dev_id = a.zg_dev_id_z
+	<where>a.org_id = #{orgId,jdbcType=BIGINT} AND sect_state !='0' AND (a.dev_id_a=#{devId,jdbcType=BIGINT} OR a.dev_id_z=#{devId,jdbcType=BIGINT})</where>
+	UNION ALL
+ 	SELECT a.sect_id,a.sec_name,a.sect_code,b.dev_name devAName,c.dev_name devZName ,a.cable_model,a.cable_len,a.fiber_num,a.complete_date,a.dev_id_a,a.dev_code_a,a.dev_id_z,a.dev_code_z,a.cable_id,a.org_id,a.survey_result,a.create_time,a.create_user,a.last_modify_time,a.last_modify_user,a.is_endfibercable,a.zg_dev_id_a,a.zg_dev_id_z,a.zg_fiber_num,a.sect_state,
+ 		IF(b.dev_name IS NULL,b.zg_dev_name,b.dev_name) zgDevAName,IF(c.dev_name IS NULL,c.zg_dev_name,c.dev_name) zgDevZName, a.zg_sec_name 
+ 	FROM `tn_cable_section` a 
+ 	INNER JOIN tn_facility b ON b.dev_id = a.zg_dev_id_a
+ 	INNER JOIN tn_facility c ON c.dev_id = a.zg_dev_id_z
+ 	<where>a.org_id = #{orgId,jdbcType=BIGINT} AND sect_state ='0' AND (a.zg_dev_id_a=#{devId,jdbcType=BIGINT} OR  a.zg_dev_id_z=#{devId,jdbcType=BIGINT})</where> 
+  </select>
+<!--   按前台传入 sectState值查询光缆信息 zhouyu -->
+ <select id="queryBysectState" resultMap="BaseResultMap" parameterType="map">
+	SELECT a.sect_id,a.sec_name,a.sect_code,b.dev_name devAName,c.dev_name devZName ,a.cable_model,a.cable_len,a.fiber_num,a.complete_date,a.dev_id_a,a.dev_code_a,a.dev_id_z,a.dev_code_z,a.cable_id,a.org_id,a.survey_result,a.create_time,a.create_user,a.last_modify_time,a.last_modify_user,a.is_endfibercable,a.zg_dev_id_a,a.zg_dev_id_z,a.zg_fiber_num,a.sect_state,a.remark 
+	FROM `tn_cable_section` a
+	INNER JOIN tn_facility b ON b.dev_id = a.dev_id_a
+	INNER JOIN tn_facility c ON c.dev_id = a.dev_id_z
+ 	WHERE a.org_id=#{orgId,jdbcType=BIGINT} AND sect_state=#{sectState,jdbcType=VARCHAR} AND  (a.dev_id_a=#{devId,jdbcType=BIGINT} OR a.dev_id_z=#{devId,jdbcType=BIGINT})
+  </select>
+  
+   <select id="selectSectByWell" resultMap="BaseResultMap" parameterType="map">
+    SELECT 
+    	a.sect_id, b.sect_code, b.sec_name ,b.remark
+    from tn_sect_dev a
+    inner join tn_cable_section b on b.sect_id=a.sect_id
+    where 1=1
+    	<if test="pipingId != null" >
+        	and a.piping_id = #{pipingId,jdbcType=BIGINT}
+      	</if>
+      	<if test="valveId != null" > 
+        	and a.valve_id = #{valveId,jdbcType=BIGINT}
+      	</if>
+  </select>
+ 
+  <!--    判断是否为完整光缆 zhouyu -->
+ <select id="getIsTerminats" resultType="java.lang.Integer" parameterType="java.lang.Long" >
+ 	 	SELECT COALESCE(SUM(isTerminat),0)  FROM (
+		SELECT CASE WHEN (a.acode IS NULL AND a.zcode IS NOT NULL) THEN -1000
+			WHEN (a.zcode IS NULL AND a.acode IS NOT NULL) THEN -1000  
+			WHEN (a.zcode IS NULL AND a.acode IS NULL) THEN 0
+			WHEN (b.is_occup='0' AND c.is_occup='1') THEN -1000
+			WHEN (b.is_occup='1' AND c.is_occup='0') THEN -1000
+			ELSE 1 END isTerminat
+		FROM `tn_lines` a
+		LEFT JOIN `tn_fiberdisc` b ON b.port01=a.acode
+		LEFT JOIN `tn_fiberdisc` c ON c.port01=a.zcode
+		WHERE a.sect_id=#{sectId,jdbcType=BIGINT}
+	) a
+  </select>
+  <!-- fl 根据ID 和之前的状态,更改光缆状态 -->
+  <update id="upddateByIdAndState" parameterType="map">
+  	UPDATE `tn_cable_section` SET 
+  `sect_state` = #{state,jdbcType=VARCHAR}
+	WHERE `sect_id` = #{sectId,jdbcType=BIGINT};
+  </update>
+  <!--根据设施ID查询光缆段，刘沧海，2017/12/10 -->
+  <select id="queryByDevIdOrgId" resultMap="BaseResultMap" parameterType="map">
+  	select 
+  		<include refid="Base_Column_List" />
+  	from `tn_cable_section`
+  	where 
+  	<if test="orgId!=null and orgId!=''">
+	  	org_id=#{orgId,jdbcType=BIGINT} and 
+  	</if>
+  	(dev_id_a=#{devId,jdbcType=BIGINT} OR dev_id_z=#{devId,jdbcType=BIGINT})
+  </select>
+  <!--根据设施ID查询资管光缆段，刘沧海，2017/12/10 -->
+  <select id="queryByZGDevIdOrgId" resultMap="BaseResultMap" parameterType="map">
+  	select 
+  		<include refid="Base_Column_List" />
+  	from `tn_cable_section`
+  	where 
+  	<if test="orgId!=null and orgId!=''">
+	  	org_id=#{orgId,jdbcType=BIGINT} and 
+  	</if>
+  	sect_state='0' and 
+  	(zg_dev_id_a=#{devId,jdbcType=BIGINT} OR zg_dev_id_z=#{devId,jdbcType=BIGINT})
+  	UNION
+  	SELECT 
+  		<include refid="Base_Column_List" />
+  	FROM tn_cable_section
+  	WHERE 
+  	<if test="orgId!=null and orgId!=''">
+	  	org_id=#{orgId,jdbcType=BIGINT} and 
+  	</if>
+  	sect_state <![CDATA[ <> ]]> '0' AND 
+  	(dev_id_a=#{devId,jdbcType=BIGINT} OR dev_id_z=#{devId,jdbcType=BIGINT})
+  </select>
+  
+   <!--  查询光缆段列表-资管 -->
+ <select id="queryZgCableSectionByDevId" resultMap="BeanResultMap" parameterType="map">
+ 	SELECT a.sect_id,a.sec_name,a.sect_code,b.dev_name devAName ,b.`dev_type` devTypeA,c.dev_name devZName ,c.`dev_type` devTypeZ,a.cable_model,a.cable_len,a.fiber_num,a.complete_date,a.dev_id_a,a.dev_code_a,a.dev_id_z,a.dev_code_z,a.cable_id,a.org_id,a.survey_result,a.create_time,a.create_user,a.last_modify_time,a.last_modify_user,a.is_endfibercable,a.zg_dev_id_a,a.zg_dev_id_z,a.zg_fiber_num,a.sect_state,
+	e.zg_dev_name zgDevAName,f.zg_dev_name zgDevZName, a.zg_sec_name,a.remark
+ 	FROM `tn_cable_section` a
+	LEFT JOIN tn_facility b ON b.dev_id = a.dev_id_a
+	LEFT JOIN tn_facility c ON c.dev_id = a.dev_id_z
+	LEFT JOIN tn_facility e ON e.dev_id = a.zg_dev_id_a
+	LEFT JOIN tn_facility f ON f.dev_id = a.zg_dev_id_z
+	<where>
+  		<trim prefixOverrides="and">
+	  		<if test="devId!=null and devId!=''">
+				AND (a.zg_dev_id_a=#{devId,jdbcType=BIGINT} OR a.zg_dev_id_z=#{devId,jdbcType=BIGINT})
+		  	</if>
+  			<if test="cableSection.secName!=null and cableSection.secName!=''">
+  				and  a.zg_sec_name like concat('%',#{cableSection.secName,jdbcType=VARCHAR},'%')
+  			</if>
+  			<if test="cableSection.sectCode!=null and cableSection.sectCode!=''">
+  			    and a.sect_code = #{cableSection.sectCode,jdbcType=VARCHAR}
+  			</if>
+  			<if test="user.orgId!=null">
+  				and a.org_id=#{user.orgId,jdbcType=BIGINT}
+  			</if>
+  			<if test="cableSection.sectState!=null and cableSection.sectState!=''">
+  				and a.sect_state=#{cableSection.sectState,jdbcType=VARCHAR}
+  			</if>
+  				AND sect_state <![CDATA[<>]]> '2'  AND sect_state <![CDATA[<>]]> '5' 
+  		</trim>
+  	</where>
+		<if test="pb!=null">
+			  order by a.sect_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		</if>
+  </select>
+  
+  <!--  查询光缆段列表-->
+ <select id="queryCableSectionByDevId" resultMap="BeanResultMap" parameterType="map">
+ 	SELECT a.sect_id,a.sec_name,a.sect_code,b.dev_name devAName,b.`dev_type` devTypeA,c.dev_name devZName ,c.`dev_type` devTypeZ,a.cable_model,a.cable_len,a.fiber_num,a.complete_date,a.dev_id_a,a.dev_code_a,a.dev_id_z,a.dev_code_z,a.cable_id,a.org_id,a.survey_result,a.create_time,a.create_user,a.last_modify_time,a.last_modify_user,a.is_endfibercable,a.zg_dev_id_a,a.zg_dev_id_z,a.zg_fiber_num,a.sect_state,
+	e.zg_dev_name zgDevAName,f.zg_dev_name zgDevZName, a.zg_sec_name,a.remark
+ 	FROM `tn_cable_section` a
+	LEFT JOIN tn_facility b ON b.dev_id = a.dev_id_a
+	LEFT JOIN tn_facility c ON c.dev_id = a.dev_id_z
+	LEFT JOIN tn_facility e ON e.dev_id = a.zg_dev_id_a
+	LEFT JOIN tn_facility f ON f.dev_id = a.zg_dev_id_z
+	<where>
+  		<trim prefixOverrides="and">
+	  		<if test="devId!=null and devId!=''">
+				AND (a.dev_id_a=#{devId,jdbcType=BIGINT} OR a.dev_id_z=#{devId,jdbcType=BIGINT})
+		  	</if>
+  			<if test="cableSection.secName!=null and cableSection.secName!=''">
+  				and a.sec_name like concat('%',#{cableSection.secName,jdbcType=VARCHAR},'%')
+  			</if>
+  			<if test="cableSection.sectCode!=null and cableSection.sectCode!=''">
+  			    and a.sect_code = #{cableSection.sectCode,jdbcType=VARCHAR}
+  			</if>
+  			<if test="user.orgId!=null">
+  				and a.org_id=#{user.orgId,jdbcType=BIGINT}
+  			</if>
+  			<if test="cableSection.sectState!=null and cableSection.sectState!=''">
+  				and a.sect_state=#{cableSection.sectState,jdbcType=VARCHAR}
+  			</if>
+  				AND sect_state <![CDATA[<>]]> '0'  AND sect_state <![CDATA[<>]]> '4' 
+  		</trim>
+  	</where>
+	<if test="pb!=null">
+		  order by a.sect_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	</if>
+  </select>
+  <!-- 根据设施ID 查询光缆段信息 -->
+   <select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select a.sect_id,a.sect_code,a.zg_sec_name,a.zg_fiber_num,b.dev_name zgDevAName,c.dev_name zgDevZName,a.sect_state,a.zg_dev_id_a,a.zg_dev_id_z,a.remark
+	from `tn_cable_section` a
+	inner join `tn_facility` b on b.dev_id=a.zg_dev_id_a
+	inner join `tn_facility` c on c.dev_id=a.zg_dev_id_z
+	where 1=1
+	<if test="_parameter != null and _parameter !=''" > 
+	and  zg_dev_id_a = #{_parameter,jdbcType=BIGINT} or zg_dev_id_z = #{_parameter,jdbcType=BIGINT}
+    </if>
+  </select>
+  
+  <select id="queryFiberNum" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from tn_cable_section where sect_state='0' and fiber_num IS NULL
+  </select>
+  <!-- 查询不属于此设施ID的光缆段 -->
+  <select id="queryByNotisDevId" resultMap="BeanResultMap" >
+  	SELECT GROUP_CONCAT(IF(
+  		<if test="devId !=null">
+  			dev_id_a <![CDATA[<>]]> #{devId,jdbcType=BIGINT},
+  		</if>
+  		dev_id_a,dev_id_z),'') AS ids FROM tn_cable_section 
+	WHERE 1=1
+		<if test="orgId !=null">
+			and org_id=#{orgId,jdbcType=BIGINT}
+		</if>
+		<if test="devId !=null">
+  		and (dev_id_a = #{devId,jdbcType=BIGINT} 
+  		 		or 
+  			  dev_id_z = #{devId,jdbcType=BIGINT})
+  		</if>
+  		and sect_state NOT IN ('4','5')
+  		
+  </select>
+  <!-- 根据光缆段ID集合条件查询光缆段 -->
+  <select id="queryForInIds" resultMap="BaseResultMap" parameterType="map">
+  	SELECT 
+  	<include refid="Base_Column_List" />
+  	FROM tn_cable_section 
+	where 
+  		<if test="ids!=null ">
+			(dev_id_a IN(${ids}) OR dev_id_z IN(${ids}))
+	  	</if>
+	  	<if test="cableSectionBean.devId !=null">
+	  		and (dev_id_a <![CDATA[<>]]> #{cableSectionBean.devId,jdbcType=BIGINT}
+	  				OR 
+	  			 dev_id_z= #{cableSectionBean.devId,jdbcType=BIGINT}
+	  			)
+	  	</if>
+		<if test="cableSectionBean.secName!=null ">
+			and sec_name like concat('%',#{cableSectionBean.secName,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="cableSectionBean.sectCode!=null ">
+		    and sect_code = #{cableSectionBean.sectCode,jdbcType=VARCHAR}
+		</if>
+		<if test="cableSectionBean.orgId !=null">
+			and org_id=#{cableSectionBean.orgId,jdbcType=BIGINT}
+		</if>
+  	<if test="pb!=null">
+		  order by sect_id limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	</if>
+  </select>
+  
+  <!-- 根据设施ID查询没删除的光缆段 -->
+   <select id="queryNoDeleteByDevId" resultMap="BaseResultMap" parameterType="map">
+	SELECT a.sect_id,if(a.sect_state='0',a.zg_sec_name,a.sec_name),a.sect_code,b.dev_name devAName,
+		c.dev_name devZName,a.cable_model,a.cable_len,if(a.sect_state='0',a.zg_fiber_num,a.fiber_num),a.complete_date,a.dev_id_a,a.dev_code_a,
+		a.dev_id_z,a.dev_code_z,a.cable_id,a.org_id,a.survey_result,a.create_time,a.create_user,
+		a.last_modify_time,a.last_modify_user,a.is_endfibercable,
+		a.zg_dev_id_a,a.zg_dev_id_z,a.zg_fiber_num,a.sect_state ,a.remark
+	FROM `tn_cable_section` a
+	left JOIN tn_facility b ON b.dev_id = a.dev_id_a
+	left JOIN tn_facility c ON c.dev_id = a.dev_id_z
+ 	WHERE sect_state not in('4','5') AND (a.dev_id_a=#{devId,jdbcType=BIGINT} OR a.dev_id_z=#{devId,jdbcType=BIGINT})
+  </select>
+  <!-- fl 修改 *  -->
+   <select id="queryNODeleteCSByDevId" resultMap="BeanResultMap">
+   	  select 
+   	  <include refid="Base_Column_List" />
+   	  from tn_cable_section where sect_state not in('0','4','5') and (dev_id_a=#{devId,jdbcType=BIGINT} OR dev_id_z=#{devId,jdbcType=BIGINT})
+   </select>
+  
+  
+  <!-- 查询设施所属光缆段两端都成端的光缆段，刘沧海 -->
+  <select id="queryAsasideTwoCD" resultMap="BaseResultMap" parameterType="map">
+	SELECT 
+		cs.sect_id, cs.sect_code, cs.sec_name, cs.cable_model, cs.cable_len, cs.fiber_num, cs.complete_date, cs.dev_id_a, cs.sect_state,cs.zg_sec_name,
+	    cs.dev_code_a, cs.dev_id_z, cs.dev_code_z, cs.cable_id, cs.org_id, cs.survey_result,cs.create_time,cs.create_user,cs.last_modify_time,
+	    cs.last_modify_user,cs.is_endfibercable,cs.zg_dev_id_a,cs.zg_dev_id_z,cs.zg_fiber_num,cs.sect_dec,cs.remark
+		FROM `tn_facility` f 
+		LEFT JOIN `tn_cable_section` cs ON (f.`dev_id`=cs.`dev_id_a` OR f.`dev_id`=cs.`dev_id_z`)
+		LEFT JOIN `tn_lines` l ON cs.`sect_id`=l.`sect_id`
+	WHERE l.`acode` IS NOT NULL AND l.`zcode` IS NOT NULL
+		<if test="devId != null">
+			and f.dev_id=#{devId,jdbcType=BIGINT}
+		</if>
+		<if test="orgId != null">
+			and cs.org_id=#{orgId,jdbcType=BIGINT}
+		</if>
+	GROUP BY l.`sect_id`
+  </select>
+  <!-- 有一端成端，刘沧海 -->
+  <select id="queryAsasideOneCD" resultMap="BaseResultMap" parameterType="map">
+  	SELECT 
+		cs.sect_id, cs.sect_code, cs.sec_name, cs.cable_model, cs.cable_len, cs.fiber_num, cs.complete_date, cs.dev_id_a, cs.sect_state,cs.zg_sec_name,
+	    cs.dev_code_a, cs.dev_id_z, cs.dev_code_z, cs.cable_id, cs.org_id, cs.survey_result,cs.create_time,cs.create_user,cs.last_modify_time,
+	    cs.last_modify_user,cs.is_endfibercable,cs.zg_dev_id_a,cs.zg_dev_id_z,cs.zg_fiber_num,cs.sect_dec,cs.remark
+		FROM `tn_facility` f 
+		LEFT JOIN `tn_cable_section` cs ON (f.`dev_id`=cs.`dev_id_a` OR f.`dev_id`=cs.`dev_id_z`)
+		LEFT JOIN `tn_lines` l ON cs.`sect_id`=l.`sect_id`
+	WHERE ((l.`acode` IS NOT NULL AND l.`zcode` IS NULL) OR (l.`acode` IS NULL AND l.`zcode` IS NOT NULL))
+		<if test="devId != null">
+			and f.dev_id=#{devId,jdbcType=BIGINT}
+		</if>
+		<if test="orgId != null">
+			and cs.org_id=#{orgId,jdbcType=BIGINT}
+		</if>
+	GROUP BY l.`sect_id`
+  </select>
+  <!-- 两端都没有成端，刘沧海 -->
+  <select id="queryAsasideZero" resultMap="BaseResultMap" parameterType="map">
+  	SELECT 
+  		cs.sect_id, cs.sect_code, cs.sec_name, cs.cable_model, cs.cable_len, cs.fiber_num, cs.complete_date, cs.dev_id_a, cs.sect_state,cs.zg_sec_name,
+	    cs.dev_code_a, cs.dev_id_z, cs.dev_code_z, cs.cable_id, cs.org_id, cs.survey_result,cs.create_time,cs.create_user,cs.last_modify_time,
+	    cs.last_modify_user,cs.is_endfibercable,cs.zg_dev_id_a,cs.zg_dev_id_z,cs.zg_fiber_num,cs.sect_dec,cs.remark
+		FROM `tn_facility` f 
+		LEFT JOIN `tn_cable_section` cs ON (f.`dev_id`=cs.`dev_id_a` OR f.`dev_id`=cs.`dev_id_z`)
+		LEFT JOIN `tn_lines` l ON cs.`sect_id`=l.`sect_id`
+	WHERE l.`acode` IS NULL AND l.`zcode` IS NULL
+		<if test="devId != null">
+			and f.dev_id=#{devId,jdbcType=BIGINT}
+		</if>
+		<if test="orgId != null">
+			and cs.org_id=#{orgId,jdbcType=BIGINT}
+		</if>
+	GROUP BY l.`sect_id`
+  </select>
+<!--   根据A端所属光缆名称和Z段所属光缆名称模糊查询光缆段 -->
+  <select id="queryCSBySecName" resultMap="BaseResultMap" parameterType="map">
+	SELECT a.sect_id,a.sec_name,a.sect_code,a.cable_model,a.cable_len,a.fiber_num,a.complete_date,a.dev_id_a,a.dev_code_a,a.dev_id_z,a.dev_code_z,a.cable_id,a.org_id,a.survey_result,a.create_time,a.create_user,a.last_modify_time,a.last_modify_user,a.is_endfibercable,a.zg_dev_id_a,a.zg_dev_id_z,a.zg_fiber_num,a.sect_state,
+ 				a.zg_sec_name,a.remark
+	FROM `tn_cable_section` a
+		LEFT JOIN `tn_facility` b ON b.dev_id=a.dev_id_a
+		LEFT JOIN `tn_facility` c ON c.dev_id=a.dev_id_z
+	WHERE (b.dev_name LIKE concat('%',#{DevNameA,jdbcType=VARCHAR},'%') AND c.dev_name LIKE concat('%',#{DevNameZ,jdbcType=VARCHAR},'%')) or (c.dev_name LIKE concat('%',#{DevNameA,jdbcType=VARCHAR},'%') AND b.dev_name LIKE concat('%',#{DevNameZ,jdbcType=VARCHAR},'%'))
+	UNION
+	SELECT a.sect_id,a.sec_name,a.sect_code,a.cable_model,a.cable_len,a.fiber_num,a.complete_date,a.dev_id_a,a.dev_code_a,a.dev_id_z,a.dev_code_z,a.cable_id,a.org_id,a.survey_result,a.create_time,a.create_user,a.last_modify_time,a.last_modify_user,a.is_endfibercable,a.zg_dev_id_a,a.zg_dev_id_z,a.zg_fiber_num,a.sect_state,
+		 a.zg_sec_name 
+	FROM `tn_cable_section` a
+		LEFT JOIN `tn_facility` b ON b.dev_id=a.zg_dev_id_a
+		LEFT JOIN `tn_facility` c ON c.dev_id=a.zg_dev_id_z
+	WHERE (b.dev_name LIKE concat('%',#{DevNameA,jdbcType=VARCHAR},'%') AND c.dev_name LIKE concat('%',#{DevNameZ,jdbcType=VARCHAR},'%')) or (c.dev_name LIKE concat('%',#{DevNameA,jdbcType=VARCHAR},'%') AND b.dev_name LIKE concat('%',#{DevNameZ,jdbcType=VARCHAR},'%'))
+ 		order by sect_id limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT} 
+  </select>
+  <!-- fl 根据设施ID 查询机房关联光缆段和两端设施 -->
+  <select id="queryCableSectionsByDevId" parameterType="map" resultMap="BeanResultMap">
+  	SELECT t.dev_name devAName,t.`dev_id` dev_id_a,t.dev_code dev_code_a,t.`dev_type` type_a,f.`dev_id` dev_id_z,f.`dev_name` devZName,f.dev_code dev_code_z,f.`dev_type` type_z,
+	c.sect_id,c.sect_code,c.sec_name,c.cable_len,c.cable_model,c.fiber_num,c.cable_id,c.org_id,c.survey_result,c.create_time,
+	c.create_user,c.sect_dec,c.remark,c.sect_state,c.complete_date,c.last_modify_time,c.last_modify_user,c.is_endfibercable,
+	c.zg_dev_id_a,c.zg_dev_id_z,c.zg_fiber_num,c.zg_sec_name,zgf.`zg_dev_name` zgDevAName,zg.`dev_name` zgDevZName
+	FROM `tn_cable_section` c LEFT JOIN `tn_facility` t ON t.dev_id= c.dev_id_a 
+	LEFT JOIN `tn_facility` f ON f.`dev_id`=c.dev_id_z 
+	LEFT JOIN tn_facility zgf ON zgf.`dev_id`=c.`zg_dev_id_a`
+	LEFT JOIN tn_facility zg ON zg.`dev_id`=c.`zg_dev_id_z`
+	WHERE 1=1 
+	<if test="orgId !=null">
+		AND c.`org_id`=#{orgId,jdbcType=BIGINT}
+	</if>
+	<if test="devId !=null">
+	  AND (c.`dev_id_a`= #{devId,jdbcType=BIGINT} OR c.`dev_id_z`= #{devId,jdbcType=BIGINT})
+	</if>
+  </select>
+  <!-- zhouyu 根据设施ID 查询光缆段和两端设施 -->
+  <select id="queryCableSectionAndAZDescBySectId" parameterType="map" resultMap="cableSectionMap">
+	SELECT cs.sect_id,cs.sect_code,cs.sect_code,cs.sec_name,cs.fiber_num,cs.is_endfibercable,cs.cable_len,cs.sect_state sect_state,
+	fa.dev_code adev_code,fz.dev_code zdev_code,fa.dev_code dev_code_a,fz.dev_code dev_code_z,fa.dev_name aname,fz.dev_name zname,fa.dev_id adevid,fz.dev_id zdevid,
+	ba.value_name adev_type,bz.value_name zdev_type
+	FROM tn_cable_section cs
+	LEFT JOIN tn_facility fa ON cs.dev_id_a=fa.dev_id
+	LEFT JOIN tn_facility fz ON cs.dev_id_z=fz.dev_id
+	LEFT JOIN tn_basecode ba ON ba.value_code = fa.dev_type AND ba.class_code='DEV_TYPE'
+	LEFT JOIN tn_basecode bz ON bz.value_code = fz.dev_type AND bz.class_code='DEV_TYPE'
+	WHERE cs.sect_id=#{sectId,jdbcType=BIGINT}
+  </select>
+  <!--FL 根据两个devId查询是否存在光缆段  -->
+  <select id="queryexistCableSectionByDevIds" resultMap="BaseResultMap" parameterType="map">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from tn_cable_section
+  	<where>
+  		<trim prefixOverrides="and">
+  			<if test="devIdA !=null">
+  				(dev_id_a = #{devIdA,jdbcType=BIGINT} OR dev_id_z =  #{devIdA,jdbcType=BIGINT} ) 
+  			</if>
+  			<if test="devIdZ !=null">
+  			 	AND (dev_id_a = #{devIdZ,jdbcType=BIGINT} OR dev_id_z = #{devIdZ,jdbcType=BIGINT} ) 
+  			</if>
+  		</trim>
+  	</where>
+  </select>
+  
+  <!-- 根据devId和orgId查询 -->
+  <select id="queryCaByDevId" resultMap="BaseResultMap" parameterType="map">
+	  	select 
+	  	<include refid="Base_Column_List" />
+	  	from tn_cable_section
+	  	<where>
+  		<trim prefixOverrides="and">
+  			and sect_state <![CDATA[ <> ]]> '0'
+  			<if test="devId !=null">
+  				AND	dev_id_a=#{devId,jdbcType=BIGINT} OR dev_id_z=#{devId,jdbcType=BIGINT}
+  			</if>
+  			<if test="orgId !=null">
+  				AND org_id = #{orgId,jdbcType=BIGINT}
+  			</if>
+  		</trim>
+  	</where>
+  </select>
+  
+  <select id="queryBySectIdBean" resultMap="BeanResultMap" parameterType="java.lang.Long">
+  	select sect_id,sec_name,sect_code,fiber_num,sect_state
+  	from tn_cable_section
+  	where sect_id=#{sectId,jdbcType=BIGINT}
+  </select>
+  <!--fl 根据用户ID,查询未成端光缆段  -->
+  <select id="queryNotEndCableSections" parameterType="map" resultMap="CableSectionNotEndBeanMap">
+	  	SELECT a.*,b.user_name create_user_name,c.user_name modify_user_name FROM (
+		SELECT a.*,CASE WHEN a.devIdA>a.devIdZ THEN a.devIdZ ELSE a.devIdA END orderDevIdA,CASE WHEN a.devIdA>a.devIdZ THEN a.devIdA ELSE a.devIdZ END orderDevIdZ  FROM (	
+			SELECT 
+				a.sect_id,a.sect_code ,a.sec_name ,a.fiber_num ,a.create_time,a.create_user,a.last_modify_time,a.last_modify_user,
+				a.sect_state sect_state,b.dev_id devIdA,b.dev_code adev_code,b.dev_name adev_name,c.dev_type a_type,
+				d.isTerminatA isTerminatA,b.dev_state asurvey_result,c.dev_id devIdZ,c.dev_code zdev_code,c.dev_name zdev_name,
+				c.dev_type z_type,d.isTerminatZ isTerminatZ,c.dev_state zsurvey_result
+			FROM `tn_cable_section` a
+			LEFT JOIN (
+				 SELECT b.sect_id,SUM(iTemA) isTerminatA,SUM(iTemZ) isTerminatZ FROM (
+					SELECT a.sect_id,
+						CASE WHEN a.acode IS NULL THEN 0
+						ELSE 1 END iTemA,
+						CASE WHEN a.zcode IS NULL THEN 0
+						ELSE 1 END iTemZ
+					FROM tn_lines a WHERE line_type='01' ) b
+				GROUP BY b.sect_id
+				) d ON d.sect_id=a.sect_id
+			LEFT JOIN tn_facility b ON b.dev_id=a.dev_id_a
+			LEFT JOIN tn_facility c ON c.dev_id=a.dev_id_z
+			WHERE a.sect_state NOT IN('0','4','5') AND a.org_id=#{orgId,jdbcType=BIGINT} AND (isTerminatA=0 OR isTerminatZ=0) AND (c.dev_name IS NOT NULL AND b.dev_name IS NOT NULL)
+		) a
+	) a 
+	LEFT JOIN tn_users b ON b.user_id=a.create_user
+	LEFT JOIN tn_users c ON c.user_id=a.last_modify_user
+	<where>
+		<trim prefixOverrides="and">
+			<if test="isCheckAll !=null and isCheckAll == 0">
+			 	AND (a.last_modify_user=#{userId,jdbcType=BIGINT} OR (last_modify_user IS NULL AND create_user=#{userId,jdbcType=BIGINT}))
+			</if>
+			<if test="bean.sectCode !=null and bean.sectCode !=''">
+				AND a.sect_code  LIKE CONCAT('%',#{bean.sectCode,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="bean.secName !=null and bean.secName !=''">
+				AND a.sec_name LIKE CONCAT('%',#{bean.secName,jdbcType=VARCHAR},'%')
+			</if>
+		</trim>
+	</where>
+	 
+	ORDER BY  a.last_modify_time, a.create_time DESC
+	<!-- ORDER BY orderDevIdA,orderDevIdZ -->
+	 <if test="pb!=null">
+		 limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	 </if>
+  </select>
+  <!--fl 根据用户ID,查询成端不一致光缆段  -->
+  <select id="querydiscordCableSection" parameterType="map" resultMap="CableSectionNotEndBeanMap">
+	  SELECT a.*,b.user_name create_user_name,c.user_name modify_user_name FROM (
+		SELECT a.*,CASE WHEN a.devIdA>a.devIdZ THEN a.devIdZ ELSE a.devIdA END orderDevIdA,CASE WHEN a.devIdA>a.devIdZ THEN a.devIdA ELSE a.devIdZ END orderDevIdZ  FROM (	
+			SELECT 
+				a.sect_id,a.sect_code ,a.sec_name ,a.fiber_num ,a.create_time,a.create_user,a.last_modify_time,a.last_modify_user,
+				a.sect_state sect_sate,b.dev_id devIdA,b.dev_code adev_code,b.dev_name adev_name,c.dev_type a_type,
+				b.dev_state asurvey_result,c.dev_id devIdZ,c.dev_code zdev_code,c.dev_name zdev_name,c.dev_type z_type,
+				c.dev_state zsurvey_result
+			FROM `tn_cable_section` a
+			LEFT JOIN (
+				 SELECT b.sect_id,SUM(iTemA) isTerminatA FROM (
+					SELECT a.sect_id,
+						CASE WHEN (a.acode IS NULL AND a.zcode IS NOT NULL ) THEN 1
+						     WHEN (a.zcode IS NULL AND a.acode IS NOT NULL ) THEN 2
+						ELSE 0 END iTemA
+					FROM tn_lines a WHERE line_type='01' ) b
+				GROUP BY b.sect_id
+				) d ON d.sect_id=a.sect_id
+			LEFT JOIN tn_facility b ON b.dev_id=a.dev_id_a
+			LEFT JOIN tn_facility c ON c.dev_id=a.dev_id_z
+			WHERE isTerminatA > 0 AND a.sect_state NOT IN('0','4','5') AND a.org_id=#{orgId,jdbcType=BIGINT} AND (c.dev_name IS NOT NULL AND b.dev_name IS NOT NULL)
+		) a
+	) a 
+	LEFT JOIN tn_users b ON b.user_id=a.create_user
+	LEFT JOIN tn_users c ON c.user_id=a.last_modify_user
+	<where>
+		<trim prefixOverrides="and">
+			<if test="isCheckAll !=null and isCheckAll == 0">
+			 	AND (a.last_modify_user=#{userId,jdbcType=BIGINT} OR (last_modify_user IS NULL AND create_user=#{userId,jdbcType=BIGINT}))
+			</if>
+			<if test="bean.sectCode !=null and bean.sectCode !=''">
+				AND a.sect_code  LIKE CONCAT('%',#{bean.sectCode,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="bean.secName !=null and bean.secName !=''">
+				AND a.sec_name LIKE CONCAT('%',#{bean.secName,jdbcType=VARCHAR},'%')
+			</if>
+		</trim>
+	</where>
+	<!-- ORDER BY orderDevIdA,orderDevIdZ -->
+	ORDER BY  a.last_modify_time, a.create_time DESC
+	 <if test="pb!=null">
+		 limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	 </if>
+  </select>
+  <!--fl 根据机构ID,查询重复光缆  -->
+  <select id="queryRepetitionCableSection" parameterType="map" resultMap="CableSectionNotEndBeanMap">
+  	SELECT * FROM ( SELECT * FROM (SELECT  a.last_modify_time,a.create_time,a.sect_code, a.sec_name, a.fiber_num, a.sect_id, b.area_code1, b.dev_id 
+	 AS devIdA, b.dev_code AS adev_code, b.dev_name AS adev_name, c.dev_id AS devIdZ, c.dev_code AS zdev_code, c.dev_name AS zdev_name,
+	 '' isTerminatA, '' isTerminatZ, a.sect_state, CASE WHEN a.dev_id_a > a.dev_id_z THEN CONCAT(a.dev_id_z, '-', a.dev_id_a) 
+	 ELSE CONCAT(a.dev_id_a, '-', a.dev_id_z) END AS equalityIds FROM tn_cable_section a 
+	 LEFT JOIN tn_facility b ON b.dev_id = a.dev_id_a LEFT JOIN tn_facility c ON c.dev_id = a.dev_id_z 
+	 WHERE a.org_id=#{orgId,jdbcType=BIGINT}
+	 <if test="isCheckAll !=null and isCheckAll == 0">
+		  AND (a.last_modify_user=#{userId,jdbcType=BIGINT} OR (a.last_modify_user IS NULL AND a.create_user=#{userId,jdbcType=BIGINT}))
+	 </if>
+	 <if test="secName !=null and secName !=''">
+	 	AND a.sec_name like concat('%',#{secName,jdbcType=VARCHAR},'%') 
+	 </if>
+	  AND a.sect_state NOT IN ('0', '4', '5') AND (c.dev_name IS NOT NULL AND b.dev_name IS NOT NULL) ORDER BY a.sect_id) a 
+	 GROUP BY equalityIds HAVING COUNT(equalityIds) > 1 
+	 UNION 
+	 SELECT * FROM (SELECT  a.last_modify_time,a.create_time,a.sect_code, a.sec_name, a.fiber_num, a.sect_id, b.area_code1, b.dev_id AS devIdA, b.dev_code 
+	 AS adev_code, b.dev_name AS aname, c.dev_id AS devIdZ, c.dev_code AS zdev_code, c.dev_name AS zdev_name, 
+	 '' isTerminatA, '' isTerminatZ, a.sect_state, CASE WHEN a.dev_id_a > a.dev_id_z THEN CONCAT(a.dev_id_z, '-', a.dev_id_a) 
+	 ELSE CONCAT(a.dev_id_a, '-', a.dev_id_z) END AS equalityIds FROM tn_cable_section a 
+	 LEFT JOIN tn_facility b ON b.dev_id = a.dev_id_a LEFT JOIN tn_facility c ON c.dev_id = a.dev_id_z 
+	 WHERE a.org_id=#{orgId,jdbcType=BIGINT} 
+	 <if test="isCheckAll !=null and isCheckAll == 0">
+	 	AND (a.last_modify_user=#{userId,jdbcType=BIGINT} OR (a.last_modify_user IS NULL AND a.create_user=#{userId,jdbcType=BIGINT}))
+	 </if>
+	 <if test="secName !=null and secName !=''">
+	 	AND a.sec_name like concat('%',#{secName,jdbcType=VARCHAR},'%') 
+	 </if>
+	 AND a.sect_state NOT IN ('0', '4', '5') AND (c.dev_name IS NOT NULL AND b.dev_name IS NOT NULL) ORDER BY a.sect_id DESC ) a
+  	 GROUP BY equalityIds HAVING COUNT(equalityIds) > 1 ) a 
+  	<!--  ORDER BY equalityIds  -->
+  	 ORDER BY  a.last_modify_time, a.create_time DESC
+  	  <if test="pb!=null">
+		 limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	 </if>
+  </select>
+  <!--fl 根据设施ID,查询重复光缆段  -->
+  <select id="queryRepetitionCableSectionBydevIds" parameterType="map" resultMap="CableSectionNotEndBeanMap">
+  	SELECT a.sect_code, a.sec_name, a.fiber_num, a.sect_id, b.area_code1, b.dev_id AS devIdA, b.dev_code AS adev_code, b.dev_name AS adev_name, c.dev_id AS devIdZ, c.dev_code AS zdev_code, c.dev_name AS zdev_name,
+	a.sect_state sect_state,a.create_time,a.create_user ,a.last_modify_time,a.last_modify_user ,d.`user_name` create_user_name,e.user_name modify_user_name
+	FROM `tn_cable_section` a
+	LEFT JOIN tn_facility b ON b.dev_id = a.dev_id_a LEFT JOIN tn_facility c ON c.dev_id = a.dev_id_z 
+	LEFT JOIN tn_users d ON d.user_id=a.create_user
+	LEFT JOIN tn_users e ON e.user_id=a.last_modify_user
+	WHERE a.org_id=#{orgId,jdbcType=BIGINT} AND ((dev_id_a = #{devIdA,jdbcType=BIGINT} AND dev_id_z=#{devIdZ,jdbcType=BIGINT}) OR (dev_id_a =#{devIdZ,jdbcType=BIGINT}  AND dev_id_z=#{devIdA,jdbcType=BIGINT}))
+	AND a.sect_state NOT IN ('0', '4', '5') AND (c.dev_name IS NOT NULL AND b.dev_name IS NOT NULL) 
+	 GROUP BY a.sect_id ORDER BY a.last_modify_time, a.create_time DESC
+	 <if test="pb!=null">
+		 limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	 </if>
+  </select>
+  <!-- 根据资管光缆名称和创建时间查询光缆信息 -->
+   <select id="selectByZgSecNameAndTime" resultMap="BaseResultMap" parameterType="map">
+	  	select 
+	  	<include refid="Base_Column_List" />
+	  	from tn_cable_section
+	  	<where>
+	  		<trim prefixOverrides="and">
+	  			zg_sec_name = #{zgSecName,jdbcType=VARCHAR}
+	  			AND	create_time &lt; #{createTime,jdbcType=TIMESTAMP}
+	  			<if test="orgId !=null">
+	  				AND org_id = #{orgId,jdbcType=BIGINT}
+	  			</if>
+	  		</trim>
+  		</where>
+  		limit 0,1
+  </select>
+  
+  <!-- 查询所属光缆段及所属井列表 -->
+  <select id="queryopdCableSectionByDevId" resultMap="BaseCableWellMap" parameterType="java.lang.Long">
+  	select tc.sect_id,tc.fiber_num,tc.sect_code,tc.sect_state,tc.sec_name,a.well_name,a.well_id
+	from tn_cable_section tc  
+	left join (
+		SELECT a.sect_id,a.well_id,b.well_name 
+		FROM tn_piping_cable a
+		LEFT JOIN tn_well b ON b.well_id=a.well_id
+		GROUP BY a.sect_id,a.well_id
+	) a 
+	 on tc.sect_id = a.sect_id
+	where (dev_id_a = #{devId,jdbcType=BIGINT} or dev_id_z =#{devId,jdbcType=BIGINT}) AND tc.sect_state NOT IN ('4','5')
+  </select>
+  
+  <!-- 查询可修改的机柜 -->
+  <select id="queryByConditions" resultMap="ResultCabinetMobile" parameterType="map">
+	SELECT DISTINCT IF(a.dev_id_a=#{zdevId,jdbcType=BIGINT},b2.dev_id,b1.dev_id) dev_id,IF(a.dev_id_a=#{zdevId,jdbcType=BIGINT},b2.dev_name,b1.dev_name) dev_name,
+	IF(a.dev_id_a=#{zdevId,jdbcType=BIGINT},b2.dev_code,b1.dev_code) dev_code,#{zdevId,jdbcType=BIGINT} otherDevId
+	FROM tn_cable_section a
+	LEFT JOIN tn_facility b1 ON b1.dev_id=a.dev_id_a
+	LEFT JOIN tn_facility b2 ON b2.dev_id=a.dev_id_z
+	WHERE a.org_id=#{orgId,jdbcType=BIGINT} AND ((b2.dev_type in ('05') AND a.dev_id_a=#{zdevId,jdbcType=BIGINT} AND b2.pdev_id=#{pdevId,jdbcType=BIGINT} ) 
+			OR (b1.dev_type in ('05') AND a.dev_id_z=#{zdevId,jdbcType=BIGINT} AND b1.pdev_id=#{pdevId,jdbcType=BIGINT}))
+  </select>
+  
+</mapper>

@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.DeviceRegMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.DeviceReg" >
+    <id column="reg_id" property="regId" jdbcType="BIGINT" />
+    <result column="dev_id" property="devId" jdbcType="BIGINT" />
+    <result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+    <result column="dev_name" property="devName" jdbcType="VARCHAR" />
+    <result column="hw_device_id" property="hwDeviceId" jdbcType="VARCHAR" />
+    <result column="dev_imei" property="devImei" jdbcType="VARCHAR" />
+    <result column="dev_mac" property="devMac" jdbcType="VARCHAR" />
+    <result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="rpt_time" property="rptTime" jdbcType="TIMESTAMP" />
+    <result column="validate_sign" property="validateSign" jdbcType="CHAR" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="f_name" property="fName" jdbcType="VARCHAR" />
+    <result column="dev_platform" property="devPlatform" jdbcType="VARCHAR" />
+    <result column="dev_status" property="devStatus" jdbcType="CHAR" />
+    <result column="redeploying_type" property="redeployingType" jdbcType="CHAR" />
+  </resultMap>
+  
+  <resultMap id="BeanResultMap" type="com.ycnet.frms.vo.DeviceRegBean" >
+    <id column="reg_id" property="regId" jdbcType="BIGINT" />
+    <result column="dev_id" property="devId" jdbcType="BIGINT" />
+    <result column="dev_code" property="devCode" jdbcType="VARCHAR" />
+    <result column="dev_name" property="devName" jdbcType="VARCHAR" />
+    <result column="hw_device_id" property="hwDeviceId" jdbcType="VARCHAR" />
+    <result column="dev_imei" property="devImei" jdbcType="VARCHAR" />
+    <result column="dev_mac" property="devMac" jdbcType="VARCHAR" />
+    <result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="rpt_time" property="rptTime" jdbcType="TIMESTAMP" />
+    <result column="validate_sign" property="validateSign" jdbcType="CHAR" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="dev_platform" property="devPlatform" jdbcType="VARCHAR" />
+    <result column="dev_status" property="devStatus" jdbcType="CHAR" />
+    <result column="fdevName" property="fdevName" jdbcType="VARCHAR" />
+    <result column="baidu_y" property="baiduY" jdbcType="VARCHAR" />
+    <result column="baidu_x" property="baiduX" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap type="com.ycnet.frms.vo.mobile.DeviceRegVo" id="DeviceRegVoMap">
+    <result column="devId" property="devId" jdbcType="BIGINT" />
+    <result column="devName" property="devName" jdbcType="VARCHAR" />
+    <result column="lockName" property="lockName" jdbcType="VARCHAR" />
+    <result column="devStatus" property="devStatus" jdbcType="VARCHAR" />
+    <result column="lock_status" property="lockStatus" jdbcType="VARCHAR" />
+    <result column="door_status" property="doorStatus" jdbcType="VARCHAR" />
+    <result column="signals" property="signals" jdbcType="VARCHAR" />
+    <result column="battery" property="battery" jdbcType="VARCHAR" />
+    <result column="temp" property="temp" jdbcType="VARCHAR" />
+    <result column="humidity" property="humidity" jdbcType="VARCHAR" />
+    <result column="baidu_x" property="baiduX" jdbcType="VARCHAR" />
+    <result column="baidu_y" property="baiduY" jdbcType="VARCHAR" />
+    <result column="dev_addr" property="devAddr" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    reg_id, dev_id, dev_code, dev_name,hw_device_id , dev_imei, dev_mac, reg_time, rpt_time, validate_sign, 
+    org_id,dev_platform,dev_status,redeploying_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_device_reg
+    where reg_id = #{regId,jdbcType=BIGINT}
+  </select>
+
+  <select id="queryAll" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_device_reg
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_device_reg
+    where reg_id = #{regId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.DeviceReg" >
+    insert into tn_device_reg (reg_id, dev_id, dev_code, 
+      dev_name, hw_device_id, dev_imei, dev_mac, 
+      reg_time, rpt_time, validate_sign, 
+      org_id,dev_platform,dev_status)
+    values (#{regId,jdbcType=BIGINT}, #{devId,jdbcType=BIGINT}, #{devCode,jdbcType=VARCHAR}, 
+      #{devName,jdbcType=VARCHAR}, #{hwDeviceId,jdbcType=VARCHAR}, #{devImei,jdbcType=VARCHAR}, #{devMac,jdbcType=VARCHAR}, 
+      #{regTime,jdbcType=TIMESTAMP}, #{rptTime,jdbcType=TIMESTAMP}, #{validateSign,jdbcType=CHAR}, 
+      #{orgId,jdbcType=BIGINT}, #{devPlatform,jdbcType=VARCHAR}, #{devStatus,jdbcType=CHAR},#{redeployingType,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.DeviceReg" >
+    insert into tn_device_reg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="regId != null" >
+        reg_id,
+      </if>
+      <if test="devId != null" >
+        dev_id,
+      </if>
+      <if test="devCode != null" >
+        dev_code,
+      </if>
+      <if test="devName != null" >
+        dev_name,
+      </if>
+      <if test="hwDeviceId != null" >
+        hw_device_id,
+      </if>
+      <if test="devImei != null" >
+        dev_imei,
+      </if>
+      <if test="devMac != null" >
+        dev_mac,
+      </if>
+      <if test="regTime != null" >
+        reg_time,
+      </if>
+      <if test="rptTime != null" >
+        rpt_time,
+      </if>
+      <if test="validateSign != null" >
+        validate_sign,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="devPlatform != null" >
+        dev_platform,
+      </if>
+      <if test="devStatus != null" >
+        dev_status,
+      </if>
+      <if test="redeployingType != null" >
+        redeploying_type
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="regId != null" >
+        #{regId,jdbcType=BIGINT},
+      </if>
+      <if test="devId != null" >
+        #{devId,jdbcType=BIGINT},
+      </if>
+      <if test="devCode != null" >
+        #{devCode,jdbcType=VARCHAR},
+      </if>
+      <if test="devName != null" >
+        #{devName,jdbcType=VARCHAR},
+      </if>
+      <if test="hwDeviceId != null" >
+        #{hwDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="devImei != null" >
+        #{devImei,jdbcType=VARCHAR},
+      </if>
+      <if test="devMac != null" >
+        #{devMac,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rptTime != null" >
+        #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validateSign != null" >
+        #{validateSign,jdbcType=CHAR},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="devPlatform != null" >
+        #{devPlatform,jdbcType=VARCHAR},
+      </if>
+      <if test="devStatus != null" >
+        #{devStatus,jdbcType=CHAR},
+      </if>
+      <if test="redeployingType != null" >
+        #{redeployingType,jdbcType=CHAR}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.DeviceReg" >
+    update tn_device_reg
+    <set >
+      <if test="devId != null" >
+        dev_id = #{devId,jdbcType=BIGINT},
+      </if>
+      <if test="devCode != null" >
+        dev_code = #{devCode,jdbcType=VARCHAR},
+      </if>
+      <if test="devName != null" >
+        dev_name = #{devName,jdbcType=VARCHAR},
+      </if>
+      <if test="hwDeviceId != null" >
+        hw_device_id = #{hwDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="devImei != null" >
+        dev_imei = #{devImei,jdbcType=VARCHAR},
+      </if>
+      <if test="devMac != null" >
+        dev_mac = #{devMac,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null" >
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rptTime != null" >
+        rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validateSign != null" >
+        validate_sign = #{validateSign,jdbcType=CHAR},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="devPlatform != null" >
+        dev_platform = #{devPlatform,jdbcType=VARCHAR},
+      </if>
+      <if test="devStatus != null" >
+        dev_status = #{devStatus,jdbcType=CHAR},
+      </if>
+      <if test="redeployingType != null" >
+        redeploying_type = #{redeployingType,jdbcType=CHAR}
+      </if>
+    </set>
+    where reg_id = #{regId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.DeviceReg" >
+    update tn_device_reg
+    set dev_id = #{devId,jdbcType=BIGINT},
+      dev_code = #{devCode,jdbcType=VARCHAR},
+      dev_name = #{devName,jdbcType=VARCHAR},
+      hw_device_id = #{hwDeviceId,jdbcType=VARCHAR},
+      dev_imei = #{devImei,jdbcType=VARCHAR},
+      dev_mac = #{devMac,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=TIMESTAMP},
+      rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      validate_sign = #{validateSign,jdbcType=CHAR},
+      org_id = #{orgId,jdbcType=BIGINT},
+      dev_platform = #{devPlatform,jdbcType=VARCHAR},
+      dev_status = #{devStatus,jdbcType=CHAR},
+      redeploying_type = #{redeployingType,jdbcType=CHAR}
+    where reg_id = #{regId,jdbcType=BIGINT}
+  </update>
+  
+  
+  	<!-- 智能锁管理列表 -->
+	<select id="queryListByMap" parameterType="map" resultMap="BaseResultMap">
+		select
+		 	d.reg_id, d.dev_id, d.dev_code, d.dev_name,d.hw_device_id , d.dev_imei, d.dev_mac, d.reg_time, d.rpt_time, d.validate_sign, 
+    		d.org_id,d.dev_platform,d.dev_status,f.dev_name f_name,d.redeploying_type
+		from tn_device_reg d
+		INNER JOIN tn_facility f ON d.dev_id = f.dev_id
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="dr!=null and dr.devImei!=null and dr.devImei!=''">
+				and d.dev_imei =#{dr.devImei,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.devMac!=null and dr.devMac!=''">
+				and d.dev_mac=#{dr.devMac,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.devCode!=null and dr.devCode!=''">
+				and f.dev_code=#{dr.devCode,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.devId!=null and dr.devId!=''">
+				and d.dev_id=#{dr.devId,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.devName!=null and dr.devName!=''">
+		        and d.dev_name like concat('%',#{dr.devName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="dr!=null and dr.validateSign!=null and dr.validateSign!=''">
+				and d.validate_sign =#{dr.validateSign,jdbcType=VARCHAR}
+			</if>
+			<if test="dr!=null and dr.fName!=null and dr.fName!=''">
+				and f.dev_name like concat('%',#{dr.fName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="dr!=null and dr.redeployingType!=null and dr.redeployingType!=''">
+				and d.redeploying_type = #{dr.redeployingType,jdbcType=VARCHAR}
+			</if>
+			      <if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and d.org_id=#{user.orgId,jdbcType=BIGINT}
+			            </if>
+		            </if>
+		</trim>
+		<if test="pb!=null">
+			order by reg_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+	<!-- 智能锁管理列表查询数量 -->
+	<select id="queryCountByMap" parameterType="map" resultType="java.lang.Integer">		
+	    select count(1) 
+		from tn_device_reg d
+		INNER JOIN tn_facility f ON d.dev_id = f.dev_id
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="dr!=null and dr.devImei!=null and dr.devImei!=''">
+				and d.dev_imei =#{dr.devImei,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.devMac!=null and dr.devMac!=''">
+				and d.dev_mac=#{dr.devMac,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.devId!=null and dr.devId!=''">
+				and d.dev_id=#{dr.devId,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.devName!=null and dr.devName!=''">
+		        and d.dev_name like concat('%',#{dr.devName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="dr!=null and dr.validateSign!=null and dr.validateSign!=''">
+				and d.validate_sign =#{dr.validateSign,jdbcType=VARCHAR}
+			</if>
+			<if test="dr!=null and dr.fName!=null and dr.fName!=''">
+				and f.dev_name like concat('%',#{dr.fName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="dr!=null and dr.redeployingType!=null and dr.redeployingType!=''">
+				and d.redeploying_type = #{dr.redeployingType,jdbcType=VARCHAR}
+			</if>
+			      <if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and d.org_id=#{user.orgId,jdbcType=BIGINT}
+			            </if>
+		            </if>
+		</trim>
+	</select>
+	
+  <select id="selectByCondition" resultMap="BaseResultMap" parameterType="com.ycnet.frms.bean.DeviceReg" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_device_reg
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="devImei!=null and devImei!=''">
+				and dev_imei =#{devImei,jdbcType=VARCHAR}
+			</if>
+			<if test="devMac!=null and devMac!=''">
+				and dev_mac=#{devMac,jdbcType=VARCHAR}
+			</if>
+	</trim>
+	limit 0,1
+  </select>
+  
+  <select id="selectByDevId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_device_reg
+    where dev_id = #{devId,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 高级查询 -->
+  <select id="queryListByCondition" parameterType="map" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from tn_device_reg
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="dr!=null and dr.devImei!=null and dr.devImei!=''">
+				and dev_imei like concat('%',#{dr.devImei,jdbcType=BIGINT},'%')
+			</if>
+			<if test="dr!=null and dr.devMac!=null and dr.devMac!=''">
+				and dev_mac like concat('%',#{dr.devMac,jdbcType=BIGINT},'%')
+			</if>
+			<if test="dr!=null and dr.devId!=null and dr.devId!=''">
+				and dev_id=#{dr.devId,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.devName!=null and dr.devName!=''">
+		        and dev_name like concat('%',#{dr.devName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="dr!=null and dr.validateSign!=null and dr.validateSign!=''">
+				and validate_sign =#{dr.validateSign,jdbcType=VARCHAR}
+			</if>
+			      <if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and org_id=#{user.orgId,jdbcType=BIGINT}
+			            </if>
+		            </if>
+		</trim>
+		<if test="pb!=null">
+			order by reg_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+	<select id="queryCountByCondition" parameterType="map" resultMap="BaseResultMap">
+		select
+		count(1)
+		from tn_device_reg
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="dr!=null and dr.devImei!=null and dr.devImei!=''">
+				and dev_imei = #{dr.devImei,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.devMac!=null and dr.devMac!=''">
+				and dev_mac = #{dr.devMac,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.devId!=null and dr.devId!=''">
+				and dev_id=#{dr.devId,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.devName!=null and dr.devName!=''">
+		        and dev_name like concat('%',#{dr.devName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="dr!=null and dr.validateSign!=null and dr.validateSign!=''">
+				and validate_sign =#{dr.validateSign,jdbcType=VARCHAR}
+			</if>
+			      <if test="user!=null">
+			           	<if test="user.orgId!=null">
+			                and org_id=#{user.orgId,jdbcType=BIGINT}
+			            </if>
+		            </if>
+		</trim>
+		<if test="pb!=null">
+			order by reg_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+  <select id="checkDeviceReg" resultMap="BaseResultMap" parameterType="map" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from tn_device_reg
+	    where  dev_mac =#{devMac,jdbcType=VARCHAR}
+	    and org_id=#{orgId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="queryLockBydevCode" resultMap="BaseResultMap" parameterType="map" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from tn_device_reg
+	    where  dev_code =#{devCode,jdbcType=VARCHAR}
+	    and org_id=#{orgId,jdbcType=BIGINT}
+  </select>
+	
+   <select id="queryFacilityLock" resultMap="BaseResultMap"  >
+	    select 
+	    d.reg_id, d.dev_id, d.dev_code, d.dev_name,d.hw_device_id , d.dev_imei, d.dev_mac, d.reg_time, d.rpt_time, d.validate_sign, 
+    		d.org_id,d.dev_platform,d.dev_status,f.dev_name f_name
+		from tn_device_reg d
+		INNER JOIN tn_facility f ON d.dev_id = f.dev_id
+	    where  d.dev_id=#{devId,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 查询未注册设备 -->
+  <select id="queryNotRegDevice" resultMap="BaseResultMap">
+  		select 
+  		<include refid="Base_Column_List" />
+	    from tn_device_reg
+	    where validate_sign = '0'
+  </select>
+  
+  <!-- 根据imei修改 -->
+  <update id="updateDeviceReg" parameterType="com.ycnet.frms.bean.DeviceReg" >
+    update tn_device_reg
+    <set >
+      <if test="regTime != null" >
+        reg_time = #{regTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rptTime != null" >
+        rpt_time = #{rptTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validateSign != null" >
+        validate_sign = #{validateSign,jdbcType=CHAR},
+      </if>
+    </set>
+    where dev_imei = #{devImei,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据imei查询设备信息 -->
+  <select id="queryByImei" parameterType="java.lang.String" resultMap="BaseResultMap">
+  		select 
+  		 d.reg_id, d.dev_id, d.dev_code, d.dev_name,d.hw_device_id , d.dev_imei, d.dev_mac, d.reg_time, d.rpt_time, d.validate_sign, 
+    		d.org_id,d.dev_platform,d.dev_status,f.dev_name f_name
+		from tn_device_reg d
+		INNER JOIN tn_facility f ON d.dev_id = f.dev_id
+		where d.dev_imei = #{did,jdbcType=VARCHAR}
+		limit 0,1
+  </select>
+  
+  <!-- 根据mac查询数据 -->
+  <select id="queryDevByMac" parameterType="java.lang.String" resultMap="BaseResultMap">
+  		select 
+  		<include refid="Base_Column_List" />
+  		from tn_device_reg
+  		where dev_mac =#{devMac,jdbcType=VARCHAR}
+  </select>
+
+  <!-- fl 根据汇聚去编码，查询锁设备 -->
+  <select id="selectDeviceRegAreaCode1" parameterType="map" resultMap="BeanResultMap">
+  	SELECT dr.*,f.`area_code1`,f.`dev_name` fdevName,f.`baidu_x`,f.`baidu_y`,f.`latitude`,f.`longitude`
+	FROM (SELECT * FROM tn_device_reg GROUP BY dev_id) dr  LEFT JOIN tn_facility f ON dr.`dev_id`=f.`dev_id`
+	where dr.org_id = #{orgId,jdbcType=BIGINT}
+		<if test="areaCode != null">
+				and f.area_code1 IN 
+				<foreach collection="areaCode" open="(" close=")" separator="," item="code">
+	                #{code, jdbcType=VARCHAR}
+	            </foreach>
+		</if>
+		<if test="devName !=null and devName !=''">
+			and	dr.dev_name like concat('%',#{devName, jdbcType=VARCHAR},'%')
+		</if>
+  </select>
+  
+
+  
+  <!-- 根据devId查询设备 -->
+  <select id="queryByDevId" resultMap="BaseResultMap" parameterType="map">
+  		select 
+  		<include refid="Base_Column_List" />
+  		from tn_device_reg
+  		where dev_id=#{devId,jdbcType=BIGINT} and org_id = #{orgId,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 查询锁的详细信息 -->
+  <select id="queryLockInfoByRegId"  resultMap="DeviceRegVoMap" parameterType="map">
+	 SELECT b.dev_name devName,a.dev_name lockName,CASE WHEN a.dev_status='2' THEN '报警' ELSE '正常'  END devStatus,b.dev_id devId ,
+		ds.lock_status,ds.door_status,ds.signals,ds.battery,ds.temp,ds.humidity,b.baidu_x,b.baidu_y,b.dev_addr
+		FROM tn_device_reg a
+		LEFT JOIN tn_facility b ON b.dev_id=a.dev_id
+		LEFT JOIN (SELECT * FROM (SELECT * FROM `tn_device_status` ORDER BY rpt_time DESC)s GROUP BY dev_id) ds ON ds.dev_id = a.dev_id
+		WHERE a.reg_id=#{regId,jdbcType=BIGINT} AND a.org_id =#{orgId,jdbcType=BIGINT}
+  </select>
+
+	<!-- 根据条件查询列表 -->
+	<select id="queryByConditionMap" parameterType="map" resultMap="BaseResultMap">
+		SELECT DISTINCT d.reg_id,d.dev_id,f.dev_name f_name,d.dev_code,d.dev_imei,d.dev_mac,d.validate_sign,
+			d.dev_platform,d.dev_status,d.redeploying_type,d.org_id,d.dev_name
+		FROM tn_facility_access a
+		LEFT JOIN tn_device_reg d ON FIND_IN_SET(d.dev_id,a.dev_ids) 
+		LEFT JOIN tn_facility f ON f.dev_id = d.dev_id
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="dr!=null and dr.devCode!=null and dr.devCode!=''">
+				and f.dev_code=#{dr.devCode,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.devName!=null and dr.devName!=''">
+				and f.dev_name like concat('%',#{dr.devName,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="dr!=null and dr.devMac!=null and dr.devMac!=''">
+				and d.dev_mac=#{dr.devMac,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.devImei!=null and dr.devImei!=''">
+				and d.dev_imei =#{dr.devImei,jdbcType=BIGINT}
+			</if>
+			<if test="dr!=null and dr.validateSign!=null and dr.validateSign!=''">
+				and d.validate_sign =#{dr.validateSign,jdbcType=VARCHAR}
+			</if>
+			<if test="dr!=null and dr.redeployingType!=null and dr.redeployingType!=''">
+				and d.redeploying_type = #{dr.redeployingType,jdbcType=VARCHAR}
+			</if>
+			<if test="user!=null">
+	        	<if test="user.userId!=null">
+	             	and a.user_id = #{user.userId,jdbcType=BIGINT}
+	         	</if>
+	        	<if test="user.orgId!=null">
+	             	and d.org_id = #{user.orgId,jdbcType=BIGINT}
+	         	</if>
+	        </if>
+<!-- 			AND a.`validate_time` <![CDATA[>]]> NOW() -->
+		</trim>
+		<if test="pb!=null">
+			order by reg_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+		</if>
+	</select>
+	
+	<!-- 根据条件查询列表数量 -->
+	<select id="queryCountByConditionMap" parameterType="map" resultType="java.lang.Integer">
+		select count(1) 
+		from 
+		(
+			SELECT DISTINCT d.reg_id,d.dev_id,f.dev_name,d.dev_code,d.dev_imei,d.dev_mac,d.validate_sign,
+				d.dev_platform,d.dev_status,d.redeploying_type,d.org_id
+			FROM tn_facility_access a
+			LEFT JOIN tn_device_reg d ON FIND_IN_SET(d.dev_id,a.dev_ids) 
+			LEFT JOIN tn_facility f ON f.dev_id = d.dev_id
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				<if test="dr!=null and dr.devCode!=null and dr.devCode!=''">
+					and f.dev_code=#{dr.devCode,jdbcType=BIGINT}
+				</if>
+				<if test="dr!=null and dr.fName!=null and dr.fName!=''">
+					and f.dev_name like concat('%',#{dr.devName,jdbcType=VARCHAR},'%')
+				</if>
+				<if test="dr!=null and dr.devMac!=null and dr.devMac!=''">
+					and d.dev_mac=#{dr.devMac,jdbcType=BIGINT}
+				</if>
+				<if test="dr!=null and dr.devImei!=null and dr.devImei!=''">
+					and d.dev_imei =#{dr.devImei,jdbcType=BIGINT}
+				</if>
+				<if test="dr!=null and dr.validateSign!=null and dr.validateSign!=''">
+					and d.validate_sign =#{dr.validateSign,jdbcType=VARCHAR}
+				</if>
+				<if test="dr!=null and dr.redeployingType!=null and dr.redeployingType!=''">
+					and d.redeploying_type = #{dr.redeployingType,jdbcType=VARCHAR}
+				</if>
+				<if test="user!=null">
+		        	<if test="user.userId!=null">
+		             	and a.user_id = #{user.userId,jdbcType=BIGINT}
+		         	</if>
+		        	<if test="user.orgId!=null">
+		             	and d.org_id = #{user.orgId,jdbcType=BIGINT}
+		         	</if>
+		        </if>
+				AND a.`validate_time` <![CDATA[>]]> NOW()
+			</trim>
+		) a
+	</select>
+	<!--查询IMEI  -->
+	<select id="selectByConditions" parameterType="map" resultMap="BaseResultMap">
+		select 
+	    <include refid="Base_Column_List" />
+	    from tn_device_reg
+	    where org_id = #{orgId,jdbcType=BIGINT} AND dev_platform = #{palteFrom,jdbcType=VARCHAR}
+	</select>
+	
+	<!--根据imei查询  -->
+	<select id="selectByImei" parameterType="java.lang.String" resultMap="BaseResultMap">
+	select 
+	    <include refid="Base_Column_List" />
+	    from tn_device_reg
+	    where dev_imei = #{imei,jdbcType=VARCHAR} LIMIT 1
+	</select>
+</mapper>

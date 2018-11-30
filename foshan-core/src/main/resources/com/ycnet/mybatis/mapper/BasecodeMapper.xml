@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.BasecodeMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.Basecode" >
+    <id column="code_id" property="codeId" jdbcType="BIGINT" />
+    <result column="class_code" property="classCode" jdbcType="VARCHAR" />
+    <result column="class_name" property="className" jdbcType="VARCHAR" />
+    <result column="value_code" property="valueCode" jdbcType="VARCHAR" />
+    <result column="value_name" property="valueName" jdbcType="VARCHAR" />
+    <result column="manager_sign" property="managerSign" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    code_id, class_code, class_name, value_code, value_name, manager_sign
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_basecode
+    where code_id = #{codeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_basecode
+    where code_id = #{codeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.Basecode" >
+    insert into tn_basecode (code_id, class_code, class_name, 
+      value_code, value_name, manager_sign
+      )
+    values (#{codeId,jdbcType=BIGINT}, #{classCode,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR}, 
+      #{valueCode,jdbcType=VARCHAR}, #{valueName,jdbcType=VARCHAR}, #{managerSign,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.Basecode" >
+    insert into tn_basecode
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="codeId != null" >
+        code_id,
+      </if>
+      <if test="classCode != null" >
+        class_code,
+      </if>
+      <if test="className != null" >
+        class_name,
+      </if>
+      <if test="valueCode != null" >
+        value_code,
+      </if>
+      <if test="valueName != null" >
+        value_name,
+      </if>
+      <if test="managerSign != null" >
+        manager_sign,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="codeId != null" >
+        #{codeId,jdbcType=BIGINT},
+      </if>
+      <if test="classCode != null" >
+        #{classCode,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="valueCode != null" >
+        #{valueCode,jdbcType=VARCHAR},
+      </if>
+      <if test="valueName != null" >
+        #{valueName,jdbcType=VARCHAR},
+      </if>
+      <if test="managerSign != null" >
+        #{managerSign,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.Basecode" >
+    update tn_basecode
+    <set >
+      <if test="classCode != null" >
+        class_code = #{classCode,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null" >
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="valueCode != null" >
+        value_code = #{valueCode,jdbcType=VARCHAR},
+      </if>
+      <if test="valueName != null" >
+        value_name = #{valueName,jdbcType=VARCHAR},
+      </if>
+      <if test="managerSign != null" >
+        manager_sign = #{managerSign,jdbcType=CHAR},
+      </if>
+    </set>
+    where code_id = #{codeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.Basecode" >
+    update tn_basecode
+    set class_code = #{classCode,jdbcType=VARCHAR},
+      class_name = #{className,jdbcType=VARCHAR},
+      value_code = #{valueCode,jdbcType=VARCHAR},
+      value_name = #{valueName,jdbcType=VARCHAR},
+      manager_sign = #{managerSign,jdbcType=CHAR}
+    where code_id = #{codeId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectSimilar" parameterType="java.lang.String" resultMap="BaseResultMap">
+       select 
+    <include refid="Base_Column_List" />
+    from tn_basecode
+    where class_code = #{classCode,jdbcType=VARCHAR} and manager_sign = '1' order by value_code
+  </select>
+  
+  <select id="getBaseCodeList" parameterType="java.lang.String" resultMap="BaseResultMap">
+       select 
+    <include refid="Base_Column_List" />
+    from tn_basecode
+    <where>
+        <trim prefixOverrides="and">
+            <if test="classCode!=null and classCode!=''">
+                and class_code = #{classCode,jdbcType=VARCHAR} 
+            </if>
+            <if test="valueName!=null and valueName!=''">
+                and value_name like concat('%',#{valueName,jdbcType=VARCHAR},'%')
+            </if>
+        </trim>
+     and manager_sign = '1'	
+    </where>
+    order by class_code,value_code
+  </select>
+  
+  <select id="getClasscode" resultMap="BaseResultMap">
+  SELECT 
+  <include refid="Base_Column_List" /> 		
+  FROM tn_basecode		
+  WHERE manager_sign = '1'		
+  GROUP BY class_code,class_name		
+  </select>
+  
+  <!-- 代码值唯一校验  -->
+  <select id="basecodeValueCodeVerify" parameterType="java.lang.String" resultMap="BaseResultMap">
+  SELECT 
+  <include refid="Base_Column_List" /> 		
+  FROM tn_basecode		
+   <where>
+        <trim prefixOverrides="and">
+            <if test="classCode!=null and classCode!=''">
+                and class_code = #{classCode,jdbcType=VARCHAR} 
+            </if>
+            <if test="valueCode!=null and valueCode!=''">
+                and value_code = #{valueCode,jdbcType=VARCHAR}
+            </if>
+            
+        </trim>
+		and manager_sign = '1'	
+    </where>		
+  </select>
+  <!-- 数据字典添加分页  2017-9-26 刘沧海 -->
+  <select id="queryBaseCodeList" parameterType="map" resultMap="BaseResultMap">
+  	SELECT 
+  	<include refid="Base_Column_List" /> 		
+  	FROM tn_basecode
+  	<where>
+        <trim prefixOverrides="and">
+            <if test="basecode.classCode!=null and basecode.classCode!=''">
+                and class_code = #{basecode.classCode,jdbcType=VARCHAR} 
+            </if>
+            <if test="basecode.valueName!=null and basecode.valueName!=''">
+                and value_name like concat('%',#{basecode.valueName,jdbcType=VARCHAR},'%')
+            </if>
+        </trim>
+		and manager_sign = '1'	
+    </where>			
+    limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 数据字典添加分页(页数)  2017-9-26 刘沧海 -->
+  <select id="queryBaseCodeCount" parameterType="map" resultType="java.lang.Integer">
+  	SELECT 
+  	count(1)		
+  	FROM tn_basecode
+  	<where>
+        <trim prefixOverrides="and">
+            <if test="basecode.classCode!=null and basecode.classCode!=''">
+                and class_code = #{basecode.classCode,jdbcType=VARCHAR} 
+            </if>
+            <if test="basecode.valueName!=null and basecode.valueName!=''">
+                and value_name like concat('%',#{basecode.valueName,jdbcType=VARCHAR},'%')
+            </if>
+        </trim>
+		and manager_sign = '1'	
+    </where>			
+  </select>
+  
+  <!-- 导出数据库  刘沧海 2017/10/13 -->
+  <select id="queryList" resultMap="BaseResultMap">
+  	select * from tn_basecode
+  </select>
+  
+  <!--fl 查询产权性质  -->
+  <select id="querynopTypes" resultMap="BaseResultMap">
+  	SELECT
+  	<include refid="Base_Column_List"/>
+  	FROM tn_basecode WHERE class_code = 'NOP_TYPES' AND manager_sign ='1'
+  </select>
+<!--   查询平台类型 -->
+   <select id="getplatformList" resultMap="BaseResultMap">
+  	SELECT
+  	<include refid="Base_Column_List" /> 	
+  	FROM tn_basecode WHERE class_code = 'PLATFORM_TYPES' AND manager_sign ='1'
+  </select>
+<!--   根据code查询平台类型 -->
+  <select id="getplatformListByValueVode" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	SELECT
+  	<include refid="Base_Column_List" /> 	
+  	FROM tn_basecode WHERE class_code = 'PLATFORM_TYPES' AND manager_sign ='1' AND value_code=#{valueCode,jdbcType=VARCHAR}
+  </select>
+</mapper>

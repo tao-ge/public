@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.Users" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_code" property="userCode" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="flag" property="flag" jdbcType="CHAR" />
+    <result column="mobile_imei" property="mobileImei" jdbcType="VARCHAR" />
+    <result column="dev_platform" property="devPlatform" jdbcType="VARCHAR" />
+    <result column="is_synch_opss" property="isSynchOpss" jdbcType="CHAR" /><!-- 2018年4月28日10:57:13 dzy添加 -->
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, user_code, user_name, user_pwd, sex, mobile_phone, contact_phone, org_id, 
+    remark, last_login_time, flag, mobile_imei,dev_platform,is_synch_opss
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_users
+    where user_id = #{userId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_users
+    where user_id = #{userId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.Users" >
+    insert into tn_users (user_id, user_code, user_name, 
+      user_pwd, sex, mobile_phone, 
+      contact_phone, org_id, remark, 
+      last_login_time, flag, mobile_imei,dev_platform,is_synch_opss
+      )
+    values (#{userId,jdbcType=BIGINT}, #{userCode,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userPwd,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{mobilePhone,jdbcType=VARCHAR}, 
+      #{contactPhone,jdbcType=VARCHAR}, #{orgId,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{flag,jdbcType=CHAR}, #{mobileImei,jdbcType=VARCHAR},
+      #{devPlatform,jdbcType=VARCHAR}, #{isSynchOpss,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.Users" keyProperty="userId">
+    insert into tn_users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userCode != null" >
+        user_code,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="userPwd != null" >
+        user_pwd,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time,
+      </if>
+      <if test="flag != null" >
+        flag,
+      </if>
+      <if test="mobileImei != null" >
+        mobile_imei,
+      </if>
+       <if test="devPlatform != null" >
+        dev_platform,
+      </if>
+      <if test="isSynchOpss != null" >
+        is_synch_opss
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=CHAR},
+      </if>
+      <if test="mobileImei != null" >
+        #{mobileImei,jdbcType=VARCHAR},
+      </if>
+       <if test="devPlatform != null" >
+        #{devPlatform,jdbcType=VARCHAR},
+      </if>
+      <if test="isSynchOpss != null" >
+        #{isSynchOpss,jdbcType=CHAR}
+      </if>
+    </trim>
+    	<selectKey order="AFTER" keyProperty="userId" resultType="java.lang.Long">
+			select LAST_INSERT_ID()
+		</selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.Users" >
+    update tn_users
+    <set >
+      <if test="userCode != null" >
+        user_code = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        user_pwd = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null" >
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=CHAR},
+      </if>
+      <if test="mobileImei != null" >
+        mobile_imei = #{mobileImei,jdbcType=VARCHAR},
+      </if>
+      <if test="devPlatform != null" >
+        dev_platform = #{devPlatform,jdbcType=VARCHAR},
+      </if>
+      <if test="isSynchOpss != null" >
+        is_synch_opss = #{isSynchOpss,jdbcType=CHAR}
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.Users" >
+    update tn_users
+    set user_code = #{userCode,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_pwd = #{userPwd,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      flag = #{flag,jdbcType=CHAR},
+      mobile_imei = #{mobileImei,jdbcType=VARCHAR},
+      dev_platform = #{devPlatform,jdbcType=VARCHAR},
+      is_synch_opss = #{isSynchOpss,jdbcType=CHAR}
+    where user_id = #{userId,jdbcType=BIGINT}
+  </update>
+  <select id="getLoginUsers" parameterType="com.ycnet.frms.vo.UsersConditionBean" resultMap="BaseResultMap"> 
+       select 
+    <include refid="Base_Column_List" />
+    from tn_users
+    where flag = '1' and user_code = #{userCode,jdbcType=VARCHAR}
+    and user_pwd = #{userPwd,jdbcType=VARCHAR}
+   <!--   and mobile_imei=#{mobileImei,jdbcType=VARCHAR}-->
+  </select>
+  
+  <select id="queryUserList" parameterType="map" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from tn_users
+    <where>
+       <choose>
+     		<when test="orgId!=0">
+     			<if test="orgId!=null and orgId!=''">
+     				org_id=#{orgId,jdbcType=BIGINT}
+     			</if>
+       		</when>
+       </choose>
+       <if test="user.userName!=null and user.userName!=''">
+	        and user_name like concat('%',#{user.userName,jdbcType=VARCHAR},'%')
+	    </if>
+	    
+	    AND user_id NOT IN
+		(
+				SELECT 
+		  		u.user_id
+				FROM tn_roles r
+				LEFT JOIN tn_user_role ur ON ur.role_id = r.role_id
+				LEFT JOIN tn_users u ON u.user_id = ur.user_id
+				WHERE r.org_id=0 AND u.user_id = #{user.userId,jdbcType=BIGINT}
+		)
+<!--         and flag = '1' -->
+    </where>
+    <if test="pb!=null">
+		  order by user_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	</if>
+  </select>
+  
+  <select id="queryUserListByOrgId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from tn_users
+    <where>
+        and flag = '1'
+        and org_id = #{orgId,jdbcType=BIGINT}
+    </where>
+  </select>
+  
+  <select id="getUserId" resultType="java.lang.Long">
+  SELECT MAX(user_id) FROM tn_users
+  </select>
+  <!-- 按条件查询记录总数-->
+  <select id="queryCountByConditionMap"  parameterType="map" resultType="java.lang.Integer">
+       select 
+    	  count(1)
+   	   from tn_users
+	   <where>
+        <choose>
+     		<when test="orgId!=0">
+     			<if test="orgId!=null and orgId!=''">
+     				org_id=#{orgId,jdbcType=BIGINT}
+     			</if>
+       		</when>
+       </choose>
+       <if test="user.userName!=null and user.userName!=''">
+	        and user_name like concat('%',#{user.userName,jdbcType=VARCHAR},'%')
+	    </if>
+	    AND user_id NOT IN
+		(
+				SELECT 
+		  		u.user_id
+				FROM tn_roles r
+				LEFT JOIN tn_user_role ur ON ur.role_id = r.role_id
+				LEFT JOIN tn_users u ON u.user_id = ur.user_id
+				WHERE r.org_id=0 AND u.user_id = #{user.userId,jdbcType=BIGINT}
+		)
+<!--         and flag = '1' -->
+    </where>	   
+  </select>
+  
+  <!-- 验证userCode是否重复 -->
+  <select id="selectByUserCode" resultType="java.lang.Integer" parameterType="String" >
+    select 
+    count(1)
+    from tn_users 
+    <where>
+    	<trim prefixOverrides="and">
+	    	<if test="_parameter != null and _parameter != ''">
+    			user_code = #{userCode,jdbcType=VARCHAR}
+	    	</if>
+    	</trim>
+    </where>
+  </select>
+  
+  <select id="selectByOrgId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_users
+    where org_id = #{orgId,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 导出数据库  DZY 2017/10/23 -->
+  <select id="queryList" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  	select 
+    user_id, user_code, user_name, user_pwd, sex, mobile_phone, contact_phone, org_id, 
+    remark, flag, mobile_imei
+    from tn_users
+    <where>
+        and flag = '1'
+        and org_id = #{orgId,jdbcType=BIGINT}
+    </where>
+  </select>
+  <!-- fl 查询所有用户 -->
+  <select id="queryAll" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List" />
+    from tn_users
+  </select>
+  
+  <!-- 查询所属平台是否关联用户或者设备(DZY改) -->
+  <select id="queryAllUserList" resultMap="BaseResultMap">
+	  	select 
+	    u.user_id,u.dev_platform,d.reg_id,d.dev_imei,d.dev_platform
+	    from tn_users u
+		LEFT JOIN tn_device_reg d  ON d.org_id =  u.org_id
+	    where
+			  u.org_id=#{orgId,jdbcType=BIGINT}
+			  and (u.dev_platform=#{devPlatform,jdbcType=VARCHAR} or d.dev_platform=#{devPlatform,jdbcType=VARCHAR})
+  </select>
+ <!--  查询角色orgid为0的用户数据 -->
+  <select id="queryUserListRolesZero" parameterType="map" resultMap="BaseResultMap">
+  	select 
+    u.user_id,u.user_code, u.user_name, u.user_pwd, u.sex, u.mobile_phone, u.contact_phone, u.org_id, u.last_login_time,
+    u.remark, u.flag, u.mobile_imei, u.dev_platform, u.is_synch_opss
+    FROM tn_users u 
+	LEFT JOIN tn_user_role t ON u.`user_id`=t.user_id
+	LEFT JOIN tn_roles r ON r.`role_id`= t.role_id
+	WHERE r.`org_id`=0 AND user_code <![CDATA[ <> ]]> 'admin'
+	<if test="pb!=null">
+		  order by user_id desc limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+	</if>
+	</select>
+  
+  <!-- 查询角色orgid为0的用户数据数量 -->
+  <select id="queryCountByUserListRolesZero"  parameterType="map" resultType="java.lang.Integer">
+  		select 
+	   	count(1)
+	    FROM tn_users u 
+		LEFT JOIN tn_user_role t ON u.`user_id`=t.user_id
+		LEFT JOIN tn_roles r ON r.`role_id`= t.role_id
+		WHERE r.`org_id`=0 AND user_code <![CDATA[ <> ]]> 'admin'
+  </select>
+  <!-- 根据用户ID查询角色机构ID -->
+  <select id="queryByUserRoleForOrgId" resultType="java.lang.Long">
+  	SELECT r.`org_id` FROM `tn_users` u 
+	LEFT JOIN `tn_user_role` ur ON ur.`user_id`=u.`user_id`
+	LEFT JOIN `tn_roles` r ON r.`role_id`=ur.`role_id`
+	WHERE u.`user_id`=#{userId,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 根据条件查询 -->
+  <resultMap id="VoResultMap" type="com.ycnet.frms.vo.UsersVo" >
+    <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="mobile_imei" property="mobileImei" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getLoginUsersOpd" parameterType="com.ycnet.frms.vo.UsersConditionBean" resultMap="VoResultMap">
+  		select 
+	    <include refid="Base_Column_List" />
+	    from tn_users
+	    where flag = '1' and user_code = #{userCode,jdbcType=VARCHAR}
+	    and user_pwd = #{userPwd,jdbcType=VARCHAR}
+  </select>
+</mapper>

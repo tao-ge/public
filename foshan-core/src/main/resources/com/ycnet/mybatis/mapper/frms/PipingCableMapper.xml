@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.PipingCableMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.PipingCable" >
+    <id column="subtube_ref_sect_id" property="subtubeRefSectId" jdbcType="BIGINT" />
+    <result column="sect_id" property="sectId" jdbcType="BIGINT" />
+    <result column="well_id" property="wellId" jdbcType="BIGINT" />
+    <result column="space_id" property="spaceId" jdbcType="BIGINT" />
+    <result column="piping_id" property="pipingId" jdbcType="BIGINT" />
+    <result column="subtube_id" property="subtubeId" jdbcType="BIGINT" />
+    <result column="piping_sect_id" property="pipingSectId" jdbcType="BIGINT" />
+    <result column="sect_state" property="sectState" jdbcType="CHAR" />
+    <result column="is_import" property="isImport" jdbcType="CHAR" />
+    <result column="checkfiber_count" property="checkfiberCount" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP" />
+    <result column="last_modify_user" property="lastModifyUser" jdbcType="BIGINT" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="BeanResultMap" type="com.ycnet.frms.vo.PipingCableBean" >
+    <id column="subtube_ref_sect_id" property="subtubeRefSectId" jdbcType="BIGINT" />
+    <result column="sect_id" property="sectId" jdbcType="BIGINT" />
+    <result column="well_id" property="wellId" jdbcType="BIGINT" />
+    <result column="space_id" property="spaceId" jdbcType="BIGINT" />
+    <result column="piping_id" property="pipingId" jdbcType="BIGINT" />
+    <result column="subtube_id" property="subtubeId" jdbcType="BIGINT" />
+    <result column="piping_sect_id" property="pipingSectId" jdbcType="BIGINT" />
+    <result column="sect_state" property="sectState" jdbcType="CHAR" />
+    <result column="is_import" property="isImport" jdbcType="CHAR" />
+    <result column="checkfiber_count" property="checkfiberCount" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_user" property="createUser" jdbcType="BIGINT" />
+    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP" />
+    <result column="last_modify_user" property="lastModifyUser" jdbcType="BIGINT" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    
+  </resultMap>
+  <!-- 井设施详细信息 -->
+  <resultMap id="wellCableSecMap" type="com.ycnet.frms.vo.PipingSectionBean" >
+  	<id column="piping_sect_id" property="pipingSectId" jdbcType="BIGINT" />
+    <result column="piping_name" property="pipingName" jdbcType="VARCHAR" />
+    <result column="piping_sect_type" property="pipingSectType" jdbcType="CHAR" />
+    <result column="phy_len" property="phyLen" jdbcType="VARCHAR" />
+    <result column="map_len" property="mapLen" jdbcType="VARCHAR" />
+    <collection property="spaceList" ofType="com.ycnet.frms.bean.Space">
+    	<id column="space_id" property="spaceId" jdbcType="BIGINT" />
+    	<result column="surface" property="surface" jdbcType="CHAR" />
+    </collection>
+    <collection property="pipingBeanList" ofType="com.ycnet.frms.vo.PipingBean">
+    	<id column="piping_id" property="pipingId" jdbcType="BIGINT" />
+    	<result column="diameter" property="diameter" jdbcType="INTEGER" />
+    	<result column="piping_state" property="pipingState" jdbcType="CHAR" />
+    	<result column="subtube_count" property="subtubeCount" jdbcType="BIGINT" />
+	    <result column="usedsubtube_count" property="usedsubtubeCount" jdbcType="INTEGER" />
+	    <result column="unusedsubtube_count" property="unusedsubtubeCount" jdbcType="INTEGER" />
+	    <collection property="subtudeList" ofType="com.ycnet.frms.vo.SubtubeBean">
+	    	<id column="subtube_id" property="subtubeId" jdbcType="BIGINT" />
+    		<result column="subtube_name" property="subtubeName" jdbcType="VARCHAR" />
+    		<result column="color_id" property="colorId" jdbcType="BIGINT" />
+    		<result column="color_name" property="colorName" jdbcType="VARCHAR" />
+	    </collection>
+    </collection>
+  </resultMap>
+  <!-- 根据管孔ID查询光缆段信心和图片  -->
+  <resultMap id="cableSectImageMap" type="com.ycnet.frms.vo.PipingBean" >
+  	<id column="piping_id" property="pipingId" jdbcType="BIGINT" />
+   	<result column="diameter" property="diameter" jdbcType="INTEGER" />
+   	<result column="piping_state" property="pipingState" jdbcType="CHAR" />
+   	<result column="subtube_count" property="subtubeCount" jdbcType="BIGINT" />
+   	<result column="well_id" property="wellId" jdbcType="BIGINT" />
+   	<result column="well_name" property="wellName" jdbcType="VARCHAR" />
+   	<result column="well_number" property="wellNumber" jdbcType="VARCHAR" />
+   	<result column="well_type" property="wellType" jdbcType="VARCHAR" />
+   	<result column="piping_sect_id" property="pipingSectId" jdbcType="BIGINT" />
+   	<result column="org_id" property="orgId" jdbcType="BIGINT" />
+   	<result column="space_id" property="spaceId" jdbcType="BIGINT" />
+    <result column="usedsubtube_count" property="usedsubtubeCount" jdbcType="INTEGER" />
+    <result column="unusedsubtube_count" property="unusedsubtubeCount" jdbcType="INTEGER" />
+    <collection property="sectionList" ofType="com.ycnet.frms.bean.CableSection">
+    	<id column="sect_id" property="sectId" jdbcType="BIGINT" />
+    	<result column="subtube_ref_sect_id" property="subtubeRefSectId" jdbcType="BIGINT" />
+    	<result column="subtube_id" property="subtubeId" jdbcType="BIGINT" />
+    	<result column="sect_code" property="sectCode" jdbcType="VARCHAR" />
+    	<result column="sec_name" property="secName" jdbcType="VARCHAR" />
+    	<result column="checkfiber_count" property="checkfiberCount" jdbcType="BIGINT" />
+    	<result column="cable_len" property="cableLen" jdbcType="DECIMAL" />
+    	<result column="fiber_num" property="fiberNum" jdbcType="BIGINT" />
+    	<result column="sect_state" property="sectState" jdbcType="VARCHAR"/>
+    	<collection property="imgUrlList" ofType="com.ycnet.frms.vo.CableSectionImageUrlBean">
+    		<result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    	</collection>
+    </collection>
+  </resultMap>
+  
+  <!-- 根据管道段ID和井ID查询光缆段专用 -->
+  <resultMap id="ppSectionMap" type="com.ycnet.frms.vo.PipingSectionBean" >
+  	<id column="piping_sect_id" property="pipingSectId" jdbcType="BIGINT" />
+    <result column="piping_name" property="pipingName" jdbcType="VARCHAR" />
+    <result column="piping_sect_type" property="pipingSectType" jdbcType="CHAR" />
+    <result column="phy_len" property="phyLen" jdbcType="VARCHAR" />
+    <result column="map_len" property="mapLen" jdbcType="VARCHAR" />
+    
+    <collection property="pipingBeanList" ofType="com.ycnet.frms.vo.PipingBean">
+    	<id column="piping_id" property="pipingId" jdbcType="BIGINT" />
+    	<result column="well_id" property="wellId" jdbcType="BIGINT" />
+    	<result column="space_id" property="spaceId" jdbcType="BIGINT" />
+    	<result column="diameter" property="diameter" jdbcType="INTEGER" />
+    	<result column="piping_state" property="pipingState" jdbcType="CHAR" />
+    	<result column="subtube_count" property="subtubeCount" jdbcType="BIGINT" />
+	    <result column="usedsubtube_count" property="usedsubtubeCount" jdbcType="INTEGER" />
+	    <result column="unusedsubtube_count" property="unusedsubtubeCount" jdbcType="INTEGER" />
+	    <collection property="sectionList" ofType="com.ycnet.frms.bean.CableSection">
+	    	<id column="sect_id" property="sectId" jdbcType="BIGINT" />
+    		<result column="sec_name" property="secName" jdbcType="VARCHAR" />
+    		<result column="sect_code" property="sectCode" jdbcType="VARCHAR" />
+    		<result column="sect_state" property="sectState" jdbcType="VARCHAR" />
+	    </collection>
+    </collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    subtube_ref_sect_id, sect_id, well_id, space_id, piping_id, subtube_id, piping_sect_id, 
+    sect_state, is_import, checkfiber_count, create_time, create_user, last_modify_time, 
+    last_modify_user, org_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_piping_cable
+    where subtube_ref_sect_id = #{subtubeRefSectId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_piping_cable
+    where subtube_ref_sect_id = #{subtubeRefSectId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.PipingCable" >
+    insert into tn_piping_cable (subtube_ref_sect_id, sect_id, well_id, 
+      space_id, piping_id, subtube_id, 
+      piping_sect_id, sect_state, is_import, 
+      checkfiber_count, create_time, create_user, 
+      last_modify_time, last_modify_user, org_id
+      )
+    values (#{subtubeRefSectId,jdbcType=BIGINT}, #{sectId,jdbcType=BIGINT}, #{wellId,jdbcType=BIGINT}, 
+      #{spaceId,jdbcType=BIGINT}, #{pipingId,jdbcType=BIGINT}, #{subtubeId,jdbcType=BIGINT}, 
+      #{pipingSectId,jdbcType=BIGINT}, #{sectState,jdbcType=CHAR}, #{isImport,jdbcType=CHAR}, 
+      #{checkfiberCount,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=BIGINT}, 
+      #{lastModifyTime,jdbcType=TIMESTAMP}, #{lastModifyUser,jdbcType=BIGINT}, #{orgId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.PipingCable" useGeneratedKeys="true" keyProperty="subtubeRefSectId">
+    insert into tn_piping_cable
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="subtubeRefSectId != null" >
+        subtube_ref_sect_id,
+      </if>
+      <if test="sectId != null" >
+        sect_id,
+      </if>
+      <if test="wellId != null" >
+        well_id,
+      </if>
+      <if test="spaceId != null" >
+        space_id,
+      </if>
+      <if test="pipingId != null" >
+        piping_id,
+      </if>
+      <if test="subtubeId != null" >
+        subtube_id,
+      </if>
+      <if test="pipingSectId != null" >
+        piping_sect_id,
+      </if>
+      <if test="sectState != null" >
+        sect_state,
+      </if>
+      <if test="isImport != null" >
+        is_import,
+      </if>
+      <if test="checkfiberCount != null" >
+        checkfiber_count,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="lastModifyTime != null" >
+        last_modify_time,
+      </if>
+      <if test="lastModifyUser != null" >
+        last_modify_user,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="subtubeRefSectId != null" >
+        #{subtubeRefSectId,jdbcType=BIGINT},
+      </if>
+      <if test="sectId != null" >
+        #{sectId,jdbcType=BIGINT},
+      </if>
+      <if test="wellId != null" >
+        #{wellId,jdbcType=BIGINT},
+      </if>
+      <if test="spaceId != null" >
+        #{spaceId,jdbcType=BIGINT},
+      </if>
+      <if test="pipingId != null" >
+        #{pipingId,jdbcType=BIGINT},
+      </if>
+      <if test="subtubeId != null" >
+        #{subtubeId,jdbcType=BIGINT},
+      </if>
+      <if test="pipingSectId != null" >
+        #{pipingSectId,jdbcType=BIGINT},
+      </if>
+      <if test="sectState != null" >
+        #{sectState,jdbcType=CHAR},
+      </if>
+      <if test="isImport != null" >
+        #{isImport,jdbcType=CHAR},
+      </if>
+      <if test="checkfiberCount != null" >
+        #{checkfiberCount,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="lastModifyTime != null" >
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyUser != null" >
+        #{lastModifyUser,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+    </trim>
+    <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="subtubeRefSectId">
+        select LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.PipingCable" >
+    update tn_piping_cable
+    <set >
+      <if test="sectId != null" >
+        sect_id = #{sectId,jdbcType=BIGINT},
+      </if>
+      <if test="wellId != null" >
+        well_id = #{wellId,jdbcType=BIGINT},
+      </if>
+      <if test="spaceId != null" >
+        space_id = #{spaceId,jdbcType=BIGINT},
+      </if>
+      <if test="pipingId != null" >
+        piping_id = #{pipingId,jdbcType=BIGINT},
+      </if>
+      <if test="subtubeId != null" >
+        subtube_id = #{subtubeId,jdbcType=BIGINT},
+      </if>
+      <if test="pipingSectId != null" >
+        piping_sect_id = #{pipingSectId,jdbcType=BIGINT},
+      </if>
+      <if test="sectState != null" >
+        sect_state = #{sectState,jdbcType=CHAR},
+      </if>
+      <if test="isImport != null" >
+        is_import = #{isImport,jdbcType=CHAR},
+      </if>
+      <if test="checkfiberCount != null" >
+        checkfiber_count = #{checkfiberCount,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=BIGINT},
+      </if>
+      <if test="lastModifyTime != null" >
+        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyUser != null" >
+        last_modify_user = #{lastModifyUser,jdbcType=BIGINT},
+      </if>
+      <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where subtube_ref_sect_id = #{subtubeRefSectId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.PipingCable" >
+    update tn_piping_cable
+    set sect_id = #{sectId,jdbcType=BIGINT},
+      well_id = #{wellId,jdbcType=BIGINT},
+      space_id = #{spaceId,jdbcType=BIGINT},
+      piping_id = #{pipingId,jdbcType=BIGINT},
+      subtube_id = #{subtubeId,jdbcType=BIGINT},
+      piping_sect_id = #{pipingSectId,jdbcType=BIGINT},
+      sect_state = #{sectState,jdbcType=CHAR},
+      is_import = #{isImport,jdbcType=CHAR},
+      checkfiber_count = #{checkfiberCount,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=BIGINT},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      last_modify_user = #{lastModifyUser,jdbcType=BIGINT},
+      org_id = #{orgId,jdbcType=BIGINT}
+    where subtube_ref_sect_id = #{subtubeRefSectId,jdbcType=BIGINT}
+  </update>
+  <!-- 查询光缆段关系表 -->
+  <select id="queryByPipingCableBean" resultMap="BaseResultMap">
+  	 select 
+    <include refid="Base_Column_List" />
+    from tn_piping_cable
+    where 
+    <if test="wellId !=null">
+    	well_id=#{wellId,jdbcType=BIGINT}
+    </if>
+    <if test="sectId !=null">
+    	and sect_id = #{sectId,jdbcType=BIGINT}
+    </if>
+    <if test="spaceId !=null">
+    	and space_id = #{spaceId,jdbcType=BIGINT}
+    </if>
+    <if test="subtubeId !=null">
+    	and subtube_id = #{subtubeId,jdbcType=BIGINT}
+    </if>
+    <if test="pipingId !=null">
+    	and piping_id = #{pipingId,jdbcType=BIGINT}
+    </if>
+    <if test="pipingSectId !=null">
+    	and piping_sect_id = #{pipingSectId,jdbcType=BIGINT}
+    </if>
+    <if test="sectState !=null">
+    	and sect_state = #{sectState,jdbcType=CHAR}
+    </if>
+    <if test="isImport !=null">
+    	and is_import = #{isImport,jdbcType=CHAR}
+    </if>
+    <if test="checkfiberCount !=null">
+    	and checkfiber_count = #{checkfiberCount,jdbcType=BIGINT}
+    </if>
+    <if test="orgId !=null">
+    	and org_id = #{orgId,jdbcType=BIGINT}
+    </if>
+  </select>
+  <!--fl 查询  pipingCable-->
+  <select id="selectpipingCableByThings" parameterType="map" resultMap="BaseResultMap">
+  	SELECT 
+	 <include refid="Base_Column_List" />
+  	FROM tn_piping_cable  WHERE sect_id = #{sectId,jdbcType=BIGINT} AND sect_state NOT IN ("4","5")
+  	<if test="pipingId !=null ">
+  	 	AND  piping_id = #{pipingId,jdbcType=BIGINT}
+  	</if>
+  	<if test="subtubeId !=null ">
+  	 	AND subtube_id = #{subtubeId,jdbcType=BIGINT}
+  	</if>
+  </select>
+  <!--fl 查询  已经删除的pipingCable-->
+  <select id="selectpipingCableByThreeIds"  parameterType="map" resultMap="BaseResultMap">
+  	SELECT 
+	 <include refid="Base_Column_List" />
+  	FROM tn_piping_cable  WHERE sect_id = #{sectId,jdbcType=BIGINT} 
+  	AND  (sect_state = '4' OR sect_state = '5')
+  	<if test="pipingId !=null ">
+  	 	AND  piping_id = #{pipingId,jdbcType=BIGINT}
+  	</if>
+  	<if test="subtubeId !=null ">
+  	 	AND subtube_id = #{subtubeId,jdbcType=BIGINT}
+  	</if>
+  </select>
+	<!--   根据管道id查询管孔信息列表  zy-->
+  <select id="queryPipingCableListByPipingId" resultMap="BeanResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_piping_cable
+    where piping_id = #{pipingId,jdbcType=BIGINT} and org_id = #{orgId,jdbcType=BIGINT}
+  </select>
+  <!-- 根据井ID查询 -->
+  <select id="queryByWellId" resultMap="wellCableSecMap" parameterType="java.lang.Long">
+  	SELECT 
+		ps.`piping_sect_id`,ps.`piping_name`,ps.`piping_sect_type`,ps.`phy_len`,ps.`map_len`,
+		s.`space_id`,s.`surface`,
+		pp.`piping_id`,pp.`diameter`,pp.`piping_state`,pp.`subtube_count`,pp.`usedsubtube_count`,pp.`unusedsubtube_count`,
+		sb.`subtube_id`,sb.`subtube_name`,c.`color_name` 
+		FROM `tn_well` w 
+		LEFT JOIN `tn_piping_cable` pc ON pc.`well_id`=w.`well_id`
+		LEFT JOIN `tn_piping_section` ps ON ps.`piping_sect_id`=pc.`piping_sect_id`
+		LEFT JOIN `tn_space` s ON s.`space_id`=pc.`space_id`
+		LEFT JOIN `tn_piping` pp ON pp.`piping_id`=pc.`piping_id`
+		LEFT JOIN `tn_subtube` sb ON sb.`subtube_id`=pc.`subtube_id`
+		LEFT JOIN `tn_color` c ON c.`color_id`=sb.`color_id`
+	where w.well_id=#{wellId,jdbcType=BIGINT}
+  </select>
+  <!--  查询光缆段 zy  -->
+   <select id="selectPipingSectionBeanByPipingsectid" resultMap="BeanResultMap" parameterType="java.lang.Long" >
+    select *
+    from tn_piping_cable
+    where piping_sect_id = #{pipingSectId,jdbcType=BIGINT} and org_id= #{orgId,jdbcType=BIGINT} and well_id=#{wellId,jdbcType=BIGINT}
+  </select>
+  <!-- 根据管道段ID和井ID查询光缆段专用 -->
+  <select id="queryBySectIdForWellId" resultMap="ppSectionMap" parameterType="map">
+  	SELECT ps.`piping_name`,ps.`piping_sect_type`,ps.`phy_len`,ps.`map_len`,
+			pc.`piping_id`,pp.piping_state,pp.well_id,pp.space_id,pp.`diameter`,pp.`subtube_count`,pp.`usedsubtube_count`,pp.`unusedsubtube_count`,
+	        pc.`sect_id`,cs.`sec_name`,cs.`sect_code`,pc.`sect_state`,
+			pc.`piping_sect_id` ,w.`well_name`
+	FROM `tn_piping_cable` pc  LEFT JOIN `tn_cable_section` cs ON cs.`sect_id`=pc.`sect_id`
+			   LEFT JOIN `tn_piping` pp ON pp.`piping_id`=pc.`piping_id`
+			   LEFT JOIN `tn_piping_section` ps ON ps.`piping_sect_id`=pc.`piping_sect_id`
+			   LEFT JOIN `tn_well` w ON w.`well_id`=pc.`well_id`
+	<where>
+		<if test="pipingSectId !=null">
+			pc.piping_sect_id=#{pipingSectId,jdbcType=BIGINT}
+		</if>
+		<if test="wellId !=null">
+			and pc.well_id=#{wellId,jdbcType=BIGINT}
+		</if>
+		<if test="orgId != null">
+			and pc.org_id=#{orgId,jdbcType=BIGINT}
+		</if>
+			and (pp.piping_state IS NULL OR pp.piping_state NOT IN('4','5') )
+	</where>
+  </select>
+  
+  <!-- 根据管道段ID查询管孔信息 -->
+  <select id="queryPipingSectionPing" resultMap="ppSectionMap" parameterType="map">
+  	SELECT ps.piping_sect_id,ps.`piping_name`,ps.`piping_sect_type`,ps.`phy_len`,ps.`map_len`,
+		pp.`piping_id`,pp.piping_state,pp.space_id,pp.well_id,<!-- psw.space_id, -->pp.`diameter`,pp.`subtube_count`,pp.`usedsubtube_count`,pp.`unusedsubtube_count`,
+		pc.`sect_id`,cs.`sec_name`,cs.`sect_code`,pc.`sect_state`, pc.`piping_sect_id` 
+  	FROM `tn_piping_section` ps 
+  	LEFT JOIN `tn_piping` pp ON pp.`piping_sect_id`=ps.`piping_sect_id`
+  	LEFT JOIN tn_piping_cable pc ON pc.`piping_sect_id`=ps.`piping_sect_id`
+  	LEFT JOIN tn_cable_section cs ON cs.`sect_id`=pc.`sect_id`
+<!--   	LEFT JOIN `tn_piping_sect_well` psw ON  psw.`piping_sect_id`=ps.`piping_sect_id`  -->
+	WHERE pp.piping_sect_id=#{pipingSectId,jdbcType=BIGINT} 
+		and pp.`well_id`= #{wellId,jdbcType=BIGINT} 
+		and pp.org_id=#{orgId,jdbcType=BIGINT} 
+	and (pp.piping_state IS NULL OR pp.piping_state NOT IN('4','5') )
+  </select>
+  
+  <!-- 根据管孔ID查询光缆段信心和图片  -->
+  <select id="queryCableSectionImage" resultMap="cableSectImageMap" parameterType="map">
+  	SELECT pp.`piping_id`,pp.`piping_state`,pp.`space_id`,pp.`subtube_count`,pp.`unusedsubtube_count`,pp.`usedsubtube_count`,pp.`diameter`,pp.`well_id`,w.well_name,w.well_type,w.well_number,pp.`piping_sect_id`,pp.`org_id`,
+		pc.`subtube_ref_sect_id`,pc.`checkfiber_count`,pc.`subtube_id`,pc.`sect_id`,cs.`sect_code`,pc.`sect_state`,cs.`sec_name`,cs.`cable_len`,cs.`fiber_num`,
+		csi.`img_url`
+	FROM `tn_piping` pp  
+	left join tn_well w on w.well_id=pp.well_id
+	LEFT JOIN  `tn_piping_cable` pc ON pc.`piping_id`=pp.`piping_id`
+	LEFT JOIN `tn_cable_section` cs ON cs.`sect_id`=pc.`sect_id`
+	LEFT JOIN `tn_cable_section_image` csi ON csi.`sect_id`=cs.`sect_id`
+	WHERE pp.`piping_id`=#{pipingId,jdbcType=BIGINT}
+	and pp.org_id=#{orgId,jdbcType=BIGINT}
+  </select>
+  
+  <!-- 根据sectId查询光缆段绑定子管表 -->
+  <select id="queryPipingCableBySectId" resultMap="BaseResultMap" parameterType="map">
+  		 select 
+	    <include refid="Base_Column_List" />
+	    from tn_piping_cable
+	    where sect_id = #{sectId,jdbcType=BIGINT} and piping_id = #{pipingId,jdbcType=BIGINT}
+	    limit 0,1
+  </select>
+</mapper>

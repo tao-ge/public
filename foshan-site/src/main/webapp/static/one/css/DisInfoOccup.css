@@ -1,0 +1,78 @@
+/*fl 20180118*/
+.lastReportDataListblue{
+	text-align: left;
+	vertical-align: middle;
+	display: inline;
+	font-size: 15px;
+	margin: 2px;
+	width: 250px;
+	height: 250px;
+	background-image: url('../images/circle_blue.png');
+	background-size: 100% 100%;
+}
+.lastReportDataListgree{
+	text-align: left;
+	vertical-align: middle;
+	display: inline;
+	font-size: 15px;
+	margin: 2px;
+	width: 250px;
+	height: 250px;
+	background-image: url('../images/circle_green.png');
+	background-size: 100% 100%;
+}
+.lastReportDataListred{
+	text-align: left;
+	vertical-align: middle;
+	display: inline;
+	font-size: 15px;
+	margin: 2px;
+	width: 250px;
+	height: 250px;
+	background-image: url('../images/circle_red.png');
+	background-size: 100% 100%;
+}
+.lastReportDataListyellow{
+	text-align: left;
+	vertical-align: middle;
+	display: inline;
+	font-size: 15px;
+	margin: 2px;
+	width: 250px;
+	height: 250px;
+	background-image: url('../images/circle_yellow.png');
+	background-size: 100% 100%;
+}
+.lastReportDataListgray{
+	text-align: left;
+	vertical-align: middle;
+	display: inline;
+	font-size: 15px;
+	margin: 2px;
+	width: 250px;
+	height: 250px;
+	background-image: url('../images/circle_gray.png');
+	background-size: 100% 100%;
+}
+.lastReportDataListby{
+	text-align: left;
+	vertical-align: middle;
+	display: inline;
+	font-size: 15px;
+	margin: 2px;
+	width: 250px;
+	height: 250px;
+	background-image: url('../images/circle_blue_b_y.png');
+	background-size: 100% 100%;
+}
+.lastReportDataListyb{
+	text-align: left;
+	vertical-align: middle;
+	display: inline;
+	font-size: 15px;
+	margin: 2px;
+	width: 250px;
+	height: 250px;
+	background-image: url('../images/circle_yellow_b_b.png');
+	background-size: 100% 100%;
+}

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.DevicRegImgMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.DevicRegImg" >
+    <id column="reg_img_id" property="regImgId" jdbcType="BIGINT" />
+    <result column="dev_did" property="devDid" jdbcType="VARCHAR" />
+    <result column="reg_img_url" property="regImgUrl" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    reg_img_id, dev_did, reg_img_url, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_device_reg_img
+    where reg_img_id = #{regImgId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_device_reg_img
+    where reg_img_id = #{regImgId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.DevicRegImg" >
+    insert into tn_device_reg_img (reg_img_id, dev_did, reg_img_url, 
+      create_time)
+    values (#{regImgId,jdbcType=BIGINT}, #{devDid,jdbcType=VARCHAR}, #{regImgUrl,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.DevicRegImg" >
+    insert into tn_device_reg_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="regImgId != null" >
+        reg_img_id,
+      </if>
+      <if test="devDid != null" >
+        dev_did,
+      </if>
+      <if test="regImgUrl != null" >
+        reg_img_url,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="regImgId != null" >
+        #{regImgId,jdbcType=BIGINT},
+      </if>
+      <if test="devDid != null" >
+        #{devDid,jdbcType=VARCHAR},
+      </if>
+      <if test="regImgUrl != null" >
+        #{regImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.DevicRegImg" >
+    update tn_device_reg_img
+    <set >
+      <if test="devDid != null" >
+        dev_did = #{devDid,jdbcType=VARCHAR},
+      </if>
+      <if test="regImgUrl != null" >
+        reg_img_url = #{regImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where reg_img_id = #{regImgId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.DevicRegImg" >
+    update tn_device_reg_img
+    set dev_did = #{devDid,jdbcType=VARCHAR},
+      reg_img_url = #{regImgUrl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where reg_img_id = #{regImgId,jdbcType=BIGINT}
+  </update>
+</mapper>

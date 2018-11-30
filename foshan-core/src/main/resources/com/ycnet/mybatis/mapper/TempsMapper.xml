@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.TempsMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.Temps" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="a1" property="a1" jdbcType="VARCHAR" />
+    <result column="b2" property="b2" jdbcType="VARCHAR" />
+    <result column="c3" property="c3" jdbcType="VARCHAR" />
+    <result column="d4" property="d4" jdbcType="VARCHAR" />
+    <result column="e5" property="e5" jdbcType="VARCHAR" />
+    <result column="f6" property="f6" jdbcType="VARCHAR" />
+    <result column="g7" property="g7" jdbcType="VARCHAR" />
+    <result column="h8" property="h8" jdbcType="VARCHAR" />
+    <result column="i9" property="i9" jdbcType="VARCHAR" />
+    <result column="j10" property="j10" jdbcType="VARCHAR" />
+    <result column="k11" property="k11" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, a1, b2, c3, d4, e5, f6, g7, h8, i9, j10, k11
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_temps
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_temps
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.Temps" >
+    insert into tn_temps (id, a1, b2, c3, 
+      d4, e5, f6, g7, 
+      h8, i9, j10, k11
+      )
+    values (#{id,jdbcType=BIGINT}, #{a1,jdbcType=VARCHAR}, #{b2,jdbcType=VARCHAR}, #{c3,jdbcType=VARCHAR}, 
+      #{d4,jdbcType=VARCHAR}, #{e5,jdbcType=VARCHAR}, #{f6,jdbcType=VARCHAR}, #{g7,jdbcType=VARCHAR}, 
+      #{h8,jdbcType=VARCHAR}, #{i9,jdbcType=VARCHAR}, #{j10,jdbcType=VARCHAR}, #{k11,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.Temps" >
+    insert into tn_temps
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="a1 != null" >
+        a1,
+      </if>
+      <if test="b2 != null" >
+        b2,
+      </if>
+      <if test="c3 != null" >
+        c3,
+      </if>
+      <if test="d4 != null" >
+        d4,
+      </if>
+      <if test="e5 != null" >
+        e5,
+      </if>
+      <if test="f6 != null" >
+        f6,
+      </if>
+      <if test="g7 != null" >
+        g7,
+      </if>
+      <if test="h8 != null" >
+        h8,
+      </if>
+      <if test="i9 != null" >
+        i9,
+      </if>
+      <if test="j10 != null" >
+        j10,
+      </if>
+      <if test="k11 != null" >
+        k11,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="a1 != null" >
+        #{a1,jdbcType=VARCHAR},
+      </if>
+      <if test="b2 != null" >
+        #{b2,jdbcType=VARCHAR},
+      </if>
+      <if test="c3 != null" >
+        #{c3,jdbcType=VARCHAR},
+      </if>
+      <if test="d4 != null" >
+        #{d4,jdbcType=VARCHAR},
+      </if>
+      <if test="e5 != null" >
+        #{e5,jdbcType=VARCHAR},
+      </if>
+      <if test="f6 != null" >
+        #{f6,jdbcType=VARCHAR},
+      </if>
+      <if test="g7 != null" >
+        #{g7,jdbcType=VARCHAR},
+      </if>
+      <if test="h8 != null" >
+        #{h8,jdbcType=VARCHAR},
+      </if>
+      <if test="i9 != null" >
+        #{i9,jdbcType=VARCHAR},
+      </if>
+      <if test="j10 != null" >
+        #{j10,jdbcType=VARCHAR},
+      </if>
+      <if test="k11 != null" >
+        #{k11,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.Temps" >
+    update tn_temps
+    <set >
+      <if test="a1 != null" >
+        a1 = #{a1,jdbcType=VARCHAR},
+      </if>
+      <if test="b2 != null" >
+        b2 = #{b2,jdbcType=VARCHAR},
+      </if>
+      <if test="c3 != null" >
+        c3 = #{c3,jdbcType=VARCHAR},
+      </if>
+      <if test="d4 != null" >
+        d4 = #{d4,jdbcType=VARCHAR},
+      </if>
+      <if test="e5 != null" >
+        e5 = #{e5,jdbcType=VARCHAR},
+      </if>
+      <if test="f6 != null" >
+        f6 = #{f6,jdbcType=VARCHAR},
+      </if>
+      <if test="g7 != null" >
+        g7 = #{g7,jdbcType=VARCHAR},
+      </if>
+      <if test="h8 != null" >
+        h8 = #{h8,jdbcType=VARCHAR},
+      </if>
+      <if test="i9 != null" >
+        i9 = #{i9,jdbcType=VARCHAR},
+      </if>
+      <if test="j10 != null" >
+        j10 = #{j10,jdbcType=VARCHAR},
+      </if>
+      <if test="k11 != null" >
+        k11 = #{k11,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.Temps" >
+    update tn_temps
+    set a1 = #{a1,jdbcType=VARCHAR},
+      b2 = #{b2,jdbcType=VARCHAR},
+      c3 = #{c3,jdbcType=VARCHAR},
+      d4 = #{d4,jdbcType=VARCHAR},
+      e5 = #{e5,jdbcType=VARCHAR},
+      f6 = #{f6,jdbcType=VARCHAR},
+      g7 = #{g7,jdbcType=VARCHAR},
+      h8 = #{h8,jdbcType=VARCHAR},
+      i9 = #{i9,jdbcType=VARCHAR},
+      j10 = #{j10,jdbcType=VARCHAR},
+      k11 = #{k11,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectByParam" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_temps
+    ORDER BY a1,id
+  </select>
+</mapper>

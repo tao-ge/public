@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ycnet.frms.mapper.LogsMapper" >
+  <resultMap id="BaseResultMap" type="com.ycnet.frms.bean.Logs" >
+    <id column="log_id" property="logId" jdbcType="BIGINT" />
+    <result column="opr_time" property="oprTime" jdbcType="TIMESTAMP" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="log_code" property="logCode" jdbcType="VARCHAR" />
+    <result column="log_content" property="logContent" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="org_id" property="orgId" jdbcType="BIGINT" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    log_id, opr_time, ip, log_code, log_content, user_id, user_name,org_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from tn_logs
+    where log_id = #{logId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tn_logs
+    where log_id = #{logId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ycnet.frms.bean.Logs" >
+    insert into tn_logs (log_id, opr_time, ip, 
+      log_code, log_content, user_id, 
+      user_name,org_id)
+    values (#{logId,jdbcType=BIGINT}, #{oprTime,jdbcType=TIMESTAMP}, #{ip,jdbcType=VARCHAR}, 
+      #{logCode,jdbcType=VARCHAR}, #{logContent,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{userName,jdbcType=VARCHAR}, #{orgId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ycnet.frms.bean.Logs" >
+    insert into tn_logs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        log_id,
+      </if>
+      <if test="oprTime != null" >
+        opr_time,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="logCode != null" >
+        log_code,
+      </if>
+      <if test="logContent != null" >
+        log_content,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="orgId != null" >
+        org_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        #{logId,jdbcType=BIGINT},
+      </if>
+      <if test="oprTime != null" >
+        #{oprTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="logCode != null" >
+        #{logCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logContent != null" >
+        #{logContent,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+       <if test="orgId != null" >
+        #{orgId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ycnet.frms.bean.Logs" >
+    update tn_logs
+    <set >
+      <if test="oprTime != null" >
+        opr_time = #{oprTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="logCode != null" >
+        log_code = #{logCode,jdbcType=VARCHAR},
+      </if>
+      <if test="logContent != null" >
+        log_content = #{logContent,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+       <if test="orgId != null" >
+        org_id = #{orgId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ycnet.frms.bean.Logs" >
+    update tn_logs
+    set opr_time = #{oprTime,jdbcType=TIMESTAMP},
+      ip = #{ip,jdbcType=VARCHAR},
+      log_code = #{logCode,jdbcType=VARCHAR},
+      log_content = #{logContent,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      user_name = #{userName,jdbcType=VARCHAR},
+      org_id = #{orgId,jdbcType=BIGINT}
+    where log_id = #{logId,jdbcType=BIGINT}
+  </update>
+  <!-- fl 添加分机构 -->
+  <select id="queryByConditionBeans"  parameterType="map" resultMap="BaseResultMap">
+   SELECT l.log_id,l.opr_time,l.ip,l.log_code,l.log_content,l.user_id,l.user_name,u.mobile_phone
+   FROM tn_logs  l LEFT JOIN  tn_users u ON l.user_id=u.user_id
+    <where>
+        <trim prefixOverrides="and">
+            <if test="LogsCondition.startTime!=null and LogsCondition.startTime!=''">
+                and l.opr_time>#{LogsCondition.startTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="LogsCondition.endTime!=null and LogsCondition.endTime!=''">
+                and l.opr_time &lt; #{LogsCondition.endTime,jdbcType=TIMESTAMP} 
+            </if>
+             <if test="LogsCondition.userName!=null and LogsCondition.userName!=''">
+                and l.user_name like concat('%',#{LogsCondition.userName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="orgId!=null">
+                and u.org_id = #{orgId,jdbcType=BIGINT}
+            </if>
+        </trim>
+    </where>
+    order by l.log_id desc
+    limit #{pb.startRowNum,jdbcType=BIGINT},#{pb.endRowNum,jdbcType=BIGINT}
+   </select>
+    <!-- fl 添加分机构 -->
+   <select id="queryCountByConditionMap"  parameterType="map" resultType="java.lang.Integer">
+   select 
+    count(1) from (
+	    SELECT l.log_id,l.opr_time,l.ip,l.log_code,l.log_content,l.user_id,l.user_name
+	   FROM tn_logs  l LEFT JOIN  tn_users u ON l.user_id=u.user_id
+	    <where>
+	        <trim prefixOverrides="and">
+	            <if test="LogsCondition.startTime!=null and LogsCondition.startTime!=''">
+	                and l.opr_time>#{LogsCondition.startTime,jdbcType=TIMESTAMP}
+	            </if>
+	            <if test="LogsCondition.endTime!=null and LogsCondition.endTime!=''">
+	                and l.opr_time &lt; #{LogsCondition.endTime,jdbcType=TIMESTAMP} 
+	            </if>
+	             <if test="LogsCondition.userName!=null and LogsCondition.userName!=''">
+	                and l.user_name like concat('%',#{LogsCondition.userName,jdbcType=VARCHAR},'%')
+	            </if>
+	            <if test="orgId!=null">
+	                and u.org_id = #{orgId,jdbcType=BIGINT}
+	            </if>
+	        </trim>
+	    </where>
+	    order by l.log_id desc
+    ) a
+   </select>
+</mapper>
