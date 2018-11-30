@@ -25,7 +25,6 @@ import com.ycnet.frms.bean.Organizition;
 import com.ycnet.frms.bean.Pages;
 import com.ycnet.frms.bean.Roles;
 import com.ycnet.frms.bean.Users;
-import com.ycnet.frms.bean.WorkorderOrganizition;
 import com.ycnet.frms.service.AreasService;
 import com.ycnet.frms.service.BasecodeService;
 import com.ycnet.frms.service.OrganizitionService;
@@ -33,7 +32,6 @@ import com.ycnet.frms.service.PageRoleService;
 import com.ycnet.frms.service.PagesService;
 import com.ycnet.frms.service.RolesService;
 import com.ycnet.frms.service.UsersService;
-import com.ycnet.frms.service.WorkorderOrganizitionService;
 import com.ycnet.mobile.util.Result;
 
 @Controller
@@ -60,8 +58,6 @@ public class OrganizitionController {
 	@Resource(name="pageRoleService")
 	private PageRoleService pageRoleService;
 	
-	@Resource(name="workorderOrganizitionService")
-	private WorkorderOrganizitionService workorderOrganizitionService;
 	
 	private static final Logger LOG = LoggerFactory.getLogger(OrganizitionController.class);
 	
@@ -112,20 +108,6 @@ public class OrganizitionController {
 		
 		int num = organizitionService.insert(organizition);
 
-		if(organizition.getIsSynchOpss()!=null && "1".equals(organizition.getIsSynchOpss())) {
-			WorkorderOrganizition wOrgNew = new WorkorderOrganizition();
-			wOrgNew.setOrgId(organizition.getOrgId());
-			wOrgNew.setOrgName(organizition.getOrgName());
-			wOrgNew.setOrgAddress(organizition.getOrgAddress());
-			wOrgNew.setOrders(organizition.getOrders());
-			wOrgNew.setRemark(organizition.getRemark());
-			wOrgNew.setCode1(organizition.getCode1());
-			wOrgNew.setCode2(organizition.getCode2());
-			wOrgNew.setContactPhone(organizition.getContactPhone());
-			wOrgNew.setActRoles("add_paidan,");
-			workorderOrganizitionService.insertSelective(wOrgNew);
-		}
-		
 //		if(organizition.getDirectFlg() != null && "1".equals(organizition.getDirectFlg())){
 //			result = "system/organizitionAdd";
 //		} else {
@@ -220,20 +202,6 @@ public class OrganizitionController {
 		}
 		organizitionService.updateByPrimaryKeySelective(organizition);
 
-		if(organizition.getIsSynchOpss()!=null && "1".equals(organizition.getIsSynchOpss())) {
-			WorkorderOrganizition wOrgNew = new WorkorderOrganizition();
-			wOrgNew.setOrgId(organizition.getOrgId());
-			wOrgNew.setOrgName(organizition.getOrgName());
-			wOrgNew.setOrgAddress(organizition.getOrgAddress());
-			wOrgNew.setOrders(organizition.getOrders());
-			wOrgNew.setRemark(organizition.getRemark());
-			wOrgNew.setCode1(organizition.getCode1());
-			wOrgNew.setCode2(organizition.getCode2());
-			wOrgNew.setContactPhone(organizition.getContactPhone());
-			wOrgNew.setActRoles("add_paidan,");
-			workorderOrganizitionService.updateByPrimaryKeySelective(wOrgNew);
-		}
-		
 		model.addAttribute("pb",organizitionService.queryByConditionMapAndOrgId(new Organizition(),pb,orgId));
 		model.addAttribute("orgId",orgId);
 		return "system/organizitionList";
@@ -307,20 +275,6 @@ public class OrganizitionController {
 		
 		int num = organizitionService.insert(organizition);
 
-		if(organizition.getIsSynchOpss()!=null && "1".equals(organizition.getIsSynchOpss())) {
-			WorkorderOrganizition wOrgNew = new WorkorderOrganizition();
-			wOrgNew.setOrgId(organizition.getOrgId());
-			wOrgNew.setOrgName(organizition.getOrgName());
-			wOrgNew.setOrgAddress(organizition.getOrgAddress());
-			wOrgNew.setOrders(organizition.getOrders());
-			wOrgNew.setRemark(organizition.getRemark());
-			wOrgNew.setCode1(organizition.getCode1());
-			wOrgNew.setCode2(organizition.getCode2());
-			wOrgNew.setContactPhone(organizition.getContactPhone());
-			wOrgNew.setActRoles("add_paidan,");
-			workorderOrganizitionService.insertSelective(wOrgNew);
-		}
-		
 		
 		return num;
 	}
@@ -363,19 +317,7 @@ public class OrganizitionController {
 		}
 		int n = organizitionService.updateByPrimaryKeySelective(organizition);
 
-		if(organizition.getIsSynchOpss()!=null && "1".equals(organizition.getIsSynchOpss())) {
-			WorkorderOrganizition wOrgNew = new WorkorderOrganizition();
-			wOrgNew.setOrgId(organizition.getOrgId());
-			wOrgNew.setOrgName(organizition.getOrgName());
-			wOrgNew.setOrgAddress(organizition.getOrgAddress());
-			wOrgNew.setOrders(organizition.getOrders());
-			wOrgNew.setRemark(organizition.getRemark());
-			wOrgNew.setCode1(organizition.getCode1());
-			wOrgNew.setCode2(organizition.getCode2());
-			wOrgNew.setContactPhone(organizition.getContactPhone());
-			wOrgNew.setActRoles("add_paidan,");
-			workorderOrganizitionService.updateByPrimaryKeySelective(wOrgNew);
-		}
+		
 		
 		return n;
 	}
