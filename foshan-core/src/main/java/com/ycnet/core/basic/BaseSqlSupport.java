@@ -31,10 +31,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.ycnet.core.util.SqlAdapter;
 import com.ycnet.core.util.SqlHelper;
-import com.ycnet.frms.bean.Lines;
 import com.ycnet.frms.bean.TaskRecord;
-import com.ycnet.frms.vo.SectRouteBean;
-import com.ycnet.frms.vo.TaskRecordBean;
 
 /*
  * 用于所有DAO成实现类的父类，内置提供了session方法

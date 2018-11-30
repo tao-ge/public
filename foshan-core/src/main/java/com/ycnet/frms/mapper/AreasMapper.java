@@ -7,9 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.ycnet.frms.bean.Areas;
 import com.ycnet.frms.vo.AreasBean;
 import com.ycnet.frms.vo.AreasParent;
-import com.ycnet.frms.vo.AreasVo;
 import com.ycnet.frms.vo.Position;
-import com.ycnet.frms.vo.TaskRecordBean;
 
 public interface AreasMapper {
     int deleteByPrimaryKey(String areaCode);

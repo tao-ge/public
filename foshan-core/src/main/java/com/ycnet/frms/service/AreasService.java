@@ -4,12 +4,10 @@ import java.util.List;
 
 import com.ycnet.core.util.KVBean;
 import com.ycnet.frms.bean.Areas;
-import com.ycnet.frms.bean.TaskRecord;
 import com.ycnet.frms.vo.AreasBean;
 import com.ycnet.frms.vo.AreasParent;
 import com.ycnet.frms.vo.AreasVo;
 import com.ycnet.frms.vo.Position;
-import com.ycnet.frms.vo.TaskRecordBean;
 
 public interface AreasService {
 

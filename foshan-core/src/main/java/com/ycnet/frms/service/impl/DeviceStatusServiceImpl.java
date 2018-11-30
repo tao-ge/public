@@ -1,8 +1,11 @@
 package com.ycnet.frms.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -10,16 +13,12 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.ycnet.core.Constants;
-import com.ycnet.core.util.BeanUtils;
 import com.ycnet.core.util.PageBean;
-import com.ycnet.frms.bean.DeviceAlarm;
 import com.ycnet.frms.bean.DeviceReg;
 import com.ycnet.frms.bean.DeviceStatus;
 import com.ycnet.frms.bean.Users;
-import com.ycnet.frms.mapper.DeviceRegMapper;
 import com.ycnet.frms.mapper.DeviceStatusMapper;
 import com.ycnet.frms.service.DeviceStatusService;
-import com.ycnet.frms.vo.DeviceAlarmBean;
 import com.ycnet.frms.vo.DeviceStatusBean;
 import com.ycnet.frms.vo.DeviceStatusConditionBean;
 
@@ -31,8 +30,7 @@ public class DeviceStatusServiceImpl implements DeviceStatusService {
 	@Resource(name="deviceStatusMapper")
 	private DeviceStatusMapper deviceStatusMapper;
 
-	@Resource(name="deviceRegMapper")
-	private DeviceRegMapper deviceRegMapper;
+
 	
 	@Override
 	public PageBean queryByConditionBean(DeviceStatusConditionBean bean,
@@ -75,7 +73,146 @@ public class DeviceStatusServiceImpl implements DeviceStatusService {
 			DeviceStatusBean dsb=new DeviceStatusBean();
 //			BeanUtils.copy(ds, dsb);			
 			//fl  根据devId，查询当前设施运行状态状态
-			List<DeviceReg> deviceRegList=deviceRegMapper.queryByDevId(ds.getDevId(),null);
+			List<DeviceReg> deviceRegList=new List<DeviceReg>() {
+				
+				@Override
+				public <T> T[] toArray(T[] a) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public Object[] toArray() {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public List<DeviceReg> subList(int fromIndex, int toIndex) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public int size() {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				
+				@Override
+				public DeviceReg set(int index, DeviceReg element) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public boolean retainAll(Collection<?> c) {
+					// TODO Auto-generated method stub
+					return false;
+				}
+				
+				@Override
+				public boolean removeAll(Collection<?> c) {
+					// TODO Auto-generated method stub
+					return false;
+				}
+				
+				@Override
+				public DeviceReg remove(int index) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public boolean remove(Object o) {
+					// TODO Auto-generated method stub
+					return false;
+				}
+				
+				@Override
+				public ListIterator<DeviceReg> listIterator(int index) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public ListIterator<DeviceReg> listIterator() {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public int lastIndexOf(Object o) {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				
+				@Override
+				public Iterator<DeviceReg> iterator() {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public boolean isEmpty() {
+					// TODO Auto-generated method stub
+					return false;
+				}
+				
+				@Override
+				public int indexOf(Object o) {
+					// TODO Auto-generated method stub
+					return 0;
+				}
+				
+				@Override
+				public DeviceReg get(int index) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public boolean containsAll(Collection<?> c) {
+					// TODO Auto-generated method stub
+					return false;
+				}
+				
+				@Override
+				public boolean contains(Object o) {
+					// TODO Auto-generated method stub
+					return false;
+				}
+				
+				@Override
+				public void clear() {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public boolean addAll(int index, Collection<? extends DeviceReg> c) {
+					// TODO Auto-generated method stub
+					return false;
+				}
+				
+				@Override
+				public boolean addAll(Collection<? extends DeviceReg> c) {
+					// TODO Auto-generated method stub
+					return false;
+				}
+				
+				@Override
+				public void add(int index, DeviceReg element) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public boolean add(DeviceReg e) {
+					// TODO Auto-generated method stub
+					return false;
+				}
+			};
 			String devStatu="2";
 			if (deviceRegList !=null && deviceRegList.size()>0) {
 				 devStatu = deviceRegList.get(0).getDevStatus();

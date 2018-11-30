@@ -1,10 +1,6 @@
 package com.ycnet.frms.service.impl;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +14,6 @@ import com.ycnet.frms.bean.Facility;
 import com.ycnet.frms.bean.FacilityAccess;
 import com.ycnet.frms.bean.Users;
 import com.ycnet.frms.mapper.FacilityAccessMapper;
-import com.ycnet.frms.mapper.FacilityMapper;
 import com.ycnet.frms.mapper.UsersMapper;
 import com.ycnet.frms.service.FacilityAccessService;
 import com.ycnet.frms.vo.AccessConditionBean;
@@ -31,8 +26,7 @@ public class FacilityAccessServiceImpl implements FacilityAccessService{
 	@Resource(name="usersMapper")
 	private UsersMapper usersMapper;
 	
-	@Resource(name="facilityMapper")
-	private FacilityMapper facilityMapper;
+
 	
 	@Override
 	public int save(FacilityAccess access) {
@@ -134,7 +128,7 @@ public class FacilityAccessServiceImpl implements FacilityAccessService{
 				if(!"null".equals(fa.getDevIds())) {
 					String[] devIds = fa.getDevIds().split(",");
 					for (int i = 0; i < devIds.length; i++) {
-						Facility f = facilityMapper.selectByPrimaryKey(Long.valueOf(devIds[i]));
+						Facility f = new Facility();
 						devNames+=f.getDevName()+"（"+f.getDevCode()+"）"+",";
 					}
 					if(!"".equals(devNames)) {
